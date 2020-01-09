@@ -82,9 +82,21 @@ HRESULT InitVB()
 		{ 270.0f, 340.0f, 0.5f, 1.0f, 0xff00ffff, },
 		{ 220.0f, 350.0f, 0.5f, 1.0f, 0xff00ffff, },
 
-		{ 310.0f, 200.0f, 0.5f, 1.0f, 0xffff0000, },
+		{ 270.0f, 340.0f, 0.5f, 1.0f, 0xffff0000, },
+		{ 320.0f, 340.0f, 0.5f, 1.0f, 0xffff0000, },
+		{ 300.0f, 380.0f, 0.5f, 1.0f, 0xffff0000, },
 
-		{ 160.0f, 90.0f, 0.5f, 1.0f, 0xffff0000, },
+		{ 330.0f, 340.0f, 0.5f, 1.0f, 0xffff0000, },
+		{ 350.0f, 300.0f, 0.5f, 1.0f, 0xffff0000, },
+		{ 370.0f, 340.0f, 0.5f, 1.0f, 0xffff0000, },
+
+		{ 350.0f, 300.0f, 0.5f, 1.0f, 0xffff0000, },
+		{ 330.0f, 260.0f, 0.5f, 1.0f, 0xff00ffff, },
+		{ 370.0f, 260.0f, 0.5f, 1.0f, 0xffff0000, },
+
+		{ 330.0f, 260.0f, 0.5f, 1.0f, 0xff00ffff, },
+		{ 270.0f, 260.0f, 0.5f, 1.0f, 0xff00ff00, },
+		{ 300.0f, 220.0f, 0.5f, 1.0f, 0xffff0000, },
 	};
 	CUSTOMVERTEX vertices2[] =
 	{
@@ -111,7 +123,7 @@ HRESULT InitVB()
 		return E_FAIL;
 	}
 	void* pVertices1;
-	if (FAILED(g_pVB1->Lock(0, sizeof(vertices1), (void**)&pVertices1, 0)))
+	if (FAILED(g_pVB1->Lock(0, sizeof(vertices1), (void**)& pVertices1, 0)))
 	{
 		return E_FAIL;
 	}
@@ -124,7 +136,7 @@ HRESULT InitVB()
 		return E_FAIL;
 	}
 	void* pVertices2;
-	if (FAILED(g_pVB2->Lock(0, sizeof(vertices2), (void**)&pVertices2, 0)))
+	if (FAILED(g_pVB2->Lock(0, sizeof(vertices2), (void**)& pVertices2, 0)))
 	{
 		return E_FAIL;
 	}
