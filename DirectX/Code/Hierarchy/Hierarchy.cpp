@@ -192,7 +192,8 @@ void Animate()
 	D3DXMatrixRotationY(&g_matRParent, GetTickCount() / 500.0f);
 
 	//자식 메시의 z축 회전 행렬
-	D3DXMatrixRotationZ(&g_matRChild, GetTickCount() / 500.0f);
+	D3DXMatrixIdentity(&g_matRChild);
+	//D3DXMatrixRotationZ(&g_matRChild, GetTickCount() / 500.0f);
 
 	//특정 vector를 축으로 하는 행렬
 	//D3DXMatrixRotationAxis(&g_matRChild, nomalVec, Angle);
