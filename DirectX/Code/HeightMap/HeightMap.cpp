@@ -71,7 +71,7 @@ HRESULT InitD3D(HWND hWnd)
 		return E_FAIL;
 	}
 
-	g_pd3dDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+	g_pd3dDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
 	g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, TRUE);
 
@@ -151,7 +151,7 @@ HRESULT InitVB()
 			v.t.x = (float)x / (g_cxHeight - 1);
 			v.t.y = (float)z / (g_czHeight - 1);
 			*pV++ = v;
-			//g_pLog->Log( "[%f,%f,%f]", v.x, v.y, v.z );
+			//g_pLog->Log( "[%f,%f,%f]", v.p.x, v.p.y, v.p.z );
 		}
 	}
 
@@ -228,7 +228,7 @@ void SetupCamera()
 	D3DXMatrixIdentity(&matWorld);
 	g_pd3dDevice->SetTransform(D3DTS_WORLD, &matWorld);
 
-	D3DXVECTOR3 vEyePt(0.0f, 100.0f, -(float)g_czHeight);
+	D3DXVECTOR3 vEyePt(0.0f, 100.0f, -(float)g_czHeight / 2);
 	D3DXVECTOR3 vLookatPt(0.0f, 0.0f, 0.0f);
 	D3DXVECTOR3 vUpVec(0.0f, 1.0f, 0.0f);
 	D3DXMATRIXA16 matView;
@@ -306,7 +306,7 @@ VOID Animate()
 	DWORD d = GetTickCount() % ((int)((D3DX_PI * 2) * 1000));
 	// Y축 회전행렬
 	D3DXMatrixRotationY(&g_matAni, d / 1000.0f);
-	//	D3DXMatrixIdentity( &g_matAni );
+	//D3DXMatrixIdentity( &g_matAni );
 
 	// 카메라 행렬설정
 	SetupCamera();

@@ -1,3 +1,4 @@
+#pragma once
 /**-----------------------------------------------------------------------------
  * \brief 높이맵
  * 파일: HeightMap.cpp
@@ -356,8 +357,12 @@ void ProcessMouse( void )
  */
 void ProcessKey( void )
 {
-	if( GetAsyncKeyState( 'A' ) ) g_pCamera->MoveLocalZ( 0.5f );	// 카메라 전진!
-	if( GetAsyncKeyState( 'Z' ) ) g_pCamera->MoveLocalZ( -0.5f );	// 카메라 후진!
+	if( GetAsyncKeyState( 'W' ) ) g_pCamera->MoveLocalZ( 1.0f );   // 카메라 전진
+	if( GetAsyncKeyState( 'S' ) ) g_pCamera->MoveLocalZ( -1.0f );  // 카메라 후진
+	if (GetAsyncKeyState( 'A' ) ) g_pCamera->MoveLocalX( -1.0f );  // 카메라 왼쪽 이동
+	if (GetAsyncKeyState( 'D' ) ) g_pCamera->MoveLocalX( 1.0f );   // 카메라 오른쪽 이동
+	if (GetAsyncKeyState( 'Q' ) ) g_pCamera->MoveLocalY( 1.0f );   // 카메라 위 이동
+	if (GetAsyncKeyState( 'E' ) ) g_pCamera->MoveLocalY( -1.0f );  // 카메라 아래 이동
 	if( GetAsyncKeyState( VK_ESCAPE ) ) PostMessage( g_hwnd, WM_DESTROY, 0, 0L );
 	if( GetAsyncKeyState( VK_LBUTTON ) ) g_pd3dDevice->SetRenderState( D3DRS_FILLMODE, D3DFILL_WIREFRAME );
 	if( GetAsyncKeyState( VK_RBUTTON ) ) g_pd3dDevice->SetRenderState( D3DRS_FILLMODE, D3DFILL_SOLID );
@@ -383,7 +388,7 @@ VOID Animate()
 	// 0 ~ 2PI 까지(0~360도) 값을 변화시킴 Fixed Point기법 사용
 	DWORD d = GetTickCount() % ( (int)((D3DX_PI*2) * 1000) );
 	// Y축 회전행렬
-//	D3DXMatrixRotationY( &g_matAni, d / 1000.0f );
+	D3DXMatrixRotationY( &g_matAni, d / 1000.0f );
 	D3DXMatrixIdentity( &g_matAni );
 
 	LogFPS();

@@ -10,6 +10,8 @@
  */
 class ZCamera
 {
+	bool			m_bRotate;
+
 	D3DXVECTOR3		m_vEye;			// 카메라의 현재 위치
 	D3DXVECTOR3		m_vLookat;		// 카메라의 시선 위치
 	D3DXVECTOR3		m_vUp;			// 카메라의 상방벡터
@@ -29,6 +31,8 @@ public:
 	
 	// 빌보드 행렬을 얻어낸다.
 	D3DXMATRIXA16*	GetBillMatrix() { return &m_matBill; }
+
+	bool GetRatateState() { return m_bRotate; }
 
 public:
 
@@ -61,6 +65,8 @@ public:
 	
 	// 카메라 좌표계의 Y축으로 angle만큼 회전한다.
 	D3DXMATRIXA16*	RotateLocalY( float angle );
+
+	D3DXMATRIXA16*	RotateLocalZ(float angle);
 
 //	D3DXMATRIXA16*	RotateLocalZ( float angle );
 

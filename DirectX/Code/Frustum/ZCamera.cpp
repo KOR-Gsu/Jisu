@@ -5,6 +5,7 @@
 // 생성자
 ZCamera::ZCamera()
 {
+	m_bRotate = false;
 	D3DXVECTOR3	eye(0.0f,0.0f,0.0f);
 	D3DXVECTOR3	lookat(0.0f,0.0f,-1.0f);
 	D3DXVECTOR3	up(0.0f,1.0f,0.0f);
@@ -57,6 +58,22 @@ D3DXMATRIXA16* ZCamera::RotateLocalY( float angle )
 	vNewDst += m_vEye;										// 실제 dst position =  eye Position + dst vector
 
 	return SetView( &m_vEye, &vNewDst, &m_vUp );
+}
+
+D3DXMATRIXA16 * ZCamera::RotateLocalZ(float angle)
+{
+	D3DXMATRIXA16 matRot;
+	D3DXMatrixRotationAxis(&matRot, &(m_vLookat - m_vEye), angle);
+
+	D3DXVECTOR3 vNewDst;
+	D3DXVec3TransformCoord(&vNewDst, &m_vView, &matRot);	
+	vNewDst += m_vEye;
+
+	if (angle < 0)
+		m_bRotate = false;
+	else
+		m_bRotate = true;
+	return SetView(&m_vEye, &vNewDst, &m_vUp);
 }
 
 // 카메라 좌표계의 X축방향으로 dist만큼 전진한다.(후진은 -dist를 넣으면 된다.)

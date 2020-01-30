@@ -15,14 +15,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="define.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ZCamera.h">
-      <Filter>소스 파일</Filter>
+      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ZFLog.h">
-      <Filter>소스 파일</Filter>
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

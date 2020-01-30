@@ -17,6 +17,10 @@ LPDIRECT3DDEVICE9	g_pd3dDevice = NULL;
 
 LPDIRECT3DVERTEXBUFFER9 g_pVB = NULL; //정점을 보관할 정점 버퍼
 
+
+float g_R = 10000000000.0f;
+float g_theta = 0.0f;
+
 //광원을 사용하기 위해서는 법선 벡터의 정보가 추가 되어야 한다.
 struct CUSTOMVERTEX
 {
@@ -107,7 +111,7 @@ void SetupMatrices()
 
 	D3DXMatrixIdentity(&matWorld);
 
-	D3DXMatrixRotationX(&matWorld, timeGetTime() / 500.0f); 
+	//D3DXMatrixRotationX(&matWorld, timeGetTime() / 500.0f); 
 
 	g_pd3dDevice->SetTransform(D3DTS_WORLD, &matWorld); // 생성한 회전 행렬을 월드 행렬로 디바이스에 설정한다.
 
@@ -143,7 +147,7 @@ void SetupLights()
 	D3DMATERIAL9 mtrl;
 	ZeroMemory(&mtrl, sizeof(D3DMATERIAL9));
 	mtrl.Diffuse.r = mtrl.Ambient.r = 1.0f;
-	mtrl.Diffuse.g = mtrl.Ambient.g = 1.0f;
+	mtrl.Diffuse.g = mtrl.Ambient.g = 0.0f;
 	mtrl.Diffuse.b = mtrl.Ambient.b = 0.0f;
 	mtrl.Diffuse.a = mtrl.Ambient.a = 1.0f;
 	g_pd3dDevice->SetMaterial(&mtrl);
@@ -157,18 +161,18 @@ void SetupLights()
 
 	//광원의 확산광 색깔의 밝기를 지정한다.
 	//광원의 종류를 설정한다(포인트 라이트, 다이렉션 라이트, 스포트 라이트)
-	light.Type = D3DLIGHT_DIRECTIONAL;
+	light.Type = D3DLIGHT_POINT;
 	light.Diffuse.r = 1.0f;
 	light.Diffuse.g = 1.0f;
 	light.Diffuse.b = 1.0f;
-
+	light.Position = D3DXVECTOR3(2 * cosf(timeGetTime() / 350.0f), 100.0,2* sinf(timeGetTime() / 350.0f));
 	//광원의 방향 설정
 	vecDir = D3DXVECTOR3(cosf(timeGetTime() / 350.0f), 1.0f, sinf(timeGetTime() / 350.0f));
 
 	//광원의 방향을 단위 벡터로 만든다.
 	D3DXVec3Normalize((D3DXVECTOR3*)&light.Direction, &vecDir);
 
-	light.Range = 1000.0f; // 광원이 다다를 수 있는 최대거리
+	light.Range = g_R; // 광원이 다다를 수 있는 최대거리
 	g_pd3dDevice->SetLight(0, &light); // 디바이스에 광원 0번을 설치
 	g_pd3dDevice->LightEnable(0, TRUE); // 광원 0번을 활성화 한다.
 	g_pd3dDevice->SetRenderState(D3DRS_LIGHTING, TRUE);// 광원 설정을 활성화 한다.
@@ -235,6 +239,21 @@ LRESULT WINAPI MsgProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch (msg)
 	{
+	case WM_KEYDOWN:
+		switch (wParam)
+		{
+		case VK_RIGHT:
+			g_theta++;
+			break;
+		case VK_LEFT:
+			g_theta--;
+			break;
+		}
+		if (g_theta > 360)
+			g_theta = 0;
+		else if (g_theta < 0)
+			g_theta = 360;
+		return 0;
 	case WM_DESTROY:
 		Cleanup();
 		PostQuitMessage(0);

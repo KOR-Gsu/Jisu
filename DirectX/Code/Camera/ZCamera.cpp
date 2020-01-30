@@ -31,6 +31,18 @@ D3DXMATRIXA16*	ZCamera::SetView( D3DXVECTOR3* pvEye,D3DXVECTOR3* pvLookat,D3DXVE
 	return &m_matView;
 }
 
+D3DXMATRIXA16 * ZCamera::RotateLocalX(float angle)
+{
+	D3DXMATRIXA16 matRot;
+	D3DXMatrixRotationAxis(&matRot, &m_vUp, angle);
+
+	D3DXVECTOR3 vNewDst;
+	D3DXVec3TransformCoord(&vNewDst, &m_vView, &matRot);	// view * rot로 새로운 dst vector를 구한다.
+	vNewDst += m_vEye;										// 실제 dst position =  eye Position + dst vector
+
+	return SetView(&m_vEye, &vNewDst, &m_vUp);
+}
+
 // 카메라 좌표계의 Y축으로 angle만큼 회전한다.
 D3DXMATRIXA16* ZCamera::RotateLocalY( float angle )
 {
@@ -42,6 +54,33 @@ D3DXMATRIXA16* ZCamera::RotateLocalY( float angle )
 	vNewDst += m_vEye;										// 실제 dst position =  eye Position + dst vector
 
 	return SetView( &m_vEye, &vNewDst, &m_vUp );
+}
+
+D3DXMATRIXA16 * ZCamera::MoveLocalX(float dist)
+{
+	D3DXVECTOR3 vNewEye = m_vEye;
+	D3DXVECTOR3 vNewDst = m_vLookat;
+
+	D3DXVECTOR3 vMove;
+	D3DXVec3Normalize(&vMove, &m_vView);
+	vMove *= dist;
+	vNewEye += vMove;
+
+	return SetView(&vNewEye, &m_vLookat, &m_vUp);
+}
+
+D3DXMATRIXA16 * ZCamera::MoveLocalY(float dist)
+{
+	D3DXVECTOR3 vNewEye = m_vEye;
+	D3DXVECTOR3 vNewDst = m_vLookat;
+
+	D3DXVECTOR3 vMove;
+	D3DXVec3Normalize(&vMove, &m_vView);
+	vMove *= dist;
+	vNewEye += vMove;
+	vNewDst += vMove;
+
+	return SetView(&vNewEye, &vNewDst, &m_vUp);
 }
 
 // 카메라 좌표계의 Z축방향으로 dist만큼 전진한다.(후진은 -dist를 넣으면 된다.)

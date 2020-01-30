@@ -125,11 +125,11 @@ void SolarSystem::SetupHeavenlyBody()
 	m_ltHeavenlyBodyList.push_back(sun);
 
 	Earth* earth = new Earth;
-	earth->Init(500.0f, 800.0f, D3DXVECTOR3(9.0f, 0, 0));
+	earth->Init(500.0f, 1000.0f, D3DXVECTOR3(9.0f, 0, 0));
 	m_ltHeavenlyBodyList.push_back(earth);
 
 	Moon* moon = new Moon;
-	moon->Init(500.0f, 50.0f, D3DXVECTOR3(2.5f, 0, 0));
+	moon->Init(500.0f, 1800.0f, D3DXVECTOR3(2.5f, 0, 0));
 	m_ltHeavenlyBodyList.push_back(moon);
 }
 

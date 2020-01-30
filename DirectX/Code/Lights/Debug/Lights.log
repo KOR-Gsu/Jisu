@@ -1,0 +1,3 @@
+﻿  Lights.cpp
+c:\users\a05\desktop\전지수\jisu\directx\code\lights\lights.cpp(280): warning C4002: 함수 같은 매크로 호출 'CreateWindowW'에 대해 인수가 너무 많습니다.
+  Lights.vcxproj -> C:\Users\A05\Desktop\전지수\Jisu\DirectX\Code\Lights\Debug\Lights.exe

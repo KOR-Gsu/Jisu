@@ -441,8 +441,15 @@ void ProcessMouse(void)
  */
 void ProcessKey(void)
 {
-	if (GetAsyncKeyState('A')) g_pCamera->MoveLocalZ(0.5f);	// 카메라 전진!
-	if (GetAsyncKeyState('Z')) g_pCamera->MoveLocalZ(-0.5f);	// 카메라 후진!
+	if (GetAsyncKeyState('W')) g_pCamera->MoveLocalZ(1.0f);	// 카메라 전진!
+	if (GetAsyncKeyState('S')) g_pCamera->MoveLocalZ(-1.0f);	// 카메라 후진!
+	if (GetAsyncKeyState('A')) g_pCamera->MoveLocalX(-1.0f);
+	if (GetAsyncKeyState('D')) g_pCamera->MoveLocalX(1.0f);
+	if (GetAsyncKeyState('Q')) g_pCamera->MoveLocalY(1.0f);
+	if (GetAsyncKeyState('E')) g_pCamera->MoveLocalY(-1.0f);
+	if (g_pCamera->GetRatateState())
+		g_pCamera->RotateLocalZ(-1.0f);
+	if (GetAsyncKeyState('Z')) g_pCamera->RotateLocalZ(1.0f);
 }
 
 /**-----------------------------------------------------------------------------

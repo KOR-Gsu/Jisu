@@ -1,0 +1,15 @@
+﻿  Dib.cpp
+c:\users\a05\desktop\전지수\jisu\directx\code\quadtree\dib.cpp(3): fatal error C1083: 포함 파일을 열 수 없습니다. 'windows.h': No such file or directory
+  Quadtree.cpp
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdlib.h': No such file or directory
+  ZCamera.cpp
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdlib.h': No such file or directory
+  ZFLog.cpp
+c:\users\a05\desktop\전지수\jisu\directx\code\quadtree\zflog.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'windows.h': No such file or directory
+  ZFrustum.cpp
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdlib.h': No such file or directory
+  ZQuadTree.cpp
+c:\program files (x86)\microsoft directx sdk (june 2010)\include\d3d9.h(37): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdlib.h': No such file or directory
+  ZTerrain.cpp
+c:\users\a05\desktop\전지수\jisu\directx\code\quadtree\zflog.h(4): fatal error C1083: 포함 파일을 열 수 없습니다. 'windows.h': No such file or directory
+  코드를 생성하고 있습니다...

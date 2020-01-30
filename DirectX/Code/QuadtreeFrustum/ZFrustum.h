@@ -5,7 +5,7 @@
 #include <d3dx9.h>
 
 /// 프러스텀에 정확하게 포함되지 않더라도, 약간의 여분을 주어서 프러스텀에 포함시키기 위한 값
-#define PLANE_EPSILON	5.0f
+#define PLANE_EPSILON	3.0f
 
 /**
  * 프러스텀 컬링을 하기위한 클래스

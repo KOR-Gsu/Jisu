@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _ZCAMERA_H_
 #define _ZCAMERA_H_
 

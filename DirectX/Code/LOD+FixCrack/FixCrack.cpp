@@ -75,7 +75,7 @@ HRESULT InitD3D(HWND hWnd)
 	}
 
 	// 기본컬링, CCW
-	g_pd3dDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+	g_pd3dDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
 
 	// Z버퍼기능을 켠다.
 	g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, TRUE);
@@ -262,8 +262,12 @@ void ProcessMouse(void)
  */
 void ProcessKey(void)
 {
-	if (GetAsyncKeyState('A')) g_pCamera->MoveLocalZ(0.5f);	// 카메라 전진!
-	if (GetAsyncKeyState('Z')) g_pCamera->MoveLocalZ(-0.5f);	// 카메라 후진!
+	if (GetAsyncKeyState('W')) g_pCamera->MoveLocalZ(1.5f);	// 카메라 전진!
+	if (GetAsyncKeyState('S')) g_pCamera->MoveLocalZ(-1.5f);	// 카메라 후진!
+	if (GetAsyncKeyState('A')) g_pCamera->MoveLocalX(-1.5f);
+	if (GetAsyncKeyState('D')) g_pCamera->MoveLocalX(1.5f);
+	if (GetAsyncKeyState('Q')) g_pCamera->MoveLocalY(1.5f);
+	if (GetAsyncKeyState('E')) g_pCamera->MoveLocalY(-1.5f);
 }
 
 /**-----------------------------------------------------------------------------
