@@ -1,0 +1,6 @@
+D:\Aducation\CShap\Chapter12\FUP\FUP\bin\Debug\FUP.dll
+D:\Aducation\CShap\Chapter12\FUP\FUP\bin\Debug\FUP.pdb
+D:\Aducation\CShap\Chapter12\FUP\FUP\obj\Debug\FUP.csprojAssemblyReference.cache
+D:\Aducation\CShap\Chapter12\FUP\FUP\obj\Debug\FUP.csproj.CoreCompileInputs.cache
+D:\Aducation\CShap\Chapter12\FUP\FUP\obj\Debug\FUP.dll
+D:\Aducation\CShap\Chapter12\FUP\FUP\obj\Debug\FUP.pdb
