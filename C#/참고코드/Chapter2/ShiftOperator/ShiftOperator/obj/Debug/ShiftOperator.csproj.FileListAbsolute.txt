@@ -5,3 +5,10 @@ E:\강의자료\C#\Chapter2\ShiftOperator\ShiftOperator\bin\Debug\ShiftOperator.
 E:\강의자료\C#\Chapter2\ShiftOperator\ShiftOperator\bin\Debug\ShiftOperator.pdb
 E:\강의자료\C#\Chapter2\ShiftOperator\ShiftOperator\obj\Debug\ShiftOperator.exe
 E:\강의자료\C#\Chapter2\ShiftOperator\ShiftOperator\obj\Debug\ShiftOperator.pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ShiftOperator\ShiftOperator\bin\Debug\ShiftOperator.exe.config
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ShiftOperator\ShiftOperator\bin\Debug\ShiftOperator.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ShiftOperator\ShiftOperator\bin\Debug\ShiftOperator.pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ShiftOperator\ShiftOperator\obj\Debug\ShiftOperator.csprojAssemblyReference.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ShiftOperator\ShiftOperator\obj\Debug\ShiftOperator.csproj.CoreCompileInputs.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ShiftOperator\ShiftOperator\obj\Debug\ShiftOperator.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ShiftOperator\ShiftOperator\obj\Debug\ShiftOperator.pdb

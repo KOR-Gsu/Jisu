@@ -4,3 +4,10 @@ E:\강의자료\C#\Chapter2\비트논리연산\비트논리연산\bin\Debug\비�
 E:\강의자료\C#\Chapter2\비트논리연산\비트논리연산\obj\Debug\비트논리연산.csproj.CoreCompileInputs.cache
 E:\강의자료\C#\Chapter2\비트논리연산\비트논리연산\obj\Debug\비트논리연산.exe
 E:\강의자료\C#\Chapter2\비트논리연산\비트논리연산\obj\Debug\비트논리연산.pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트논리연산\비트논리연산\bin\Debug\비트논리연산.exe.config
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트논리연산\비트논리연산\bin\Debug\비트논리연산.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트논리연산\비트논리연산\bin\Debug\비트논리연산.pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트논리연산\비트논리연산\obj\Debug\비트논리연산.csprojAssemblyReference.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트논리연산\비트논리연산\obj\Debug\비트논리연산.csproj.CoreCompileInputs.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트논리연산\비트논리연산\obj\Debug\비트논리연산.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트논리연산\비트논리연산\obj\Debug\비트논리연산.pdb

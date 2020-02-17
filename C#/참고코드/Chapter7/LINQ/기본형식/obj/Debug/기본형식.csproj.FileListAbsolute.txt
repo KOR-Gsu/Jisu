@@ -4,3 +4,10 @@ E:\강의자료\C#\Chapter7\LINQ\기본형식\bin\Debug\기본형식.pdb
 E:\강의자료\C#\Chapter7\LINQ\기본형식\obj\Debug\기본형식.csproj.CoreCompileInputs.cache
 E:\강의자료\C#\Chapter7\LINQ\기본형식\obj\Debug\기본형식.exe
 E:\강의자료\C#\Chapter7\LINQ\기본형식\obj\Debug\기본형식.pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter7\LINQ\기본형식\bin\Debug\기본형식.exe.config
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter7\LINQ\기본형식\bin\Debug\기본형식.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter7\LINQ\기본형식\bin\Debug\기본형식.pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter7\LINQ\기본형식\obj\Debug\기본형식.csprojAssemblyReference.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter7\LINQ\기본형식\obj\Debug\기본형식.csproj.CoreCompileInputs.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter7\LINQ\기본형식\obj\Debug\기본형식.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter7\LINQ\기본형식\obj\Debug\기본형식.pdb

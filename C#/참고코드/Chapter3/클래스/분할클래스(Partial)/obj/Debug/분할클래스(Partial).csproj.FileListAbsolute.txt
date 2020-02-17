@@ -5,3 +5,10 @@ E:\강의자료\C#\Chapter3\클래스\분할클래스(Partial)\obj\Debug\분할�
 E:\강의자료\C#\Chapter3\클래스\분할클래스(Partial)\obj\Debug\분할클래스(Partial).csproj.CoreCompileInputs.cache
 E:\강의자료\C#\Chapter3\클래스\분할클래스(Partial)\obj\Debug\분할클래스(Partial).exe
 E:\강의자료\C#\Chapter3\클래스\분할클래스(Partial)\obj\Debug\분할클래스(Partial).pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\분할클래스(Partial)\bin\Debug\분할클래스(Partial).exe.config
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\분할클래스(Partial)\bin\Debug\분할클래스(Partial).exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\분할클래스(Partial)\bin\Debug\분할클래스(Partial).pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\분할클래스(Partial)\obj\Debug\분할클래스(Partial).csprojAssemblyReference.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\분할클래스(Partial)\obj\Debug\분할클래스(Partial).csproj.CoreCompileInputs.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\분할클래스(Partial)\obj\Debug\분할클래스(Partial).exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\분할클래스(Partial)\obj\Debug\분할클래스(Partial).pdb

@@ -26,7 +26,7 @@ namespace Method
 
         static void Main(string[] args)
         {
-            int sum = Sum(3, 4, 5, 6, 7, 8);
+            int sum = Sum(3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 
             Console.WriteLine("Sum : {0}", sum);
 

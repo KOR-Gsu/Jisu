@@ -5,3 +5,10 @@ E:\강의자료\C#\Chapter2\비트플래그\비트플래그\obj\Debug\비트플�
 E:\강의자료\C#\Chapter2\비트플래그\비트플래그\obj\Debug\비트플래그.csproj.CoreCompileInputs.cache
 E:\강의자료\C#\Chapter2\비트플래그\비트플래그\obj\Debug\비트플래그.exe
 E:\강의자료\C#\Chapter2\비트플래그\비트플래그\obj\Debug\비트플래그.pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트플래그\비트플래그\bin\Debug\비트플래그.exe.config
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트플래그\비트플래그\bin\Debug\비트플래그.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트플래그\비트플래그\bin\Debug\비트플래그.pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트플래그\비트플래그\obj\Debug\비트플래그.csprojAssemblyReference.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트플래그\비트플래그\obj\Debug\비트플래그.csproj.CoreCompileInputs.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트플래그\비트플래그\obj\Debug\비트플래그.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\비트플래그\비트플래그\obj\Debug\비트플래그.pdb

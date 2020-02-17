@@ -5,3 +5,10 @@ E:\강의자료\C#\Chapter2\Method\선택적 매개변수\obj\Debug\선택적 �
 E:\강의자료\C#\Chapter2\Method\선택적 매개변수\obj\Debug\선택적 매개변수.csproj.CoreCompileInputs.cache
 E:\강의자료\C#\Chapter2\Method\선택적 매개변수\obj\Debug\선택적 매개변수.exe
 E:\강의자료\C#\Chapter2\Method\선택적 매개변수\obj\Debug\선택적 매개변수.pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\선택적 매개변수\bin\Debug\선택적 매개변수.exe.config
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\선택적 매개변수\bin\Debug\선택적 매개변수.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\선택적 매개변수\bin\Debug\선택적 매개변수.pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\선택적 매개변수\obj\Debug\선택적 매개변수.csprojAssemblyReference.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\선택적 매개변수\obj\Debug\선택적 매개변수.csproj.CoreCompileInputs.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\선택적 매개변수\obj\Debug\선택적 매개변수.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\선택적 매개변수\obj\Debug\선택적 매개변수.pdb

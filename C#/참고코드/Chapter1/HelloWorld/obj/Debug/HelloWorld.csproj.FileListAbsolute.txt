@@ -10,3 +10,9 @@ E:\학원자료\UnityWithCSharp\HelloWorld\obj\Debug\HelloWorld.csprojAssemblyRe
 E:\학원자료\UnityWithCSharp\HelloWorld\obj\Debug\HelloWorld.csproj.CoreCompileInputs.cache
 E:\학원자료\UnityWithCSharp\HelloWorld\obj\Debug\HelloWorld.exe
 E:\학원자료\UnityWithCSharp\HelloWorld\obj\Debug\HelloWorld.pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter1\HelloWorld\bin\Debug\HelloWorld.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter1\HelloWorld\bin\Debug\HelloWorld.pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter1\HelloWorld\obj\Debug\HelloWorld.csprojAssemblyReference.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter1\HelloWorld\obj\Debug\HelloWorld.csproj.CoreCompileInputs.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter1\HelloWorld\obj\Debug\HelloWorld.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter1\HelloWorld\obj\Debug\HelloWorld.pdb

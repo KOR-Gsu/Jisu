@@ -1,5 +1,5 @@
 ﻿using System;
-//StringBuilder
+//StringBuilder;
 using System.Text;
 
 namespace StringClass
@@ -104,7 +104,7 @@ namespace StringClass
             //StringBuilder
             StringBuilder sb = new StringBuilder();
 
-            for(int i = 1; i < 26; i++)
+            for (int i = 1; i < 26; i++)
             {
                 sb.Append(i.ToString());
 
