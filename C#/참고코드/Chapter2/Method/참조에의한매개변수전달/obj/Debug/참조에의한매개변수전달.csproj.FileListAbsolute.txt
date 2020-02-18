@@ -5,10 +5,3 @@ E:\강의자료\C#\Chapter2\Method\참조에의한매개변수전달\obj\Debug\�
 E:\강의자료\C#\Chapter2\Method\참조에의한매개변수전달\obj\Debug\참조에의한매개변수전달.csproj.CoreCompileInputs.cache
 E:\강의자료\C#\Chapter2\Method\참조에의한매개변수전달\obj\Debug\참조에의한매개변수전달.exe
 E:\강의자료\C#\Chapter2\Method\참조에의한매개변수전달\obj\Debug\참조에의한매개변수전달.pdb
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\참조에의한매개변수전달\bin\Debug\참조에의한매개변수전달.exe.config
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\참조에의한매개변수전달\bin\Debug\참조에의한매개변수전달.exe
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\참조에의한매개변수전달\bin\Debug\참조에의한매개변수전달.pdb
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\참조에의한매개변수전달\obj\Debug\참조에의한매개변수전달.csprojAssemblyReference.cache
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\참조에의한매개변수전달\obj\Debug\참조에의한매개변수전달.csproj.CoreCompileInputs.cache
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\참조에의한매개변수전달\obj\Debug\참조에의한매개변수전달.exe
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\Method\참조에의한매개변수전달\obj\Debug\참조에의한매개변수전달.pdb

@@ -4,7 +4,7 @@ namespace Method
 {
     class OptionalParameter
     {
-        static void PrintProfile(string name, string phone = "입력 요망")
+        static void PrintProfile(string name, string phone = "")
         {
             Console.WriteLine("Name:{0}, Phone:{1}", name, phone);
         }

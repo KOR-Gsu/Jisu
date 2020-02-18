@@ -1,7 +1,0 @@
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ForEach\ForEach\bin\Debug\ForEach.exe.config
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ForEach\ForEach\bin\Debug\ForEach.exe
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ForEach\ForEach\bin\Debug\ForEach.pdb
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ForEach\ForEach\obj\Debug\ForEach.csprojAssemblyReference.cache
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ForEach\ForEach\obj\Debug\ForEach.csproj.CoreCompileInputs.cache
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ForEach\ForEach\obj\Debug\ForEach.exe
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter2\ForEach\ForEach\obj\Debug\ForEach.pdb

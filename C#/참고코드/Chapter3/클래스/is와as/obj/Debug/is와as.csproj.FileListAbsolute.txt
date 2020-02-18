@@ -5,10 +5,3 @@ E:\강의자료\C#\Chapter3\클래스\is와as\obj\Debug\is와as.csprojAssemblyRe
 E:\강의자료\C#\Chapter3\클래스\is와as\obj\Debug\is와as.csproj.CoreCompileInputs.cache
 E:\강의자료\C#\Chapter3\클래스\is와as\obj\Debug\is와as.exe
 E:\강의자료\C#\Chapter3\클래스\is와as\obj\Debug\is와as.pdb
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\is와as\bin\Debug\is와as.exe.config
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\is와as\bin\Debug\is와as.exe
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\is와as\bin\Debug\is와as.pdb
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\is와as\obj\Debug\is와as.csprojAssemblyReference.cache
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\is와as\obj\Debug\is와as.csproj.CoreCompileInputs.cache
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\is와as\obj\Debug\is와as.exe
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\is와as\obj\Debug\is와as.pdb

@@ -10,9 +10,3 @@ E:\학원자료\UnityWithCSharp\ObjectEx\obj\Debug\ObjectEx.csprojAssemblyRefere
 E:\학원자료\UnityWithCSharp\ObjectEx\obj\Debug\ObjectEx.csproj.CoreCompileInputs.cache
 E:\학원자료\UnityWithCSharp\ObjectEx\obj\Debug\StringEx.exe
 E:\학원자료\UnityWithCSharp\ObjectEx\obj\Debug\StringEx.pdb
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter1\ObjectEx\bin\Debug\StringEx.exe
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter1\ObjectEx\bin\Debug\StringEx.pdb
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter1\ObjectEx\obj\Debug\ObjectEx.csprojAssemblyReference.cache
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter1\ObjectEx\obj\Debug\ObjectEx.csproj.CoreCompileInputs.cache
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter1\ObjectEx\obj\Debug\StringEx.exe
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter1\ObjectEx\obj\Debug\StringEx.pdb

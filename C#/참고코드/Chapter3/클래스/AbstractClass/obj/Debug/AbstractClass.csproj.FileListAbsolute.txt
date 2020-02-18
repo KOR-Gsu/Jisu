@@ -4,9 +4,3 @@ E:\강의자료\C#\Chapter3\클래스\AbstractClass\bin\Debug\AbstractClass.pdb
 E:\강의자료\C#\Chapter3\클래스\AbstractClass\obj\Debug\AbstractClass.csproj.CoreCompileInputs.cache
 E:\강의자료\C#\Chapter3\클래스\AbstractClass\obj\Debug\AbstractClass.exe
 E:\강의자료\C#\Chapter3\클래스\AbstractClass\obj\Debug\AbstractClass.pdb
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\AbstractClass\bin\Debug\AbstractClass.exe.config
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\AbstractClass\bin\Debug\AbstractClass.exe
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\AbstractClass\bin\Debug\AbstractClass.pdb
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\AbstractClass\obj\Debug\AbstractClass.csproj.CoreCompileInputs.cache
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\AbstractClass\obj\Debug\AbstractClass.exe
-C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter3\클래스\AbstractClass\obj\Debug\AbstractClass.pdb

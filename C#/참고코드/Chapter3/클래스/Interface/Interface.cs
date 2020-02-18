@@ -59,11 +59,11 @@ namespace Consructor
     {
         static void Main(string[] args)
         {
-            ClimateMonitor monitor = new ClimateMonitor(new FileLogger("MyLog.txt"));
-            monitor.start();
+            //ClimateMonitor monitor = new ClimateMonitor(new FileLogger("MyLog.txt"));
+            //monitor.start();
 
-            //ClimateMonitor consoleMonitor = new ClimateMonitor(new ConsoleLogger());
-            //consoleMonitor.start();
+            ClimateMonitor consoleMonitor = new ClimateMonitor(new ConsoleLogger());
+            consoleMonitor.start();
         }
     }
 }
