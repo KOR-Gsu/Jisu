@@ -1,0 +1,10 @@
+C:\Users\A05\Desktop\CSWF_MineSweeper\CSWF_MineSweeper\bin\Debug\CSWF_MineSweeper.exe.config
+C:\Users\A05\Desktop\CSWF_MineSweeper\CSWF_MineSweeper\bin\Debug\CSWF_MineSweeper.exe
+C:\Users\A05\Desktop\CSWF_MineSweeper\CSWF_MineSweeper\bin\Debug\CSWF_MineSweeper.pdb
+C:\Users\A05\Desktop\CSWF_MineSweeper\CSWF_MineSweeper\obj\Debug\CSWF_MineSweeper.csprojAssemblyReference.cache
+C:\Users\A05\Desktop\CSWF_MineSweeper\CSWF_MineSweeper\obj\Debug\CSWF_MineSweeper.Form1.resources
+C:\Users\A05\Desktop\CSWF_MineSweeper\CSWF_MineSweeper\obj\Debug\CSWF_MineSweeper.Properties.Resources.resources
+C:\Users\A05\Desktop\CSWF_MineSweeper\CSWF_MineSweeper\obj\Debug\CSWF_MineSweeper.csproj.GenerateResource.cache
+C:\Users\A05\Desktop\CSWF_MineSweeper\CSWF_MineSweeper\obj\Debug\CSWF_MineSweeper.csproj.CoreCompileInputs.cache
+C:\Users\A05\Desktop\CSWF_MineSweeper\CSWF_MineSweeper\obj\Debug\CSWF_MineSweeper.exe
+C:\Users\A05\Desktop\CSWF_MineSweeper\CSWF_MineSweeper\obj\Debug\CSWF_MineSweeper.pdb
