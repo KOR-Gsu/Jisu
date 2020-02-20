@@ -5,3 +5,10 @@ E:\강의자료\C#\Chapter9\파일다루기\디렉토리_파일생성\obj\Debug\
 E:\강의자료\C#\Chapter9\파일다루기\디렉토리_파일생성\obj\Debug\디렉토리_파일생성.exe
 E:\강의자료\C#\Chapter9\파일다루기\디렉토리_파일생성\obj\Debug\디렉토리_파일생성.pdb
 E:\강의자료\C#\Chapter9\파일다루기\디렉토리_파일생성\obj\Debug\디렉토리_파일생성.csprojAssemblyReference.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter9\파일다루기\디렉토리_파일생성\bin\Debug\디렉토리_파일생성.exe.config
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter9\파일다루기\디렉토리_파일생성\bin\Debug\디렉토리_파일생성.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter9\파일다루기\디렉토리_파일생성\bin\Debug\디렉토리_파일생성.pdb
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter9\파일다루기\디렉토리_파일생성\obj\Debug\디렉토리_파일생성.csprojAssemblyReference.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter9\파일다루기\디렉토리_파일생성\obj\Debug\디렉토리_파일생성.csproj.CoreCompileInputs.cache
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter9\파일다루기\디렉토리_파일생성\obj\Debug\디렉토리_파일생성.exe
+C:\Users\A05\Desktop\전지수\Jisu\C#\참고코드\Chapter9\파일다루기\디렉토리_파일생성\obj\Debug\디렉토리_파일생성.pdb
