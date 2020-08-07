@@ -72,7 +72,7 @@ public class Gun : MonoBehaviour {
 
         Vector3 hitPosition = Vector3.zero;
 
-        if(Physics.Raycast(fireTransform.position, fireTransform.forward, out hit, fireDistance))
+        if (Physics.Raycast(fireTransform.position, fireTransform.forward, out hit, fireDistance))
         {
             IDamageable target = hit.collider.GetComponent<IDamageable>();
 
@@ -84,6 +84,15 @@ public class Gun : MonoBehaviour {
         else
         {
             hitPosition = fireTransform.position + fireTransform.forward * fireDistance;
+        }
+
+        StartCoroutine(ShotEffect(hitPosition));
+
+        magAmmo--;
+
+        if (magAmmo <= 0)
+        {
+            state = State.Empty;
         }
     }
 
