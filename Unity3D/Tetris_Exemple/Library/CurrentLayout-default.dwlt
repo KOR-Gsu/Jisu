@@ -116,7 +116,7 @@ MonoBehaviour:
   m_MinSize: {x: 634, y: 271}
   m_MaxSize: {x: 18004, y: 10021}
   vertical: 0
-  controlID: 34
+  controlID: 59
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -268,11 +268,11 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 21
+      y: 0
       width: 1303
-      height: 906
+      height: 927
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 651.5, y: 453}
+    m_Translation: {x: 651.5, y: 463.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -280,9 +280,9 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -651.5
-      y: -453
+      y: -463.5
       width: 1303
-      height: 906
+      height: 927
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1303, y: 927}
@@ -320,14 +320,14 @@ MonoBehaviour:
   m_ShowContextualTools: 0
   m_WindowGUID: e04a3c64d1cbf7841bdb249b4047f611
   m_Gizmos: 1
-  m_SceneIsLit: 1
+  m_SceneIsLit: 0
   m_SceneLighting: 1
   m_2DMode: 0
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0, y: 0, z: 0}
+    m_Target: {x: 0, y: 1.5, z: 0}
     speed: 2
     m_Value: {x: 0, y: 0, z: 0}
   m_RenderMode: 0
@@ -379,7 +379,7 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_Size:
-    m_Target: 10
+    m_Target: 2.0639768
     speed: 2
     m_Value: 10
   m_Ortho:
@@ -525,9 +525,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 02440000
-      m_LastClickedID: 17410
-      m_ExpandedIDs: 4ee6ffff
+      m_SelectedIDs: 44360000
+      m_LastClickedID: 13892
+      m_ExpandedIDs: 3cf9ffff42360000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -628,20 +628,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources
+    - Assets/Resources/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Resources
+  - Assets/Resources/Prefabs
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\A06\Desktop\Jisu\Unity3D\Tetris_Exemple
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a2440000
-    m_LastClickedID: 17570
-    m_ExpandedIDs: 000000009a4400009c4400009e44000000ca9a3b
+    m_SelectedIDs: 3a360000
+    m_LastClickedID: 13882
+    m_ExpandedIDs: 000000002e360000303600003236000038360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -669,7 +669,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000009a4400009c4400009e440000
+    m_ExpandedIDs: 000000002e3600003036000032360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -696,24 +696,24 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: b41c00006e1c0000bc1d0000ac2c0000183a00000e3e00000a2c000022f7fffff2230000f82700008a2200000a0affffea220000b6270000443b000006cbffffce4a0000ceb4ffff08e9feffc0f4ffff02230000ce3b0000d43b000036230000103d0000662d000064220000e4210000e6210000fa210000d6210000222400001622000042220000d822000098220000e0e9ffffa8c7ffffdc220000f4f2fcff4e220000b02200002a22000056230000ca2200001e8afeffa62cfcff72e6fdffd4220000205afeff382200006eb2feffe6230000ce22000000220000d2220000ea310000fa220000020efdff1663fdff08240000c0230000f6a4ffff142500004024000044230000bc29feff002400002a230000d02500003083ffffd870ffff5c8fffffba220000462500005c420000a42f0000fe260000242f0000aa59fcff1827000000000000f6400000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: GroupI
+      m_OriginalName: GroupI
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 13720
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 8}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
