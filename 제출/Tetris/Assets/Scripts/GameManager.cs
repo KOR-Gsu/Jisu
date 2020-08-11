@@ -4,35 +4,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager m_instance;
-    
-    public bool isGameover { get; private set; }
+    public static bool IsGameover { get; private set; }
     public static int Width = 10;
     public static int Height = 15;
     public static Transform[,] grid = new Transform[Width, Height];
 
-    public static GameManager instance
-    {
-        get
-        {
-            if(m_instance == null)
-                m_instance = FindObjectOfType<GameManager>();
+    private static AudioSource GameManagerAudioPlayer;
+    public static AudioClip LineClear;
 
-            return m_instance;
-        }
+    public static bool IsInside(Vector2 vec)
+    {
+        return (vec.x >= 0 && vec.x < Width && vec.y >= 0);
     }
 
-    public bool IsInside(Vector2 vec)
-    {
-        return (vec.x >= 0 && vec.x <= Width && vec.y >= 0);
-    }
-
-    public Vector2 roundVec2(Vector2 vec)
+    public static Vector2 roundVec2(Vector2 vec)
     {
         return new Vector2(Mathf.RoundToInt(vec.x), Mathf.RoundToInt(vec.y));
     }
 
-    private bool IsRowFull(int y)
+    private static bool IsRowFull(int y)
     {
         for (int x = 0; x < Width; x++)
         {
@@ -42,8 +32,10 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    private void DeleteRow(int y)
+    private static void DeleteRow(int y)
     {
+        GameManagerAudioPlayer.PlayOneShot(LineClear);
+
         for (int x = 0; x < Width; x++)
         {
             Destroy(grid[x, y].gameObject);
@@ -51,7 +43,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void DecreaseRow(int y)
+    private static void DecreaseRow(int y)
     {
         for (int x = 0; x < Width; x++)
         {
@@ -63,13 +55,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void DecreaseRowAbove(int y)
+    private static void DecreaseRowAbove(int y)
     {
         for (int i = y; i < Height; i++)
             DecreaseRow(i);
     }
 
-    public void DeleteFullRow()
+    public static void DeleteFullRow()
     {
         for(int y = 0; y< Height;y++)
         {
@@ -84,7 +76,11 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
-            Destroy(gameObject);
+        //if (GetInstance != null)
+        //    Destroy(gameObject);
+
+        IsGameover = false;
+
+        GameManagerAudioPlayer = GetComponent<AudioSource>();
     }
 }

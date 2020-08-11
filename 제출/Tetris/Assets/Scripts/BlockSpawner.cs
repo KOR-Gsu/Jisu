@@ -6,12 +6,6 @@ public class BlockSpawner : MonoBehaviour
 {
     public Block[] Blocks;
 
-    private void Awake()
-    {
-        if (GameManager.instance != null && GameManager.instance.isGameover)
-            return;
-    }
-
     private void Start()
     {
         SpawnNext();
@@ -21,6 +15,6 @@ public class BlockSpawner : MonoBehaviour
     {
         int type = Random.Range(0, Blocks.Length);
 
-        Instantiate(Blocks[type], new Vector3(GameManager.Width / 2, GameManager.Height, 0), Quaternion.identity);
+        Instantiate(Blocks[type], new Vector3(GameManager.Width / 2 - 1, GameManager.Height - 1, 0), Quaternion.identity);
     }
 }

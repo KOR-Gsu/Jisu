@@ -107,8 +107,7 @@ public class Group : MonoBehaviour
                 transform.Rotate(0, 0, 90);
         }
         // 아래로 움직인다, 마지막 줄까지
-        else if (Input.GetKeyDown(KeyCode.DownArrow) ||
-                 Time.time - lastFall >= 1)
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFall >= 1)
         {
             // 아래로 한 칸 이동
             transform.position += new Vector3(0, -1, 0);

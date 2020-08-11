@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
-    private float FallBetTime = 100f;
+    private float FallBetTime = 1f;
     private float FallLastTime = 0;
-
-    public bool isStopped { get; set; }
-    public Transform position;
-
+    
     private AudioSource BlockAudioPlayer;
     public AudioClip DropClip;
-    public AudioClip LineClear;
     
     private bool IsValidChildPos()
     {
         foreach(var child in transform)
         {
-            Vector2 vec = GameManager.instance.roundVec2((child as Transform).position);
+            Vector2 vec = GameManager.roundVec2((child as Transform).position);
 
-            if (!GameManager.instance.IsInside(vec))
+            if (!GameManager.IsInside(vec))
                 return false;
 
             if (GameManager.grid[(int)vec.x, (int)vec.y] != null && GameManager.grid[(int)vec.x, (int)vec.y].parent != transform)
@@ -46,19 +42,17 @@ public class Block : MonoBehaviour
 
         foreach(Transform child in transform)
         {
-            Vector2 vec = GameManager.instance.roundVec2(child.position);
+            Vector2 vec = GameManager.roundVec2(child.position);
             GameManager.grid[(int)vec.x, (int)vec.y] = child;
         }
     }
 
-    void Start()
+    private void Start()
     {
-        isStopped = false;
-        position = gameObject.transform;
         BlockAudioPlayer = GetComponent<AudioSource>();
     }
     
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -69,8 +63,7 @@ public class Block : MonoBehaviour
             else
                 transform.position += new Vector3(1, 0, 0);
         }
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             transform.position += new Vector3(1, 0, 0);
 
@@ -79,8 +72,7 @@ public class Block : MonoBehaviour
             else
                 transform.position += new Vector3(-1, 0, 0);
         }
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             transform.Rotate(0, 0, -90);
 
@@ -89,8 +81,7 @@ public class Block : MonoBehaviour
             else
                 transform.Rotate(0, 0, 90);
         }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - FallLastTime >= FallBetTime)
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || (Time.time - FallLastTime >= FallBetTime))
         {
             transform.position += new Vector3(0, -1, 0);
 
@@ -100,7 +91,7 @@ public class Block : MonoBehaviour
             {
                 transform.position += new Vector3(0, 1, 0);
 
-                GameManager.instance.DeleteFullRow();
+                GameManager.DeleteFullRow();
 
                 FindObjectOfType<BlockSpawner>().SpawnNext();
 
