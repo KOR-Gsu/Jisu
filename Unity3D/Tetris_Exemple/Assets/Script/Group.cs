@@ -135,5 +135,28 @@ public class Group : MonoBehaviour
 
             lastFall = Time.time;
         }
+        else if(Input.GetKeyDown(KeyCode.Space))
+        {
+            while(true)
+            {
+                transform.position += new Vector3(0, -1, 0);
+
+                if (isValidGridPos())
+                    updateGrid();
+                else
+                {
+                    transform.position += new Vector3(0, 1, 0);
+
+                    PlayField.deleteFullRows();
+
+                    FindObjectOfType<Spawner>().spawnNext();
+
+                    enabled = false;
+
+                    break;
+                }
+            }
+            lastFall = Time.time;
+        }
     }
 }

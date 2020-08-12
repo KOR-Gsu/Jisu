@@ -14,12 +14,12 @@ public class Block : MonoBehaviour
     {
         foreach(var child in transform)
         {
-            Vector2 vec = GameManager.roundVec2((child as Transform).position);
+            Vector2 vec = GameManager.instance.roundVec2((child as Transform).position);
 
-            if (!GameManager.IsInside(vec))
+            if (!GameManager.instance.IsInside(vec))
                 return false;
 
-            if (GameManager.grid[(int)vec.x, (int)vec.y] != null && GameManager.grid[(int)vec.x, (int)vec.y].parent != transform)
+            if (GameManager.instance.grid[(int)vec.x, (int)vec.y] != null && GameManager.instance.grid[(int)vec.x, (int)vec.y].parent != transform)
                 return false;
         }
 
@@ -32,18 +32,21 @@ public class Block : MonoBehaviour
         {
             for(int x = 0; x < GameManager.Width; x++)
             {
-                if(GameManager.grid[x, y] != null)
+                if (GameManager.instance.grid[x, y] != null)
                 {
-                    if (GameManager.grid[x, y].parent == transform)
-                        GameManager.grid[x, y] = null;
+                    if (GameManager.instance.grid[x, y] != null)
+                    {
+                        if (GameManager.instance.grid[x, y].parent == transform)
+                            GameManager.instance.grid[x, y] = null;
+                    }
                 }
             }
         }
 
         foreach(Transform child in transform)
         {
-            Vector2 vec = GameManager.roundVec2(child.position);
-            GameManager.grid[(int)vec.x, (int)vec.y] = child;
+            Vector2 vec = GameManager.instance.roundVec2(child.position);
+            GameManager.instance.grid[(int)vec.x, (int)vec.y] = child;
         }
     }
 
@@ -91,7 +94,7 @@ public class Block : MonoBehaviour
             {
                 transform.position += new Vector3(0, 1, 0);
 
-                GameManager.DeleteFullRow();
+                GameManager.instance.DeleteFullRow();
 
                 FindObjectOfType<BlockSpawner>().SpawnNext();
 
@@ -103,7 +106,26 @@ public class Block : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // 하드드랍
+            while (true)
+            {
+                transform.position += new Vector3(0, -1, 0);
+
+                if (IsValidChildPos())
+                    UpdateGrid();
+                else
+                {
+                    transform.position += new Vector3(0, 1, 0);
+
+                    GameManager.instance.DeleteFullRow();
+
+                    FindObjectOfType<BlockSpawner>().SpawnNext();
+
+                    enabled = false;
+
+                    break;
+                }
+            }
+            FallLastTime = Time.time;
         }
     }
 }

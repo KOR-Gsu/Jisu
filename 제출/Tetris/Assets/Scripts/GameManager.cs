@@ -1,28 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool IsGameover { get; private set; }
+    public bool IsGameover { get; private set; }
     public static int Width = 10;
     public static int Height = 15;
-    public static Transform[,] grid = new Transform[Width, Height];
+    public Transform[,] grid = new Transform[Width, Height];
 
-    private static AudioSource GameManagerAudioPlayer;
-    public static AudioClip LineClear;
+    private AudioSource GameManagerAudioPlayer;
+    public AudioClip LineClear;
+    public AudioClip die;
 
-    public static bool IsInside(Vector2 vec)
+    private static GameManager m_instance = null;
+    public static GameManager instance
+    {
+        get
+        {
+            if (m_instance == null)
+                m_instance = FindObjectOfType<GameManager>();
+
+            return m_instance;
+        }
+    }
+
+
+    public bool IsInside(Vector2 vec)
     {
         return (vec.x >= 0 && vec.x < Width && vec.y >= 0);
     }
 
-    public static Vector2 roundVec2(Vector2 vec)
+    public  Vector2 roundVec2(Vector2 vec)
     {
-        return new Vector2(Mathf.RoundToInt(vec.x), Mathf.RoundToInt(vec.y));
+        return new Vector2(Mathf.Round(vec.x), Mathf.Round(vec.y));
     }
 
-    private static bool IsRowFull(int y)
+    private  bool IsRowFull(int y)
     {
         for (int x = 0; x < Width; x++)
         {
@@ -32,7 +47,7 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    private static void DeleteRow(int y)
+    private  void DeleteRow(int y)
     {
         GameManagerAudioPlayer.PlayOneShot(LineClear);
 
@@ -43,29 +58,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private static void DecreaseRow(int y)
+    private  void DecreaseRow(int y)
     {
         for (int x = 0; x < Width; x++)
         {
             if (grid[x, y] != null)
             {
                 grid[x, y - 1] = grid[x, y];
-                grid[x, y].position += new Vector3(0, -1, 0);
+                grid[x, y] = null;
+
+                grid[x, y - 1].position += new Vector3(0, -1, 0);
             }
         }
     }
 
-    private static void DecreaseRowAbove(int y)
+    private  void DecreaseRowAbove(int row)
     {
-        for (int i = y; i < Height; i++)
-            DecreaseRow(i);
+        for (int y = row; y < Height; y++)
+            DecreaseRow(y);
     }
 
-    public static void DeleteFullRow()
+    public  void DeleteFullRow()
     {
-        for(int y = 0; y< Height;y++)
+        for (int y = 0; y < Height; y++)
         {
-            if(IsRowFull(y))
+            if (IsRowFull(y))
             {
                 DeleteRow(y);
                 DecreaseRowAbove(y + 1);
@@ -74,10 +91,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void GameOver()
+    {
+        GameManagerAudioPlayer.PlayOneShot(die);
+
+        if(Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene("GameScene");
+    }
+
     private void Awake()
     {
-        //if (GetInstance != null)
-        //    Destroy(gameObject);
+        if (m_instance != null)
+            Destroy(gameObject);
 
         IsGameover = false;
 
