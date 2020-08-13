@@ -6,11 +6,6 @@ public class BlockSpawner : MonoBehaviour
 {
     public Block[] Blocks;
 
-    private void Start()
-    {
-        SpawnNext();
-    }
-
     public void SpawnNext()
     {
         int type = Random.Range(0, Blocks.Length);

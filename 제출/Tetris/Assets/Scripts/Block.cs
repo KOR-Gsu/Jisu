@@ -99,6 +99,8 @@ public class Block : MonoBehaviour
                 FindObjectOfType<BlockSpawner>().SpawnNext();
 
                 enabled = false;
+
+                BlockAudioPlayer.PlayOneShot(DropClip);
             }
 
             FallLastTime = Time.time;
@@ -121,6 +123,8 @@ public class Block : MonoBehaviour
                     FindObjectOfType<BlockSpawner>().SpawnNext();
 
                     enabled = false;
+
+                    BlockAudioPlayer.PlayOneShot(DropClip);
 
                     break;
                 }

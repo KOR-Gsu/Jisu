@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool IsGameover { get; private set; }
+    public bool IsGameOver { get; set; }
     public static int Width = 10;
     public static int Height = 15;
     public Transform[,] grid = new Transform[Width, Height];
+
+    public GameObject gameName;
+    public GameObject startButton;
 
     private AudioSource GameManagerAudioPlayer;
     public AudioClip LineClear;
@@ -49,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     private  void DeleteRow(int y)
     {
-        GameManagerAudioPlayer.PlayOneShot(LineClear);
+        //GameManagerAudioPlayer.PlayOneShot(LineClear);
 
         for (int x = 0; x < Width; x++)
         {
@@ -104,8 +107,23 @@ public class GameManager : MonoBehaviour
         if (m_instance != null)
             Destroy(gameObject);
 
-        IsGameover = false;
+        IsGameOver = true;
 
         GameManagerAudioPlayer = GetComponent<AudioSource>();
+    }
+
+    public void Update()
+    {
+        if(!IsGameOver)
+        {
+            gameName.SetActive(false);
+            startButton.SetActive(false);
+        }
+        else
+        {
+            gameName.SetActive(true);
+            startButton.SetActive(true);
+        }
+
     }
 }
