@@ -7,7 +7,7 @@ public class bStart : MonoBehaviour
 {
     public void OnClickStart()
     {
-        GameManager.instance.IsGameOver = false;
+        GameManager.instance.GameStart();
         FindObjectOfType<BlockSpawner>().SpawnNext();
     }
 }

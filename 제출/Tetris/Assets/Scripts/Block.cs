@@ -6,13 +6,13 @@ public class Block : MonoBehaviour
 {
     private float FallBetTime = 1f;
     private float FallLastTime = 0;
-    
+
     private AudioSource BlockAudioPlayer;
     public AudioClip DropClip;
     
     private bool IsValidChildPos()
     {
-        foreach(var child in transform)
+        foreach (var child in transform)
         {
             Vector2 vec = GameManager.instance.roundVec2((child as Transform).position);
 
@@ -21,6 +21,7 @@ public class Block : MonoBehaviour
 
             if (GameManager.instance.grid[(int)vec.x, (int)vec.y] != null && GameManager.instance.grid[(int)vec.x, (int)vec.y].parent != transform)
                 return false;
+
         }
 
         return true;
@@ -28,9 +29,9 @@ public class Block : MonoBehaviour
 
     private void UpdateGrid()
     {
-        for(int y = 0; y < GameManager.Height; y++)
+        for (int y = 0; y < GameManager.Height; y++)
         {
-            for(int x = 0; x < GameManager.Width; x++)
+            for (int x = 0; x < GameManager.Width; x++)
             {
                 if (GameManager.instance.grid[x, y] != null)
                 {
@@ -43,7 +44,7 @@ public class Block : MonoBehaviour
             }
         }
 
-        foreach(Transform child in transform)
+        foreach (Transform child in transform)
         {
             Vector2 vec = GameManager.instance.roundVec2(child.position);
             GameManager.instance.grid[(int)vec.x, (int)vec.y] = child;
@@ -54,7 +55,7 @@ public class Block : MonoBehaviour
     {
         BlockAudioPlayer = GetComponent<AudioSource>();
     }
-    
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -131,5 +132,36 @@ public class Block : MonoBehaviour
             }
             FallLastTime = Time.time;
         }
+    }
+
+    private void Awake()
+    {
+        bool diecheck = false;
+        bool outcheck = false;
+        foreach (var child in transform)
+        {
+            Vector2 vec = GameManager.instance.roundVec2((child as Transform).position);
+
+            try
+            {
+                if (GameManager.instance.grid[(int)vec.x, (int)vec.y] != null)
+                {
+
+                    diecheck = true;
+                    break;
+                }
+            }
+            catch (System.IndexOutOfRangeException e)
+            {
+                continue;
+            }
+
+            if (!GameManager.instance.IsInside(vec))
+                outcheck = true;
+        }
+        if (diecheck)
+            GameManager.instance.GameOver();
+        if(outcheck)
+            transform.position += new Vector3(0, -1, 0);
     }
 }

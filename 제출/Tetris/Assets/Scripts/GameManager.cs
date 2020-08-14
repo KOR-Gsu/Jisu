@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -8,10 +9,13 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver { get; set; }
     public static int Width = 10;
     public static int Height = 15;
+    private int score = 0;
     public Transform[,] grid = new Transform[Width, Height];
 
-    public GameObject gameName;
+    public Text gameName;
     public GameObject startButton;
+    public Text GameOverText;
+    public Text ScoreText;
 
     private AudioSource GameManagerAudioPlayer;
     public AudioClip LineClear;
@@ -52,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     private  void DeleteRow(int y)
     {
-        //GameManagerAudioPlayer.PlayOneShot(LineClear);
+        GameManagerAudioPlayer.PlayOneShot(LineClear);
 
         for (int x = 0; x < Width; x++)
         {
@@ -83,23 +87,52 @@ public class GameManager : MonoBehaviour
 
     public  void DeleteFullRow()
     {
+        int NumOfDelete = 0;
+
         for (int y = 0; y < Height; y++)
         {
             if (IsRowFull(y))
             {
+                NumOfDelete++;
                 DeleteRow(y);
                 DecreaseRowAbove(y + 1);
                 --y;
             }
         }
+
+        switch(NumOfDelete)
+        {
+            case 1:
+                score += 100;
+                break;
+            case 2:
+                score += 300;
+                break;
+            case 3:
+                score += 500;
+                break;
+            case 4:
+                score += 1000;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void GameStart()
+    {
+        gameName.gameObject.SetActive(false);
+        startButton.SetActive(false);
+        ScoreText.gameObject.SetActive(true);
+
+        IsGameOver = false;
     }
 
     public void GameOver()
     {
+        IsGameOver = true;
+        GameOverText.gameObject.SetActive(true);
         GameManagerAudioPlayer.PlayOneShot(die);
-
-        if(Input.GetKeyDown(KeyCode.R))
-            SceneManager.LoadScene("GameScene");
     }
 
     private void Awake()
@@ -108,22 +141,18 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         IsGameOver = true;
+        GameOverText.gameObject.SetActive(false);
+        ScoreText.gameObject.SetActive(false);
 
         GameManagerAudioPlayer = GetComponent<AudioSource>();
+        ScoreText.GetComponent<TextAsset>();
     }
 
     public void Update()
     {
-        if(!IsGameOver)
-        {
-            gameName.SetActive(false);
-            startButton.SetActive(false);
-        }
-        else
-        {
-            gameName.SetActive(true);
-            startButton.SetActive(true);
-        }
+        if (Input.GetKeyDown(KeyCode.R) && IsGameOver)
+            SceneManager.LoadScene("MainScene");
 
+        ScoreText.text = "Score : " + score;
     }
 }

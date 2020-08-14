@@ -5,11 +5,11 @@ using UnityEngine;
 public class BlockSpawner : MonoBehaviour
 {
     public Block[] Blocks;
-
+    
     public void SpawnNext()
     {
         int type = Random.Range(0, Blocks.Length);
 
-        Instantiate(Blocks[type], new Vector3(GameManager.Width / 2 - 1, GameManager.Height - 1, 0), Quaternion.identity);
+        Instantiate(Blocks[type], new Vector3(GameManager.Width / 2, GameManager.Height, 0), Quaternion.identity);
     }
 }
