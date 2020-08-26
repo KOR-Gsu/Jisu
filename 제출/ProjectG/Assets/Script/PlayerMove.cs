@@ -11,11 +11,17 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody playerRigidbody;
     private Animator playerAnimator;
 
+    private void Awake()
+    {
+    }
+
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
+
+        playerRigidbody.position.Set(71.448f, 21.9f, 52.86962f);
     }
 
     void FixedUpdate()
