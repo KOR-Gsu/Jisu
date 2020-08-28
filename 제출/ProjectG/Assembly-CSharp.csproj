@@ -65,6 +65,7 @@
     <Compile Include="Assets\Script\PlayerInput.cs" />
     <Compile Include="Assets\Script\PlayerMove.cs" />
     <None Include="Assets\Import\Fantasy Forest Environment Free Sample\StandardNoCulling.shader" />
+    <None Include="Assets\Import\Cartoon Temple Building Kit\ReadMe.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/A06/Desktop/Jisu/제출/ProjectG/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
