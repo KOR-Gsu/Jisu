@@ -55,6 +55,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\Enemy.cs" />
+     <Compile Include="Assets\Script\IDamageable.cs" />
+     <Compile Include="Assets\Script\LivingEntity.cs" />
      <Compile Include="Assets\Script\LoadScene.cs" />
      <Compile Include="Assets\Script\PlayerInput.cs" />
      <Compile Include="Assets\Script\PlayerMove.cs" />

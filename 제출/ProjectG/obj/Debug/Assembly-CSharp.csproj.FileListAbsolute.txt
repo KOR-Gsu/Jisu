@@ -274,3 +274,7 @@ C:\Users\A06\Desktop\Jisu\제출\ProjectG\obj\Debug\Assembly-CSharp.csproj.CoreC
 C:\Users\A06\Desktop\Jisu\제출\ProjectG\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\A06\Desktop\Jisu\제출\ProjectG\obj\Debug\Assembly-CSharp.dll
 C:\Users\A06\Desktop\Jisu\제출\ProjectG\obj\Debug\Assembly-CSharp.pdb
+C:\Users\A05\Desktop\전지수\Jisu\제출\ProjectG\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\A05\Desktop\전지수\Jisu\제출\ProjectG\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\A05\Desktop\전지수\Jisu\제출\ProjectG\obj\Debug\Assembly-CSharp.dll
+C:\Users\A05\Desktop\전지수\Jisu\제출\ProjectG\obj\Debug\Assembly-CSharp.pdb
