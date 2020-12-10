@@ -45,11 +45,13 @@ public class Enemy : LivingEntity
     {
         StartCoroutine(UpdatePath());
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        enemyAnimator.SetBool("hasTarget", hasTarget);
+        if(hasTarget)
+            enemyAnimator.SetFloat("hasTarget", 1);
+        else
+            enemyAnimator.SetFloat("hasTarget", 0);
     }
 
     private IEnumerator UpdatePath()
