@@ -312,7 +312,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62571520}
-  m_LocalRotation: {x: -0.20192182, y: 0.78849757, z: -0.33590096, w: -0.47399348}
+  m_LocalRotation: {x: -0.2019218, y: 0.78849757, z: -0.33590096, w: -0.47399348}
   m_LocalPosition: {x: 6.4919043, y: 23.0261, z: 10.3621}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1057,7 +1057,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829808442}
-  m_LocalRotation: {x: -0.20192182, y: 0.78849757, z: -0.33590096, w: -0.47399348}
+  m_LocalRotation: {x: -0.2019218, y: 0.78849757, z: -0.33590096, w: -0.47399348}
   m_LocalPosition: {x: 6.4919043, y: 23.0261, z: 10.3621}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1334,6 +1334,16 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1996251431}
+    - target: {fileID: 1067142156630615833, guid: fc82fb6876f749b4fba00c0825707e65,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1067142156630615834, guid: fc82fb6876f749b4fba00c0825707e65,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc82fb6876f749b4fba00c0825707e65, type: 3}
 --- !u!1001 &1768497162780965028

@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
 
     private List<Enemy> enemies = new List<Enemy>();
     private int wave = 0;
+    private int curSpawn = 0;
 
     void Update()
     {
@@ -27,22 +28,22 @@ public class EnemySpawner : MonoBehaviour
             return;
 
         if(enemies.Count <= 0)
-        {
-            
-        }
+            SpawnEnemy();
     }
 
     private void SpawnEnemy()
     {
         wave++;
 
-        int spawnCount = Mathf.RoundToInt(wave * 1.5f);
+        //int spawnCount = Mathf.RoundToInt(wave * 1.5f);
+        int spawnCount = 4;
 
-        for(int i =0; i< spawnCount;i++)
+        for (int i =0; i< spawnCount;i++)
         {
             float intensity = Random.Range(0, 1.0f);
             CreateEnemy(intensity);
         }
+        curSpawn = 0;
     }
 
     private void CreateEnemy(float intensity)
@@ -53,6 +54,15 @@ public class EnemySpawner : MonoBehaviour
 
         Color skinColor = Color.Lerp(Color.white, strongEnemyColor, intensity);
 
+        Transform spawnPoint = spawnPoints[curSpawn];
 
+        Enemy enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+
+        enemy.Setup(hp, damage, speed);
+        enemy.onDeath += () => enemies.Remove(enemy);
+        enemy.onDeath += () => Destroy(enemy.gameObject, 10f);
+
+        enemies.Add(enemy);
+        curSpawn++;
     }
 }

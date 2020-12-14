@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (instance == null)
+            if (m_instance == null)
                 m_instance = FindObjectOfType<GameManager>();
 
             return m_instance;

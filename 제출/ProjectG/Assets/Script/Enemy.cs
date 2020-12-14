@@ -13,9 +13,10 @@ public class Enemy : LivingEntity
     private Animator enemyAnimator;
 
     public float damage = 5f;
-    public float timeBetAttack = 0.5f;
+    public float timeBetAttack = 0.8f;
     public float lastAttackTime;
 
+    private bool isAttack;
     private bool hasTarget
     {
         get
@@ -38,9 +39,10 @@ public class Enemy : LivingEntity
     {
         pathFinder = GetComponent<NavMeshAgent>();
         enemyAnimator = GetComponent<Animator>();
-    }
 
-    // Start is called before the first frame update
+        isAttack = false;
+    }
+    
     void Start()
     {
         StartCoroutine(UpdatePath());
@@ -48,40 +50,41 @@ public class Enemy : LivingEntity
     
     void Update()
     {
-        if(hasTarget)
-            enemyAnimator.SetFloat("hasTarget", 1);
-        else
+        if(!hasTarget && !isAttack)
             enemyAnimator.SetFloat("hasTarget", 0);
     }
 
     private IEnumerator UpdatePath()
     {
-        while(!dead)
+        if (!isAttack)
         {
-            if(hasTarget)
+            while (!dead)
             {
-                pathFinder.isStopped = false;
-                pathFinder.SetDestination(targetEntity.transform.position);
-            }
-            else
-            {
-                pathFinder.isStopped = true;
-                Collider[] colliders = Physics.OverlapSphere(transform.position, 20f, TargetLayer);
-
-                for(int i =0;i<colliders.Length;i++)
+                if (hasTarget)
                 {
-                    LivingEntity livingEntity = colliders[i].GetComponent<LivingEntity>();
-
-                    if(livingEntity != null && !livingEntity.dead)
-                    {
-                        targetEntity = livingEntity;
-                        break;
-                    }
-
+                    pathFinder.isStopped = false;
+                    pathFinder.SetDestination(targetEntity.transform.position);
+                    enemyAnimator.SetFloat("hasTarget", 1);
                 }
-            }
+                else
+                {
+                    pathFinder.isStopped = true;
+                    Collider[] colliders = Physics.OverlapSphere(transform.position, 30f, TargetLayer);
 
-            yield return new WaitForSeconds(0.25f);
+                    for (int i = 0; i < colliders.Length; i++)
+                    {
+                        LivingEntity livingEntity = colliders[i].GetComponent<LivingEntity>();
+
+                        if (livingEntity != null && !livingEntity.dead)
+                        {
+                            targetEntity = livingEntity;
+                            break;
+                        }
+
+                    }
+                }
+                yield return new WaitForSeconds(0.25f);
+            }
         }
     }
 
@@ -106,18 +109,37 @@ public class Enemy : LivingEntity
 
     private void OnTriggerStay(Collider other)
     {
-        if(!dead && Time.time >= lastAttackTime + timeBetAttack)
+        if (!dead)
         {
-            LivingEntity attackTarget = other.GetComponent<LivingEntity>();
-
-            if(attackTarget != null && attackTarget == targetEntity)
+            if (Time.time >= lastAttackTime + timeBetAttack)
             {
-                lastAttackTime = Time.time;
+                LivingEntity attackTarget = other.GetComponent<LivingEntity>();
 
-                Vector3 hitPoint = other.ClosestPoint(transform.position);
+                if (attackTarget != null && attackTarget == targetEntity)
+                {
+                    isAttack = true;
+                    pathFinder.isStopped = true;
 
-                attackTarget.OnDamage(damage, hitPoint);
+                    lastAttackTime = Time.time;
+
+                    Vector3 hitPoint = other.ClosestPoint(transform.position);
+
+                    attackTarget.OnDamage(damage, hitPoint);
+                    enemyAnimator.SetFloat("Attack", (float)Random.Range(0, 1));
+                }
             }
+            else
+                enemyAnimator.SetFloat("Attack", 2f);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (!dead && isAttack)
+        {
+            isAttack = false;
+            pathFinder.isStopped = false;
+            enemyAnimator.SetFloat("hasTarget", 0);
         }
     }
 }
