@@ -54,9 +54,9 @@ public class PlayerHP : LivingEntity
         healthSlider.value = health;
     }
 
-    public override void OnDamage(float damage, Vector3 hitPoint)
+    public override void OnDamage(float damage)
     {
-        base.OnDamage(damage, hitPoint);
+        base.OnDamage(damage);
 
         healthSlider.value = health;
     }

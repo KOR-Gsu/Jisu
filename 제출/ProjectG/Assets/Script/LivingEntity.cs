@@ -16,7 +16,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         health = startingHealth;
     }
 
-    public virtual void OnDamage(float damage, Vector3 hitPoint)
+    public virtual void OnDamage(float damage)
     {
         health -= damage;
 
