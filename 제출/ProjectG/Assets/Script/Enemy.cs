@@ -13,11 +13,11 @@ public class Enemy : LivingEntity
     private Animator enemyAnimator;
 
     public float damage = 3f;
-    public float timeBetAttack = 2f;
-    public float attackRange = 0.5f;
-    public float lastAttackTime;
+    public float timeBetAttack;
+    public float attackRange;
+    private float lastAttackTime;
 
-    private bool isAttackAble;
+    public bool isAttackAble;
     private bool hasTarget
     {
         get
@@ -54,20 +54,42 @@ public class Enemy : LivingEntity
     {
         if (!isAttackAble)
         {
-            if(hasTarget)
+            if (hasTarget)
                 enemyAnimator.SetFloat("HasTarget", 1);
             else
                 enemyAnimator.SetFloat("HasTarget", 0);
         }
+        else
+        {
+            enemyAnimator.SetFloat("HasTarget", 0);
+
+            Attack();
+        }
+    }
+
+    private void Attack()
+    {
+        if (!dead) 
+        {
+            if (Time.time >= lastAttackTime + timeBetAttack)
+            {
+                if (targetEntity != null && !targetEntity.dead)
+                {
+                    lastAttackTime = Time.time;
+
+                    targetEntity.OnDamage(damage);
+                    enemyAnimator.SetFloat("Attack", 1);
+                }
+            }
+        }
+        
     }
 
     private IEnumerator UpdateAttack()
     {
         while (!dead)
         {
-            isAttackAble = false;
-            pathFinder.isStopped = true;
-
+            bool check = false;
             Collider[] colliders = Physics.OverlapSphere(transform.position, attackRange, TargetLayer);
 
             for (int i = 0; i < colliders.Length; i++)
@@ -76,21 +98,24 @@ public class Enemy : LivingEntity
 
                 if (livingEntity != null && !livingEntity.dead)
                 {
-                    isAttackAble = true;
-                    pathFinder.isStopped = true;
+                    check = true;
                     break;
-                }
+                }                
             }
-            
-            if (isAttackAble)
+
+            if(check)
             {
-                if (targetEntity != null && !targetEntity.dead)
-                {
-                    targetEntity.OnDamage(damage);
-                    enemyAnimator.SetFloat("Attack", (float)Random.Range(1, 2));
-                }
+                isAttackAble = true;
+                pathFinder.ResetPath();
+                pathFinder.isStopped = true;
             }
-            yield return new WaitForSeconds(timeBetAttack);
+            else
+            {
+                isAttackAble = false;
+                enemyAnimator.SetFloat("Attack", 0);
+            }
+
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
@@ -130,6 +155,8 @@ public class Enemy : LivingEntity
     public override void OnDamage(float damage)
     {
         base.OnDamage(damage);
+
+        enemyAnimator.SetFloat("Damaged", 1);
     }
 
     public override void Die()
@@ -145,40 +172,4 @@ public class Enemy : LivingEntity
 
         enemyAnimator.SetTrigger("Die");
     }
-
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (!dead)
-    //    {
-    //        if (Time.time >= lastAttackTime + timeBetAttack)
-    //        {
-    //            LivingEntity attackTarget = other.GetComponent<LivingEntity>();
-
-    //            if (attackTarget != null && attackTarget == targetEntity)
-    //            {
-    //                isAttackAble = true;
-    //                pathFinder.isStopped = true;
-
-    //                lastAttackTime = Time.time;
-
-    //                Vector3 hitPoint = other.ClosestPoint(transform.position);
-
-    //                attackTarget.OnDamage(damage);
-    //                enemyAnimator.SetFloat("Attack", (float)Random.Range(0, 1));
-    //            }
-    //        }
-    //        else
-    //            enemyAnimator.SetFloat("Attack", 2f);
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (!dead && isAttackAble)
-    //    {
-    //        isAttackAble = false;
-    //        pathFinder.isStopped = false;
-    //        enemyAnimator.SetFloat("hasTarget", 0);
-    //    }
-    //}
 }

@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public Enemy enemyPrefab;
     public Transform[] spawnPoints;
 
-    public float damageMax = 7;
+    public float damageMax = 5;
     public float damageMin = 2;
 
     public float hpMax = 150;

@@ -760,7 +760,7 @@ Rigidbody:
   m_GameObject: {fileID: 7665455854276199907}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 5
   m_AngularDrag: 5
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -775,7 +775,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7665455854276199907}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.9
   m_Height: 1.8
@@ -819,10 +819,10 @@ MonoBehaviour:
   TargetLayer:
     serializedVersion: 2
     m_Bits: 256
-  damage: 5
-  timeBetAttack: 0.5
-  attackRange: 1
-  lastAttackTime: 0
+  damage: 3
+  timeBetAttack: 1
+  attackRange: 2.5
+  isAttackAble: 0
 --- !u!1 &7665455854318435794
 GameObject:
   m_ObjectHideFlags: 0
