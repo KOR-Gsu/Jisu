@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
 
     private List<Enemy> enemies = new List<Enemy>();
     private int wave = 0;
-    private int curSpawn = 0;
+    private int curSpawn = 3;
 
     void Update()
     {
@@ -36,14 +36,15 @@ public class EnemySpawner : MonoBehaviour
         wave++;
 
         //int spawnCount = Mathf.RoundToInt(wave * 1.5f);
-        int spawnCount = 4;
+        //int spawnCount = 4;
 
+        int spawnCount = 1;
         for (int i =0; i< spawnCount;i++)
         {
             float intensity = Random.Range(0, 1.0f);
             CreateEnemy(intensity);
         }
-        curSpawn = 0;
+        //curSpawn = 0;
     }
 
     private void CreateEnemy(float intensity)
@@ -63,6 +64,6 @@ public class EnemySpawner : MonoBehaviour
         enemy.onDeath += () => Destroy(enemy.gameObject, 10f);
 
         enemies.Add(enemy);
-        curSpawn++;
+        //curSpawn++;
     }
 }

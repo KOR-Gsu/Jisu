@@ -10,6 +10,15 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public bool dead { get; protected set; }
     public event Action onDeath;
 
+    private Color skinColor;
+    private Renderer entityRenderer;
+
+    private void Awake()
+    {
+        entityRenderer.GetComponentInChildren<Renderer>();
+        skinColor = entityRenderer.material.color;
+    }
+
     protected virtual void OnEnable()
     {
         dead = false;
@@ -36,5 +45,15 @@ public class LivingEntity : MonoBehaviour, IDamageable
             onDeath();
 
         dead = true;
+    }
+    
+    public virtual void Marking(Color color)
+    {
+        entityRenderer.material.color = color;
+    }
+
+    public virtual void UnMarking()
+    {
+        entityRenderer.material.color = skinColor;
     }
 }

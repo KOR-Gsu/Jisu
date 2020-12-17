@@ -11,6 +11,7 @@ public class Enemy : LivingEntity
     private NavMeshAgent pathFinder;
 
     private Animator enemyAnimator;
+    private Renderer enemyRenderer;
 
     public float damage = 3f;
     public float timeBetAttack;
@@ -40,6 +41,7 @@ public class Enemy : LivingEntity
     {
         pathFinder = GetComponent<NavMeshAgent>();
         enemyAnimator = GetComponent<Animator>();
+        enemyRenderer = GetComponentInChildren<Renderer>();
 
         isAttackAble = false;
     }
@@ -75,10 +77,10 @@ public class Enemy : LivingEntity
             {
                 if (targetEntity != null && !targetEntity.dead)
                 {
-                    lastAttackTime = Time.time;
-
-                    targetEntity.OnDamage(damage);
                     enemyAnimator.SetFloat("Attack", 1);
+                    targetEntity.OnDamage(damage);
+
+                    lastAttackTime = Time.time;
                 }
             }
         }
@@ -107,7 +109,8 @@ public class Enemy : LivingEntity
             {
                 isAttackAble = true;
                 pathFinder.ResetPath();
-                pathFinder.isStopped = true;
+                pathFinder.enabled = false;
+                lastAttackTime = Time.time;
             }
             else
             {
@@ -127,12 +130,12 @@ public class Enemy : LivingEntity
             {
                 if (hasTarget)
                 {
-                    pathFinder.isStopped = false;
+                    pathFinder.enabled = true;
                     pathFinder.SetDestination(targetEntity.transform.position);
                 }
                 else
                 {
-                    pathFinder.isStopped = true;
+                    pathFinder.enabled = false;
                     Collider[] colliders = Physics.OverlapSphere(transform.position, 30f, TargetLayer);
 
                     for (int i = 0; i < colliders.Length; i++)
@@ -166,8 +169,7 @@ public class Enemy : LivingEntity
         Collider[] enemyColliders = GetComponents<Collider>();
         for (int i = 0; i < enemyColliders.Length; i++)
             enemyColliders[i].enabled = false;
-
-        pathFinder.isStopped = true;
+        
         pathFinder.enabled = false;
 
         enemyAnimator.SetTrigger("Die");

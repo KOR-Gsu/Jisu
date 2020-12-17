@@ -1086,7 +1086,7 @@ GameObject:
   - component: {fileID: 1067142156630615831}
   - component: {fileID: 1067142156630615830}
   m_Layer: 8
-  m_Name: Player_d
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1171,6 +1171,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rotateSpeed: 180
+  damage: 5
+  attackRange: 2
+  timeBetAttack: 1.5
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &1067142156630615831
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
     public string moveAxis = "Vertical";
     public string rotateAxis = "Horizontal";
-    public string attackAxis = "Fire1";
+    public string attackAxis = "Normal Attack";
 
     public float move { private set; get; }
     public float rotate { private set; get; }
