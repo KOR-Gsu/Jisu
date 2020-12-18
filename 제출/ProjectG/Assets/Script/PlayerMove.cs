@@ -23,14 +23,14 @@ public class PlayerMove : MonoBehaviour
     {
         get
         {
-            if (playerInput.attack > 0)
+            if (targetEntity != null && !targetEntity.dead)
                 return true;
 
             return false;
         }
     }
-
-    private void Awake()
+    
+    private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         playerRigidbody = GetComponent<Rigidbody>();
@@ -41,7 +41,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (isAttackAble)
+        if (playerInput.attack)
             Attack();
         else
             playerAnimator.SetFloat("Attack", 0);
@@ -49,13 +49,10 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isAttackAble)
-        {
-            Rotate();
-            Move();
+        Rotate();
+        Move();
 
-            playerAnimator.SetFloat("Move", playerInput.move);
-        }
+        playerAnimator.SetFloat("Move", playerInput.move);
     }
 
     void Move()
@@ -74,18 +71,13 @@ public class PlayerMove : MonoBehaviour
 
     void Attack()
     {
-        if (isAttackAble)
+        if (Time.time >= lastAttackTime + timeBetAttack)
         {
-            if (Time.time >= lastAttackTime + timeBetAttack)
-            {
-                if (targetEntity != null && !targetEntity.dead)
-                {
-                    targetEntity.OnDamage(damage);
-                    playerAnimator.SetFloat("Attack", 1);
+            if (isAttackAble)
+                targetEntity.OnDamage(damage);
 
-                    lastAttackTime = Time.time;
-                }
-            }
+            playerAnimator.SetFloat("Attack", 1);
+            lastAttackTime = Time.time;
         }
     }
 

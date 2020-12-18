@@ -11,7 +11,6 @@ public class Enemy : LivingEntity
     private NavMeshAgent pathFinder;
 
     private Animator enemyAnimator;
-    private Renderer enemyRenderer;
 
     public float damage = 3f;
     public float timeBetAttack;
@@ -41,7 +40,6 @@ public class Enemy : LivingEntity
     {
         pathFinder = GetComponent<NavMeshAgent>();
         enemyAnimator = GetComponent<Animator>();
-        enemyRenderer = GetComponentInChildren<Renderer>();
 
         isAttackAble = false;
     }
@@ -57,14 +55,13 @@ public class Enemy : LivingEntity
         if (!isAttackAble)
         {
             if (hasTarget)
-                enemyAnimator.SetFloat("HasTarget", 1);
+                enemyAnimator.SetFloat("Move", 1);
             else
-                enemyAnimator.SetFloat("HasTarget", 0);
+                enemyAnimator.SetFloat("Move", 0);
         }
         else
         {
-            enemyAnimator.SetFloat("HasTarget", 0);
-
+            enemyAnimator.SetFloat("Move", 0);
             Attack();
         }
     }
@@ -108,9 +105,11 @@ public class Enemy : LivingEntity
             if(check)
             {
                 isAttackAble = true;
-                pathFinder.ResetPath();
-                pathFinder.enabled = false;
-                lastAttackTime = Time.time;
+                if (pathFinder.enabled)
+                {
+                    pathFinder.ResetPath();
+                    pathFinder.enabled = false;
+                }
             }
             else
             {
@@ -118,7 +117,7 @@ public class Enemy : LivingEntity
                 enemyAnimator.SetFloat("Attack", 0);
             }
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -132,6 +131,7 @@ public class Enemy : LivingEntity
                 {
                     pathFinder.enabled = true;
                     pathFinder.SetDestination(targetEntity.transform.position);
+                    enemyAnimator.SetFloat("Move", 1);
                 }
                 else
                 {
@@ -159,7 +159,7 @@ public class Enemy : LivingEntity
     {
         base.OnDamage(damage);
 
-        enemyAnimator.SetFloat("Damaged", 1);
+        enemyAnimator.SetTrigger("Damaged");
     }
 
     public override void Die()

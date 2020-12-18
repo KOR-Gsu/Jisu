@@ -60,7 +60,7 @@ public class PlayerHP : LivingEntity
 
         healthSlider.value = health;
 
-        playerAnimator.SetFloat("Damaged", 1);
+        playerAnimator.SetTrigger("Damaged");
     }
 
     public override void Die()

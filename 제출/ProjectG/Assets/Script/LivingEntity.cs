@@ -12,17 +12,14 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     private Color skinColor;
     private Renderer entityRenderer;
-
-    private void Awake()
-    {
-        entityRenderer.GetComponentInChildren<Renderer>();
-        skinColor = entityRenderer.material.color;
-    }
-
+    
     protected virtual void OnEnable()
     {
         dead = false;
         health = startingHealth;
+
+        entityRenderer = GetComponentInChildren<Renderer>();
+        skinColor = entityRenderer.material.color;
     }
 
     public virtual void OnDamage(float damage)
