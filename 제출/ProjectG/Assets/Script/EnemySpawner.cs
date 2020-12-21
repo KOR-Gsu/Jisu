@@ -61,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
 
         enemy.Setup(hp, damage, speed);
         enemy.onDeath += () => enemies.Remove(enemy);
-        enemy.onDeath += () => Destroy(enemy.gameObject, 10f);
+        enemy.onDeath += () => Destroy(enemy.gameObject, 5f);
 
         enemies.Add(enemy);
         //curSpawn++;

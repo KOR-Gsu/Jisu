@@ -155,11 +155,14 @@ public class Enemy : LivingEntity
         }
     }
 
-    public override void OnDamage(float damage)
+    public override bool OnDamage(float damage)
     {
-        base.OnDamage(damage);
+        if (base.OnDamage(damage))
+            return true;
 
         enemyAnimator.SetTrigger("Damaged");
+
+        return false;
     }
 
     public override void Die()

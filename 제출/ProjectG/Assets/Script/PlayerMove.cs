@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviour
 
     private LivingEntity targetEntity;
     private PlayerInput playerInput;
+    private PlayerHP playerHP;
     private Rigidbody playerRigidbody;
     private Animator playerAnimator;
 
@@ -35,6 +36,7 @@ public class PlayerMove : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
+        playerHP = GetComponent<PlayerHP>();
 
         StartCoroutine(UpdateAttackTarget());
     }
@@ -49,8 +51,11 @@ public class PlayerMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        Rotate();
-        Move();
+        if (playerAnimator.GetFloat("Attack") != 1)
+        {
+            Rotate();
+            Move();
+        }
 
         playerAnimator.SetFloat("Move", playerInput.move);
     }
@@ -73,8 +78,14 @@ public class PlayerMove : MonoBehaviour
     {
         if (Time.time >= lastAttackTime + timeBetAttack)
         {
+            
             if (isAttackAble)
-                targetEntity.OnDamage(damage);
+            {
+                transform.LookAt(targetEntity.transform);
+
+                if (targetEntity.OnDamage(damage))
+                    playerHP.GetExp(10);
+            }
 
             playerAnimator.SetFloat("Attack", 1);
             lastAttackTime = Time.time;

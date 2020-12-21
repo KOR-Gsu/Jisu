@@ -1171,7 +1171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rotateSpeed: 180
-  damage: 5
+  damage: 100
   attackRange: 2
   timeBetAttack: 1.5
   targetLayer:
@@ -1191,7 +1191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveAxis: Vertical
   rotateAxis: Horizontal
-  attackAxis: Fire1
+  attackButton: Attack
 --- !u!114 &1067142156630615830
 MonoBehaviour:
   m_ObjectHideFlags: 0

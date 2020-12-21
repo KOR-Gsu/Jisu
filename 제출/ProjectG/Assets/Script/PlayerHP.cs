@@ -47,6 +47,30 @@ public class PlayerHP : LivingEntity
         playerMove.enabled = true;
     }
 
+    public void GetExp(int newExp)
+    {
+        exp += newExp;
+
+        if(exp >= maxExp)
+        {
+            exp -= maxExp;
+            level++;
+            startingHealth += 10;
+            startingMP += 10;
+
+            health = startingHealth;
+            MP = startingMP;
+
+            levelText.text = level.ToString();
+            healthSlider.maxValue = startingHealth;
+            healthSlider.value = health;
+            magicSlider.maxValue = startingMP;
+            magicSlider.value = MP;
+        }
+
+        expSlider.value = exp;
+    }
+
     public override void RestoreHealth(float newHealth)
     {
         base.RestoreHealth(newHealth);
@@ -54,13 +78,19 @@ public class PlayerHP : LivingEntity
         healthSlider.value = health;
     }
 
-    public override void OnDamage(float damage)
+    public override bool OnDamage(float damage)
     {
-        base.OnDamage(damage);
+        if (base.OnDamage(damage))
+        {
+            healthSlider.value = health;
+            return true;
+        }
 
         healthSlider.value = health;
 
         playerAnimator.SetTrigger("Damaged");
+
+        return false;
     }
 
     public override void Die()

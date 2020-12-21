@@ -10,24 +10,31 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public bool dead { get; protected set; }
     public event Action onDeath;
 
+    private bool isMarking;
     private Color skinColor;
     private Renderer entityRenderer;
     
     protected virtual void OnEnable()
     {
         dead = false;
+        isMarking = false;
         health = startingHealth;
 
         entityRenderer = GetComponentInChildren<Renderer>();
         skinColor = entityRenderer.material.color;
     }
 
-    public virtual void OnDamage(float damage)
+    public virtual bool OnDamage(float damage)
     {
         health -= damage;
 
         if (health <= 0 && !dead)
+        {
             Die();
+
+            return true;
+        }
+        return false;
     }
 
     public virtual void RestoreHealth(float newHealth)
@@ -41,6 +48,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
         if (onDeath != null)
             onDeath();
 
+        UnMarking();
         dead = true;
     }
     
