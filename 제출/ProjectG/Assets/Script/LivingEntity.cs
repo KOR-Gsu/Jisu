@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
     public float startingHealth = 100f;
     public float health { get; protected set; }
     public bool dead { get; protected set; }
+    public bool isMarking { get; protected set; }
     public event Action onDeath;
+    public GameObject healthBarPrefab;
 
-    private bool isMarking;
     private Color skinColor;
     private Renderer entityRenderer;
-    
+
     protected virtual void OnEnable()
     {
         dead = false;
@@ -51,14 +53,16 @@ public class LivingEntity : MonoBehaviour, IDamageable
         UnMarking();
         dead = true;
     }
-    
+
     public virtual void Marking(Color color)
     {
+        isMarking = true;
         entityRenderer.material.color = color;
     }
 
     public virtual void UnMarking()
     {
+        isMarking = false;
         entityRenderer.material.color = skinColor;
     }
 }

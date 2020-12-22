@@ -102,7 +102,7 @@ public class PlayerMove : MonoBehaviour
             {
                 LivingEntity livingEntity = colliders[i].GetComponent<LivingEntity>();
 
-                if (targetEntity == livingEntity)
+                if (livingEntity.isMarking)
                     break;
 
                 if (livingEntity != null && !livingEntity.dead)

@@ -68,6 +68,7 @@
     <Compile Include="Assets\Script\IDamageable.cs" />
     <Compile Include="Assets\Script\LivingEntity.cs" />
     <Compile Include="Assets\Script\LoadScene.cs" />
+    <Compile Include="Assets\Script\MonsterHPBar.cs" />
     <Compile Include="Assets\Script\PlayerHP.cs" />
     <Compile Include="Assets\Script\PlayerInput.cs" />
     <Compile Include="Assets\Script\PlayerMove.cs" />

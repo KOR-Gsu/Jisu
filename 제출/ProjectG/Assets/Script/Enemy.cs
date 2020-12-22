@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : LivingEntity
 {
@@ -9,8 +10,12 @@ public class Enemy : LivingEntity
 
     private LivingEntity targetEntity;
     private NavMeshAgent pathFinder;
-
     private Animator enemyAnimator;
+    private Canvas hpCanvas;
+    private GameObject hpBar;
+    private Slider hpSlider;
+    private Vector3 hpBarOffset;
+    private Text hpText;
 
     public float damage = 3f;
     public float timeBetAttack;
@@ -46,12 +51,19 @@ public class Enemy : LivingEntity
     
     void Start()
     {
+        hpBarOffset = new Vector3(0, 10f, 0);
+
         StartCoroutine(UpdatePath());
         StartCoroutine(UpdateAttack());
     }
     
     void Update()
     {
+        if (isMarking && hpBar == null)
+            ShowHPBar();
+        if(!isMarking && hpBar != null)
+            DestroyHPBar();
+
         if (!isAttackAble)
         {
             if (hasTarget)
@@ -81,7 +93,6 @@ public class Enemy : LivingEntity
                 }
             }
         }
-        
     }
 
     private IEnumerator UpdateAttack()
@@ -160,6 +171,10 @@ public class Enemy : LivingEntity
         if (base.OnDamage(damage))
             return true;
 
+        float curHp = health / startingHealth;
+        UpdateHPSlider(curHp);
+        hpText.text = ((int)(curHp * 100)).ToString() + "%";
+
         enemyAnimator.SetTrigger("Damaged");
 
         return false;
@@ -176,5 +191,28 @@ public class Enemy : LivingEntity
         pathFinder.enabled = false;
 
         enemyAnimator.SetTrigger("Die");
+    }
+
+    public void UpdateHPSlider(float curHp)
+    {
+        hpSlider.value = Mathf.Lerp(hpSlider.value, curHp, Time.deltaTime * 10);
+    }
+
+    private void ShowHPBar()
+    {
+        hpCanvas = GameObject.Find("UI").GetComponent<Canvas>();
+        hpBar = Instantiate<GameObject>(healthBarPrefab, hpCanvas.transform);
+        hpSlider = hpBar.GetComponentInChildren<Slider>();
+        hpText = hpBar.GetComponentInChildren<Text>();
+
+        var _hpBar = hpBar.GetComponent<MonsterHPBar>();
+        _hpBar.targetTransform = this.gameObject.transform;
+        _hpBar.offset = hpBarOffset;
+    }
+
+    private void DestroyHPBar()
+    {
+        Destroy(hpCanvas.gameObject, 0.5f);
+        Destroy(hpBar.gameObject, 0.5f);
     }
 }

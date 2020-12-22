@@ -816,6 +816,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
+  healthBarPrefab: {fileID: 9221231670364172469, guid: 91af3df5d929acc4eb5a43acda4efd91,
+    type: 3}
   TargetLayer:
     serializedVersion: 2
     m_Bits: 256
