@@ -49,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void CreateEnemy(float intensity)
     {
-        float hp = Mathf.Lerp(hpMin, hpMax, intensity);
+        float startingHp = Mathf.Lerp(hpMin, hpMax, intensity);
         float damage = Mathf.Lerp(damageMin, damageMax, intensity);
         float speed = Mathf.Lerp(speedMin, speedMax, intensity);
 
@@ -59,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
 
         Enemy enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
 
-        enemy.Setup(hp, damage, speed);
+        enemy.Setup(startingHp, damage, speed);
         enemy.onDeath += () => enemies.Remove(enemy);
         enemy.onDeath += () => Destroy(enemy.gameObject, 5f);
 

@@ -37,6 +37,7 @@ public class Enemy : LivingEntity
     public void Setup(float newHealth, float newDamage, float newSpeed)
     {
         startingHealth = newHealth;
+        health = startingHealth;
         damage = newDamage;
         pathFinder.speed = newSpeed;
     }
@@ -51,7 +52,7 @@ public class Enemy : LivingEntity
     
     void Start()
     {
-        hpBarOffset = new Vector3(0, 10f, 0);
+        hpBarOffset = new Vector3(0, 0, 0);
 
         StartCoroutine(UpdatePath());
         StartCoroutine(UpdateAttack());
@@ -62,7 +63,7 @@ public class Enemy : LivingEntity
         if (isMarking && hpBar == null)
             ShowHPBar();
         if(!isMarking && hpBar != null)
-            DestroyHPBar();
+            HideHPBar();
 
         if (!isAttackAble)
         {
@@ -172,7 +173,7 @@ public class Enemy : LivingEntity
             return true;
 
         float curHp = health / startingHealth;
-        UpdateHPSlider(curHp);
+        hpSlider.value = health;
         hpText.text = ((int)(curHp * 100)).ToString() + "%";
 
         enemyAnimator.SetTrigger("Damaged");
@@ -193,13 +194,14 @@ public class Enemy : LivingEntity
         enemyAnimator.SetTrigger("Die");
     }
 
-    public void UpdateHPSlider(float curHp)
-    {
-        hpSlider.value = Mathf.Lerp(hpSlider.value, curHp, Time.deltaTime * 10);
-    }
-
     private void ShowHPBar()
     {
+        if (hpBar != null)
+        {
+            hpBar.SetActive(true);
+            return;
+        }
+
         hpCanvas = GameObject.Find("UI").GetComponent<Canvas>();
         hpBar = Instantiate<GameObject>(healthBarPrefab, hpCanvas.transform);
         hpSlider = hpBar.GetComponentInChildren<Slider>();
@@ -207,12 +209,10 @@ public class Enemy : LivingEntity
 
         var _hpBar = hpBar.GetComponent<MonsterHPBar>();
         _hpBar.targetTransform = this.gameObject.transform;
-        _hpBar.offset = hpBarOffset;
     }
 
-    private void DestroyHPBar()
+    private void HideHPBar()
     {
-        Destroy(hpCanvas.gameObject, 0.5f);
-        Destroy(hpBar.gameObject, 0.5f);
+        hpBar.SetActive(false);
     }
 }

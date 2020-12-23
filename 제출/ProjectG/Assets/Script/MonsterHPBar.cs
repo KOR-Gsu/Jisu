@@ -5,7 +5,6 @@ using UnityEngine;
 public class MonsterHPBar : MonoBehaviour
 {
     public Transform targetTransform;
-    public Vector3 offset;
 
     private Canvas canvas;
     private Camera worldCamera;
@@ -14,15 +13,15 @@ public class MonsterHPBar : MonoBehaviour
 
     void Start()
     {
-        canvas = GetComponentInParent<Canvas>();
+        canvas = GameObject.Find("UI").GetComponent<Canvas>();
         worldCamera = canvas.worldCamera;
-        rectParent = GetComponentInParent<RectTransform>();
+        rectParent = canvas.GetComponent<RectTransform>();
         rectHPBar = GetComponent<RectTransform>();
     }
     
     void LateUpdate()
     {
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position + offset);
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(targetTransform.position);
 
         if (screenPos.z < 0f)
             screenPos.z *= 1f;

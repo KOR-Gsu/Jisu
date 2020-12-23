@@ -13,7 +13,9 @@ public class PlayerHP : LivingEntity
 
     public Text levelText;
     public Slider healthSlider;
+    public Text healthText;
     public Slider magicSlider;
+    public Text magicText;
     public Slider expSlider;
 
     private Animator playerAnimator;
@@ -44,6 +46,11 @@ public class PlayerHP : LivingEntity
         expSlider.maxValue = maxExp;
         expSlider.value = exp;
 
+        healthText = healthSlider.GetComponentInChildren<Text>();
+        healthText.text = "100%";
+        magicText = magicSlider.GetComponentInChildren<Text>();
+        magicText.text = "100%";
+
         playerMove.enabled = true;
     }
 
@@ -73,15 +80,18 @@ public class PlayerHP : LivingEntity
 
     void Update()
     {
-                
+        float curHp = health / startingHealth;
+        healthSlider.value = health;
+        healthText.text = ((int)(curHp * 100)).ToString() + "%";
+
+        float curMp = MP / startingMP;
+        magicSlider.value = MP;
+        magicText.text = ((int)(curMp * 100)).ToString() + "%";
     }
 
     public override void RestoreHealth(float newHealth)
     {
-        base.RestoreHealth(newHealth);
-
-        float curHp = health / startingHealth;
-        UpdateHPSlider(curHp);
+        base.RestoreHealth(newHealth);        
     }
 
     public override bool OnDamage(float damage)
@@ -90,9 +100,6 @@ public class PlayerHP : LivingEntity
 
         if (base.OnDamage(damage))
             die = true;
-
-        float curHp = health / startingHealth;
-        UpdateHPSlider(curHp);
 
         playerAnimator.SetTrigger("Damaged");
 
@@ -106,20 +113,5 @@ public class PlayerHP : LivingEntity
         playerAnimator.SetTrigger("Die");
 
         playerMove.enabled = false;
-    }
-
-    public void UpdateHPSlider(float curHp)
-    {
-        healthSlider.value = Mathf.Lerp(healthSlider.value, curHp, Time.deltaTime * 10);
-    }
-
-    private void UpdateMPSlider(float rate)
-    {
-        magicSlider.value = Mathf.Lerp(magicSlider.value, rate, Time.deltaTime * 10);
-    }
-
-    private void UpdateExpSlider(float rate)
-    {
-        expSlider.value = Mathf.Lerp(expSlider.value, rate, Time.deltaTime * 10);
     }
 }

@@ -412,8 +412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4e08c74f4cfbc47b4e08caa5524509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 1
-  fadeCg: {fileID: 0}
 --- !u!1001 &1338739200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -425,6 +423,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1067142155779875452, guid: fc82fb6876f749b4fba00c0825707e65,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1067142155779875452, guid: fc82fb6876f749b4fba00c0825707e65,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1067142155779875452, guid: fc82fb6876f749b4fba00c0825707e65,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1067142155779875452, guid: fc82fb6876f749b4fba00c0825707e65,
         type: 3}
@@ -815,6 +828,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1644663305844838338, guid: 2768d39ddb160444a821c5f2fa9ae4cc,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 415254573}
+    - target: {fileID: 1644663305844838338, guid: 2768d39ddb160444a821c5f2fa9ae4cc,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1644663305844838341, guid: 2768d39ddb160444a821c5f2fa9ae4cc,
         type: 3}

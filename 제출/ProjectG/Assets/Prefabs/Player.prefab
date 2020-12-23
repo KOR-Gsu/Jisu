@@ -1171,7 +1171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rotateSpeed: 180
-  damage: 100
+  damage: 20
   attackRange: 2
   timeBetAttack: 1.5
   targetLayer:
@@ -1205,6 +1205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
+  healthBarPrefab: {fileID: 0}
   startingMP: 100
   maxExp: 100
   levelText: {fileID: 0}

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    public float startingHealth = 100f;
+    public float startingHealth;
     public float health { get; protected set; }
     public bool dead { get; protected set; }
     public bool isMarking { get; protected set; }
