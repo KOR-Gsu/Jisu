@@ -5,6 +5,7 @@ using UnityEngine;
 public class MonsterHPBar : MonoBehaviour
 {
     public Transform targetTransform;
+    public Vector2 offSet;
 
     private Canvas canvas;
     private Camera worldCamera;
@@ -29,6 +30,6 @@ public class MonsterHPBar : MonoBehaviour
         Vector2 localPos = Vector2.zero;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rectParent, screenPos, worldCamera, out localPos);
 
-        rectHPBar.localPosition = localPos;
+        rectHPBar.localPosition = localPos + offSet;
     }
 }

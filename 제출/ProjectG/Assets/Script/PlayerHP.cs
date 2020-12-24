@@ -13,11 +13,11 @@ public class PlayerHP : LivingEntity
 
     public Text levelText;
     public Slider healthSlider;
-    public Text healthText;
     public Slider magicSlider;
-    public Text magicText;
     public Slider expSlider;
 
+    private Text healthText;
+    private Text magicText;
     private Animator playerAnimator;
     private PlayerMove playerMove;
 
@@ -101,7 +101,7 @@ public class PlayerHP : LivingEntity
         if (base.OnDamage(damage))
             die = true;
 
-        playerAnimator.SetTrigger("Damaged");
+        playerAnimator.SetTrigger("GetHit");
 
         return die;
     }

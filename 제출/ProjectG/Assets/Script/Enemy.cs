@@ -65,17 +65,17 @@ public class Enemy : LivingEntity
         if(!isMarking && hpBar != null)
             HideHPBar();
 
-        if (!isAttackAble)
+        if (isAttackAble)
+        {
+            enemyAnimator.SetFloat("Move", 0);
+            Attack();
+        }
+        else
         {
             if (hasTarget)
                 enemyAnimator.SetFloat("Move", 1);
             else
                 enemyAnimator.SetFloat("Move", 0);
-        }
-        else
-        {
-            enemyAnimator.SetFloat("Move", 0);
-            Attack();
         }
     }
 
@@ -87,12 +87,14 @@ public class Enemy : LivingEntity
             {
                 if (targetEntity != null && !targetEntity.dead)
                 {
-                    enemyAnimator.SetFloat("Attack", 1);
+                    enemyAnimator.SetInteger("Attack", 1);
                     targetEntity.OnDamage(damage);
 
                     lastAttackTime = Time.time;
                 }
             }
+            else
+                enemyAnimator.SetInteger("Attack", 2);
         }
     }
 
@@ -117,6 +119,8 @@ public class Enemy : LivingEntity
             if(check)
             {
                 isAttackAble = true;
+                enemyAnimator.SetInteger("Attack", 2);
+                enemyAnimator.SetFloat("Move", 0);
                 if (pathFinder.enabled)
                 {
                     pathFinder.ResetPath();
@@ -126,7 +130,7 @@ public class Enemy : LivingEntity
             else
             {
                 isAttackAble = false;
-                enemyAnimator.SetFloat("Attack", 0);
+                enemyAnimator.SetInteger("Attack", 0);
             }
 
             yield return new WaitForSeconds(0.1f);
@@ -176,7 +180,7 @@ public class Enemy : LivingEntity
         hpSlider.value = health;
         hpText.text = ((int)(curHp * 100)).ToString() + "%";
 
-        enemyAnimator.SetTrigger("Damaged");
+        enemyAnimator.SetTrigger("GetHit");
 
         return false;
     }
@@ -209,6 +213,7 @@ public class Enemy : LivingEntity
 
         var _hpBar = hpBar.GetComponent<MonsterHPBar>();
         _hpBar.targetTransform = this.gameObject.transform;
+        _hpBar.offSet = new Vector2(0, 50);
     }
 
     private void HideHPBar()

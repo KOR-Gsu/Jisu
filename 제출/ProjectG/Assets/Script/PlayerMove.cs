@@ -46,18 +46,18 @@ public class PlayerMove : MonoBehaviour
         if (playerInput.attack)
             Attack();
         else
-            playerAnimator.SetFloat("Attack", 0);
+            playerAnimator.SetInteger("Attack", 0);
     }
 
     void FixedUpdate()
     {
-        if (playerAnimator.GetFloat("Attack") != 1)
+        if (playerAnimator.GetInteger("Attack") == 0)
         {
             Rotate();
             Move();
+            
+            playerAnimator.SetFloat("Move", playerInput.move);
         }
-
-        playerAnimator.SetFloat("Move", playerInput.move);
     }
 
     void Move()
@@ -78,7 +78,6 @@ public class PlayerMove : MonoBehaviour
     {
         if (Time.time >= lastAttackTime + timeBetAttack)
         {
-            
             if (isAttackAble)
             {
                 transform.LookAt(targetEntity.transform);
@@ -87,9 +86,11 @@ public class PlayerMove : MonoBehaviour
                     playerHP.GetExp(10);
             }
 
-            playerAnimator.SetFloat("Attack", 1);
+            playerAnimator.SetInteger("Attack", 1);
             lastAttackTime = Time.time;
         }
+        else
+            playerAnimator.SetInteger("Attack", 2);
     }
 
     private IEnumerator UpdateAttackTarget()

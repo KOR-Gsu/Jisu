@@ -1173,7 +1173,7 @@ MonoBehaviour:
   rotateSpeed: 180
   damage: 20
   attackRange: 2
-  timeBetAttack: 1.5
+  timeBetAttack: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -1210,7 +1210,9 @@ MonoBehaviour:
   maxExp: 100
   levelText: {fileID: 0}
   healthSlider: {fileID: 0}
+  healthText: {fileID: 0}
   magicSlider: {fileID: 0}
+  magicText: {fileID: 0}
   expSlider: {fileID: 0}
 --- !u!1 &1067142156808204577
 GameObject:

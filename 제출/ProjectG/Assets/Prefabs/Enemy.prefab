@@ -822,7 +822,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   damage: 3
-  timeBetAttack: 4
+  timeBetAttack: 2
   attackRange: 2
   isAttackAble: 0
 --- !u!1 &7665455854318435794
