@@ -1105,6 +1105,7 @@ Transform:
   m_Children:
   - {fileID: 1067142157411845731}
   - {fileID: 1067142156144439972}
+  - {fileID: 8970438097830965104}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1206,13 +1207,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 100
   healthBarPrefab: {fileID: 0}
+  hudDamageText: {fileID: 8451172452845175163, guid: 507090d2a4ebc4b4f852a52a020a84da,
+    type: 3}
+  hudPos: {fileID: 8970438097830965104}
   startingMP: 100
   maxExp: 100
   levelText: {fileID: 0}
   healthSlider: {fileID: 0}
-  healthText: {fileID: 0}
   magicSlider: {fileID: 0}
-  magicText: {fileID: 0}
   expSlider: {fileID: 0}
 --- !u!1 &1067142156808204577
 GameObject:
@@ -2400,4 +2402,34 @@ Transform:
   - {fileID: 1067142155838106256}
   m_Father: {fileID: 1067142157354847321}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4066696028371994813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8970438097830965104}
+  m_Layer: 0
+  m_Name: HudPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8970438097830965104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4066696028371994813}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.331, y: 1.595, z: 0.759}
+  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_Children: []
+  m_Father: {fileID: 1067142155779875452}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

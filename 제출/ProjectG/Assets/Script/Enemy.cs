@@ -173,9 +173,13 @@ public class Enemy : LivingEntity
 
     public override bool OnDamage(float damage)
     {
+        GameObject hudText = Instantiate(hudDamageText);
+        hudText.GetComponent<DamageText>().targetTransform = hudPos;
+        hudText.GetComponent<DamageText>().damage = damage;
+
         if (base.OnDamage(damage))
             return true;
-
+      
         float curHp = health / startingHealth;
         hpSlider.value = health;
         hpText.text = ((int)(curHp * 100)).ToString() + "%";
@@ -213,7 +217,7 @@ public class Enemy : LivingEntity
 
         var _hpBar = hpBar.GetComponent<MonsterHPBar>();
         _hpBar.targetTransform = this.gameObject.transform;
-        _hpBar.offSet = new Vector2(0, 50);
+        _hpBar.offSet = new Vector2(0, 60);
     }
 
     private void HideHPBar()

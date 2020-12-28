@@ -96,10 +96,17 @@ public class PlayerHP : LivingEntity
 
     public override bool OnDamage(float damage)
     {
-        bool die = false;
+        GameObject hudText = Instantiate(hudDamageText);
+        hudText.GetComponent<DamageText>().targetTransform = hudPos;
+        hudText.GetComponent<DamageText>().damage = damage;
+        hudText.GetComponent<DamageText>().textColor = Color.red;
 
+        bool die = false;
         if (base.OnDamage(damage))
+        {
             die = true;
+            health = 0;
+        }
 
         playerAnimator.SetTrigger("GetHit");
 
