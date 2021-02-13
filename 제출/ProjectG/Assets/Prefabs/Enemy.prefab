@@ -76,6 +76,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -849,7 +850,7 @@ MonoBehaviour:
   startingHealth: 100
   healthBarPrefab: {fileID: 9221231670364172469, guid: 91af3df5d929acc4eb5a43acda4efd91,
     type: 3}
-  hudDamageText: {fileID: 8451172452845175163, guid: 507090d2a4ebc4b4f852a52a020a84da,
+  hudDamageTextPrefab: {fileID: 8451172452845175163, guid: 507090d2a4ebc4b4f852a52a020a84da,
     type: 3}
   hudPos: {fileID: 4002433465474467776}
   TargetLayer:

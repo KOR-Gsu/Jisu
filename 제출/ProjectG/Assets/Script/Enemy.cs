@@ -12,9 +12,9 @@ public class Enemy : LivingEntity
     private NavMeshAgent pathFinder;
     private Animator enemyAnimator;
     private Canvas hpCanvas;
+    private Canvas damageCanvas;
     private GameObject hpBar;
     private Slider hpSlider;
-    private Vector3 hpBarOffset;
     private Text hpText;
 
     public float damage = 3f;
@@ -52,8 +52,6 @@ public class Enemy : LivingEntity
     
     void Start()
     {
-        hpBarOffset = new Vector3(0, 0, 0);
-
         StartCoroutine(UpdatePath());
         StartCoroutine(UpdateAttack());
     }
@@ -173,9 +171,11 @@ public class Enemy : LivingEntity
 
     public override bool OnDamage(float damage)
     {
-        GameObject hudText = Instantiate(hudDamageText);
+        damageCanvas = GameObject.Find("UI").GetComponent<Canvas>();
+        GameObject hudText = Instantiate<GameObject>(hudDamageTextPrefab, damageCanvas.transform);
         hudText.GetComponent<DamageText>().targetTransform = hudPos;
         hudText.GetComponent<DamageText>().damage = damage;
+        hudText.GetComponent<DamageText>().textColor = Color.white;
 
         if (base.OnDamage(damage))
             return true;
@@ -217,7 +217,7 @@ public class Enemy : LivingEntity
 
         var _hpBar = hpBar.GetComponent<MonsterHPBar>();
         _hpBar.targetTransform = this.gameObject.transform;
-        _hpBar.offSet = new Vector2(0, 60);
+        _hpBar.offSet = new Vector2(0, 120);
     }
 
     private void HideHPBar()
