@@ -11,13 +11,11 @@ public class DamageText : MonoBehaviour
     private Camera worldCamera;
     private RectTransform rectParent;
     private RectTransform rectDamageText;
-    private Vector2 offSet;
 
     private float moveSpeed;
     private float alphaSpeed;
     private float destroyTime;
-    private float deltaY;
-    private Text damageText;
+    private Text text;
     private Color alpha;
 
     public float damage;
@@ -29,36 +27,35 @@ public class DamageText : MonoBehaviour
         worldCamera = canvas.worldCamera;
         rectParent = canvas.GetComponent<RectTransform>();
         rectDamageText = GetComponent<RectTransform>();
-        offSet = new Vector2(0f, 0f);
-        moveSpeed = 80.0f;
+
+        moveSpeed = 2.0f;
         alphaSpeed = 2.0f;
         destroyTime = 2.0f;
+        textColor = Color.white;
 
-        damageText = GetComponentInChildren<Text>();
+        text = GetComponent<Text>();
         alpha = textColor;
-        damageText.text = ((int)damage).ToString();
-
+        text.text = ((int)damage).ToString();
         Invoke("DestroyObject", destroyTime);
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(targetTransform.position);
+        
+        Vector2 localPos = Vector2.zero;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectParent, screenPos, worldCamera, out localPos);
+
+        rectDamageText.localPosition = localPos;
     }
     
     void Update()
     {
-        deltaY += moveSpeed * Time.deltaTime;
-        offSet.y = deltaY;
+        //transform.Translate(new Vector3(transform.position.x, moveSpeed * Time.deltaTime, 0));
 
         alpha.a = Mathf.Lerp(alpha.a, 0, Time.deltaTime * alphaSpeed);
-        damageText.color = alpha;
-
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(targetTransform.position);
-        Vector2 localPos = Vector2.zero;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectParent, screenPos, worldCamera, out localPos);
-
-        rectDamageText.localPosition = localPos + offSet;
+        text.color = alpha;
     }
 
     private void DestroyObject()
     {
         Destroy(gameObject);
-        Debug.Log("데미지 텍스트 파괴");
     }
 }

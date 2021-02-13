@@ -12,7 +12,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public bool isMarking { get; protected set; }
     public event Action onDeath;
     public GameObject healthBarPrefab;
-    public GameObject hudDamageTextPrefab;
+    public GameObject hudDamageText;
     public Transform hudPos;
 
     private Color skinColor;

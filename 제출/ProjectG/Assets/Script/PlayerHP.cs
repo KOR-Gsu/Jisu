@@ -16,7 +16,6 @@ public class PlayerHP : LivingEntity
     public Slider magicSlider;
     public Slider expSlider;
 
-    private Canvas damageCanvas;
     private Text healthText;
     private Text magicText;
     private Animator playerAnimator;
@@ -97,8 +96,7 @@ public class PlayerHP : LivingEntity
 
     public override bool OnDamage(float damage)
     {
-        damageCanvas = GameObject.Find("UI").GetComponent<Canvas>();
-        GameObject hudText = Instantiate<GameObject>(hudDamageTextPrefab, damageCanvas.transform);
+        GameObject hudText = Instantiate(hudDamageText);
         hudText.GetComponent<DamageText>().targetTransform = hudPos;
         hudText.GetComponent<DamageText>().damage = damage;
         hudText.GetComponent<DamageText>().textColor = Color.red;
