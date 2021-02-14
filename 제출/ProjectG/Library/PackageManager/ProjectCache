@@ -5,7 +5,11 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< HEAD
       ticks: 637488806965891261
+=======
+      ticks: 637487960730425947
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
     m_Hash: 2935486639
   m_LockFileStatus:
     m_FilePath: "D:/GitHub/Jisu/\uC81C\uCD9C/ProjectG/Packages/packages-lock.json"
@@ -13,7 +17,11 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
+<<<<<<< HEAD
       ticks: 637488807032762379
+=======
+      ticks: 637487960906476399
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
     m_Hash: 27826348
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -72,11 +80,15 @@ m_PackageAssets:
         - 2.6.0
         - 2.6.1-preview.6
         - 2.6.1
+<<<<<<< HEAD
         - 2.6.2-preview.1
         - 2.6.2
         - 2.6.3-preview.2
         - 2.6.3
         - 2.7.1
+=======
+        - 2.6.3
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         compatible:
         - 2.5.0
         - 2.6.0-preview.2
@@ -86,11 +98,15 @@ m_PackageAssets:
         - 2.6.0
         - 2.6.1-preview.6
         - 2.6.1
+<<<<<<< HEAD
         - 2.6.2-preview.1
         - 2.6.2
         - 2.6.3-preview.2
         - 2.6.3
         - 2.7.1
+=======
+        - 2.6.3
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         verified: 2.6.3
       dependencies: []
       resolvedDependencies: []
@@ -159,6 +175,7 @@ m_PackageAssets:
       errors: []
       versions:
         all:
+<<<<<<< HEAD
         - 1.2.3-preview
         - 1.2.4-preview
         - 1.2.6
@@ -198,6 +215,11 @@ m_PackageAssets:
         - 2.1.0-preview.3
         - 2.1.0-preview.5
         - 2.1.0-preview.6
+=======
+        - 1.3.9
+        compatible:
+        - 1.3.9
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         verified: 1.3.9
       dependencies: []
       resolvedDependencies: []
@@ -224,7 +246,11 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
+<<<<<<< HEAD
       datePublishedTicks: 637314349270000000
+=======
+      datePublishedTicks: 0
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
       documentationUrl: 
       hasRepository: 1
       repository:
@@ -254,6 +280,7 @@ m_PackageAssets:
       errors: []
       versions:
         all:
+<<<<<<< HEAD
         - 1.0.2
         - 1.0.6
         - 1.0.8
@@ -299,6 +326,11 @@ m_PackageAssets:
         - 3.0.2
         - 3.0.3
         - 3.0.4
+=======
+        - 2.0.7
+        compatible:
+        - 2.0.7
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         verified: 2.0.7
       dependencies:
       - name: com.unity.test-framework
@@ -325,7 +357,11 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
+<<<<<<< HEAD
       datePublishedTicks: 637334461080000000
+=======
+      datePublishedTicks: 0
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
       documentationUrl: 
       hasRepository: 1
       repository:
@@ -355,6 +391,7 @@ m_PackageAssets:
       errors: []
       versions:
         all:
+<<<<<<< HEAD
         - 1.0.2
         - 1.0.3
         - 1.0.4
@@ -381,6 +418,12 @@ m_PackageAssets:
         - 2.0.5
         - 2.0.7
         verified: 2.0.7
+=======
+        - 2.0.5
+        compatible:
+        - 2.0.5
+        verified: 2.0.5
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
       dependencies: []
       resolvedDependencies: []
       keywords: []
@@ -396,7 +439,11 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
+<<<<<<< HEAD
       datePublishedTicks: 637400980850000000
+=======
+      datePublishedTicks: 0
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
       documentationUrl: 
       hasRepository: 1
       repository:
@@ -435,7 +482,10 @@ m_PackageAssets:
         - 1.1.4
         - 1.2.0
         - 1.2.1
+<<<<<<< HEAD
         - 1.2.2
+=======
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         - 1.2.3
         compatible:
         - 1.0.2
@@ -447,7 +497,10 @@ m_PackageAssets:
         - 1.1.4
         - 1.2.0
         - 1.2.1
+<<<<<<< HEAD
         - 1.2.2
+=======
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         - 1.2.3
         verified: 1.2.3
       dependencies: []
@@ -465,13 +518,21 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
+<<<<<<< HEAD
       datePublishedTicks: 637394922300000000
+=======
+      datePublishedTicks: 0
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
       documentationUrl: 
       hasRepository: 1
       repository:
         type: git
         url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.vscode.git
+<<<<<<< HEAD
         revision: b5ec9b38109e52b1b26597d521e4df75e042ebb9
+=======
+        revision: 547f63839bdc87e0aed2c9e0d84f8f6336a83ea3
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         path: 
     - packageId: com.unity.test-framework@1.1.20
       testable: 0
@@ -516,6 +577,7 @@ m_PackageAssets:
         - 1.1.13
         - 1.1.14
         - 1.1.16
+<<<<<<< HEAD
         - 1.1.18
         - 1.1.19
         - 1.1.20
@@ -524,6 +586,12 @@ m_PackageAssets:
         - 1.1.20
         - 1.1.22
         verified: 1.1.22
+=======
+        - 1.1.20
+        compatible:
+        - 1.1.20
+        verified: 1.1.20
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
       dependencies:
       - name: com.unity.ext.nunit
         version: 1.0.6
@@ -553,12 +621,20 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
+<<<<<<< HEAD
       datePublishedTicks: 637429759710000000
+=======
+      datePublishedTicks: 0
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
       documentationUrl: 
       hasRepository: 1
       repository:
         type: git
+<<<<<<< HEAD
         url: git+https://github.com/Unity-Technologies/com.unity.test-framework.git
+=======
+        url: https://github.com/Unity-Technologies/com.unity.test-framework.git
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         revision: f04391d9987f4a534f886a9638b011d53e5871d8
         path: 
     - packageId: com.unity.textmeshpro@3.0.1
@@ -601,6 +677,7 @@ m_PackageAssets:
       errors: []
       versions:
         all:
+<<<<<<< HEAD
         - 0.1.2
         - 1.0.21
         - 1.0.23
@@ -672,6 +749,12 @@ m_PackageAssets:
         - 3.0.1
         - 3.0.3
         verified: 3.0.3
+=======
+        - 3.0.1
+        compatible:
+        - 3.0.1
+        verified: 3.0.1
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
       dependencies:
       - name: com.unity.ugui
         version: 1.0.0
@@ -700,7 +783,11 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
+<<<<<<< HEAD
       datePublishedTicks: 637314376320000000
+=======
+      datePublishedTicks: 0
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
       documentationUrl: 
       hasRepository: 1
       repository:
@@ -745,8 +832,11 @@ m_PackageAssets:
         - 1.2.14
         - 1.2.15
         - 1.2.16
+<<<<<<< HEAD
         - 1.2.17
         - 1.2.18
+=======
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         - 1.3.0-preview.2
         - 1.3.0-preview.3
         - 1.3.0-preview.5
@@ -758,8 +848,11 @@ m_PackageAssets:
         - 1.3.3
         - 1.3.4
         - 1.3.5
+<<<<<<< HEAD
         - 1.3.6
         - 1.3.7
+=======
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         - 1.4.0-preview.1
         - 1.4.0-preview.2
         - 1.4.0-preview.3
@@ -769,21 +862,28 @@ m_PackageAssets:
         - 1.4.0
         - 1.4.1
         - 1.4.2
+<<<<<<< HEAD
         - 1.4.3
         - 1.4.4
         - 1.4.5
         - 1.4.6
         - 1.5.0-pre.2
+=======
+        - 1.4.6
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         - 1.5.0-preview.1
         - 1.5.0-preview.2
         - 1.5.0-preview.3
         - 1.5.0-preview.4
+<<<<<<< HEAD
         - 1.5.0-preview.5
         - 1.5.1-pre.1
         - 1.5.1-pre.2
         - 1.5.1-pre.3
         - 1.5.2
         - 1.6.0-pre.1
+=======
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         compatible:
         - 1.2.6
         - 1.2.7
@@ -795,8 +895,11 @@ m_PackageAssets:
         - 1.2.14
         - 1.2.15
         - 1.2.16
+<<<<<<< HEAD
         - 1.2.17
         - 1.2.18
+=======
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         - 1.3.0-preview.2
         - 1.3.0-preview.3
         - 1.3.0-preview.5
@@ -808,8 +911,11 @@ m_PackageAssets:
         - 1.3.3
         - 1.3.4
         - 1.3.5
+<<<<<<< HEAD
         - 1.3.6
         - 1.3.7
+=======
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         - 1.4.0-preview.1
         - 1.4.0-preview.2
         - 1.4.0-preview.3
@@ -819,21 +925,28 @@ m_PackageAssets:
         - 1.4.0
         - 1.4.1
         - 1.4.2
+<<<<<<< HEAD
         - 1.4.3
         - 1.4.4
         - 1.4.5
         - 1.4.6
         - 1.5.0-pre.2
+=======
+        - 1.4.6
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         - 1.5.0-preview.1
         - 1.5.0-preview.2
         - 1.5.0-preview.3
         - 1.5.0-preview.4
+<<<<<<< HEAD
         - 1.5.0-preview.5
         - 1.5.1-pre.1
         - 1.5.1-pre.2
         - 1.5.1-pre.3
         - 1.5.2
         - 1.6.0-pre.1
+=======
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
         verified: 1.4.6
       dependencies: []
       resolvedDependencies: []

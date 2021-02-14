@@ -14,16 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 8
     y: 51
     width: 1904
     height: 981
+=======
+    x: 0
+    y: 43
+    width: 1920
+    height: 997
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_ShowMode: 4
   m_Title: Game
   m_RootView: {fileID: 5}
   m_MinSize: {x: 875, y: 392}
   m_MaxSize: {x: 10000, y: 10000}
-  m_Maximized: 0
+  m_Maximized: 1
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -40,9 +47,15 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 743
     width: 1068
     height: 188
+=======
+    y: 757
+    width: 1075
+    height: 190
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
@@ -69,12 +82,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1068
     height: 931
   m_MinSize: {x: 201, y: 342}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
   controlID: 56
+=======
+    width: 1075
+    height: 947
+  m_MinSize: {x: 201, y: 342}
+  m_MaxSize: {x: 4001, y: 8042}
+  vertical: 1
+  controlID: 38
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -90,10 +112,17 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1270
     y: 0
     width: 320
     height: 931
+=======
+    x: 1279
+    y: 0
+    width: 323
+    height: 947
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_MinSize: {x: 232, y: 271}
   m_MaxSize: {x: 10002, y: 10021}
   m_ActualView: {fileID: 20}
@@ -121,8 +150,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1904
     height: 981
+=======
+    width: 1920
+    height: 997
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_MinSize: {x: 875, y: 392}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
@@ -146,7 +180,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1904
+    width: 1920
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -170,8 +204,13 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 961
     width: 1904
+=======
+    y: 977
+    width: 1920
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -196,12 +235,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
+<<<<<<< HEAD
     width: 1904
     height: 931
   m_MinSize: {x: 910, y: 342}
   m_MaxSize: {x: 22005, y: 10021}
   vertical: 0
   controlID: 155
+=======
+    width: 1920
+    height: 947
+  m_MinSize: {x: 911, y: 342}
+  m_MaxSize: {x: 22006, y: 10021}
+  vertical: 0
+  controlID: 97
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -219,8 +267,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1068
     height: 743
+=======
+    width: 1075
+    height: 757
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 17}
@@ -246,10 +299,17 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1068
     y: 0
     width: 202
     height: 931
+=======
+    x: 1075
+    y: 0
+    width: 204
+    height: 947
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
@@ -272,12 +332,21 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1590
     y: 0
     width: 314
     height: 931
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
+=======
+    x: 1602
+    y: 0
+    width: 318
+    height: 947
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -365,11 +434,10 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 081111fd1834f42469e07a9a2ce295c6,
+  m_AnimatorController: {fileID: 9100000, guid: e58bf4525b7cc80459d6f7ff033ea067,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 1107892699978100828, guid: 081111fd1834f42469e07a9a2ce295c6,
-      type: 2}
+  - m_Target: {fileID: 110700000, guid: e58bf4525b7cc80459d6f7ff033ea067, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -403,10 +471,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 8
     y: 824
     width: 1067
     height: 167
+=======
+    x: 0
+    y: 830
+    width: 1074
+    height: 169
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &14
 MonoBehaviour:
@@ -481,10 +556,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 8
     y: 81
     width: 1067
     height: 722
+=======
+    x: 0
+    y: 73
+    width: 1074
+    height: 736
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames: []
   m_SerializedViewValues: []
@@ -528,10 +610,17 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
+<<<<<<< HEAD
       width: 1067
       height: 701
     m_Scale: {x: 0.41679686, y: 0.41679686}
     m_Translation: {x: 533.5, y: 350.5}
+=======
+      width: 1074
+      height: 715
+    m_Scale: {x: 0.41953126, y: 0.41953126}
+    m_Translation: {x: 537, y: 357.5}
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -539,12 +628,21 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -1280
+<<<<<<< HEAD
       y: -840.93726
       width: 2560
       height: 1681.8745
     m_MinimalGUI: 1
   m_defaultScale: 0.41679686
   m_LastWindowPixelSize: {x: 1067, y: 722}
+=======
+      y: -852.14154
+      width: 2560
+      height: 1704.2831
+    m_MinimalGUI: 1
+  m_defaultScale: 0.41953126
+  m_LastWindowPixelSize: {x: 1074, y: 736}
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100
@@ -571,10 +669,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 8
     y: 81
     width: 1067
     height: 722
+=======
+    x: 0
+    y: 73
+    width: 1074
+    height: 736
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
   m_WindowGUID: e04a3c64d1cbf7841bdb249b4047f611
@@ -587,9 +692,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: -12.62, y: 1.5, z: 0.20999998}
     speed: 2
     m_Value: {x: -12.62, y: 1.5, z: 0.20999998}
+=======
+    m_Target: {x: -21.141714, y: 22.079771, z: 12.354305}
+    speed: 2
+    m_Value: {x: -21.141714, y: 22.079771, z: 12.354305}
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -636,13 +747,21 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.19633846, y: -0.7987384, z: 0.34953398, w: 0.44866666}
+    m_Target: {x: 0.053554118, y: -0.9141842, z: 0.38059852, w: 0.12863818}
     speed: 2
+<<<<<<< HEAD
     m_Value: {x: -0.19633771, y: 0.7987354, z: -0.34953263, w: -0.44866496}
   m_Size:
     m_Target: 1.8371173
     speed: 2
     m_Value: 1.8371173
+=======
+    m_Value: {x: 0.053554017, y: -0.9141825, z: 0.3805978, w: 0.12863794}
+  m_Size:
+    m_Target: 0.23373085
+    speed: 2
+    m_Value: 0.23373085
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -660,7 +779,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: 0.19642751, y: -0.7940264, z: 0.33197233, w: 0.46982804}
+  m_LastSceneViewRotation: {x: 0.21322004, y: -0.77290183, z: 0.33134362, w: 0.4973667}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -688,17 +807,30 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1076
     y: 81
     width: 200
     height: 910
+=======
+    x: 1075
+    y: 73
+    width: 202
+    height: 926
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 9c9cffff
       m_LastClickedID: -25444
       m_ExpandedIDs: 209dffff
+=======
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -743,10 +875,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1598
     y: 81
     width: 313
     height: 910
+=======
+    x: 1602
+    y: 73
+    width: 317
+    height: 926
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_ViewDataDictionary: {fileID: 0}
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
@@ -781,10 +920,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1278
     y: 81
     width: 318
     height: 910
+=======
+    x: 1279
+    y: 73
+    width: 321
+    height: 926
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -799,7 +945,11 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets
+=======
+    - Assets/Prefabs
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
@@ -812,9 +962,15 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 7ec20000
     m_LastClickedID: 49790
     m_ExpandedIDs: 000000007ec2000080c2000082c2000084c2000086c2000088c200008ac200008cc200008ec2000090c2000092c2000094c2000096c2000098c200009ac200009cc200009ec20000a0c20000
+=======
+    m_SelectedIDs: 4a4d0000
+    m_LastClickedID: 19786
+    m_ExpandedIDs: 00000000124d0000144d0000164d0000184d00001a4d00001c4d00001e4d0000204d0000224d0000244d0000264d0000284d00002a4d00002c4d00002e4d0000304d0000324d0000344d0000
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -842,7 +998,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 000000007ec2000080c2000082c2000084c2000086c2000088c200008ac200008cc200008ec2000090c2000092c2000094c2000096c2000098c200009ac200009cc200009ec20000a0c20000
+=======
+    m_ExpandedIDs: 00000000124d0000144d0000164d0000184d00001a4d00001c4d00001e4d0000204d0000224d0000244d0000264d0000284d00002a4d00002c4d00002e4d0000304d0000324d0000344d0000
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -870,7 +1030,11 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
+<<<<<<< HEAD
     m_ExpandedInstanceIDs: b41c00006e1c0000bc1d0000ac2c0000183a00000e3e00000a2c000022f7fffff2230000f82700008a2200000a0affffea220000b6270000443b000006cbffffce4a0000ceb4ffff08e9feffc0f4ffff02230000ce3b0000d43b000036230000103d0000662d000064220000e4210000e6210000fa210000d6210000222400001622000042220000d822000098220000e0e9ffffa8c7ffffdc220000f4f2fcff4e220000b02200002a22000056230000ca2200001e8afeffa62cfcff72e6fdffd4220000205afeff382200006eb2feffe6230000ce22000000220000d2220000ea310000fa220000020efdff1663fdff08240000c0230000f6a4ffff142500004024000044230000bc29feff002400002a230000d02500003083ffffd870ffff5c8fffffba220000462500005c420000a42f0000fe260000242f0000aa59fcff18270000f6400000c63d0000e23a0000ae5e0000124700004a4e00009441000010360000943600000000000098360000d436000026360000
+=======
+    m_ExpandedInstanceIDs: b41c00006e1c0000bc1d0000ac2c0000183a00000e3e00000a2c000022f7fffff2230000f82700008a2200000a0affffea220000b6270000443b000006cbffffce4a0000ceb4ffff08e9feffc0f4ffff02230000ce3b0000d43b000036230000103d0000662d000064220000e4210000e6210000fa210000d6210000222400001622000042220000d822000098220000e0e9ffffa8c7ffffdc220000f4f2fcff4e220000b02200002a22000056230000ca2200001e8afeffa62cfcff72e6fdffd4220000205afeff382200006eb2feffe6230000ce22000000220000d2220000ea310000fa220000020efdff1663fdff08240000c0230000f6a4ffff142500004024000044230000bc29feff002400002a230000d02500003083ffffd870ffff5c8fffffba220000462500005c420000a42f0000fe260000242f0000aa59fcff18270000f6400000c63d0000e23a0000ae5e0000124700004a4e00009441000010360000943600000000000098360000d4360000263600009a3d0000
+>>>>>>> parent of 7e389fc4 (Revert "20.02.13")
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -894,7 +1058,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 17}
     m_GridSize: 96
   m_SkipHiddenPackages: 1
   m_DirectoriesAreaWidth: 197
