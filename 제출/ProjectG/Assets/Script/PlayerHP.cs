@@ -6,19 +6,44 @@ using UnityEngine.UI;
 public class PlayerHP : LivingEntity
 {
     public int level { get; protected set; }
-    public int startingMP = 100;
-    public int MP { get; protected set; }
-    public int maxExp = 100;
-    public int exp { get; protected set; }
 
-    public Text levelText;
-    public Slider healthSlider;
-    public Slider magicSlider;
-    public Slider expSlider;
+    public float maxMP = 100;
+    private float _currentMP;
+    public float currentMP 
+    {
+        get { return _currentMP; }
+        set
+        {
+            if (value > maxMP)
+                _currentMP = maxMP;
+            else if (value < 0)
+                _currentMP = 0;
+            else
+                _currentMP = value;
+
+            UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.GAUGE_MP, _currentMP / maxMP);
+        } 
+    }
+
+    public int maxEXP = 80;
+    private int _currentEXP;
+    public int currentEXP
+    {
+        get { return _currentEXP; }
+        set
+        {
+            if (value > maxEXP)
+                UpLevel();
+            else if (value < 0)
+                _currentEXP = 0;
+            else
+                _currentEXP = value;
+
+            UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.GAUGE_EXP, _currentEXP / maxEXP);
+        } 
+    }
 
     private Canvas damageCanvas;
-    private Text healthText;
-    private Text magicText;
     private Animator playerAnimator;
     private PlayerMove playerMove;
 
@@ -33,66 +58,43 @@ public class PlayerHP : LivingEntity
         base.OnEnable();
 
         level = 1;
-        MP = startingMP;
-        exp = 30;
-
-        levelText.text = level.ToString();
-
-        healthSlider.maxValue = startingHealth;
-        healthSlider.value = health;
-
-        magicSlider.maxValue = startingMP;
-        magicSlider.value = MP;
-
-        expSlider.maxValue = maxExp;
-        expSlider.value = exp;
-
-        healthText = healthSlider.GetComponentInChildren<Text>();
-        healthText.text = "100%";
-        magicText = magicSlider.GetComponentInChildren<Text>();
-        magicText.text = "100%";
+        currentMP = maxMP;
+        currentEXP = 30;
 
         playerMove.enabled = true;
     }
 
     public void GetExp(int newExp)
     {
-        exp += newExp;
+        currentEXP += newExp;
+    }
 
-        if(exp >= maxExp)
-        {
-            exp -= maxExp;
-            level++;
-            startingHealth += 10;
-            startingMP += 10;
+    private void UpLevel()
+    {
+        level++;
+        maxHP += 10;
+        maxMP += 10;
 
-            health = startingHealth;
-            MP = startingMP;
-
-            levelText.text = level.ToString();
-            healthSlider.maxValue = startingHealth;
-            healthSlider.value = health;
-            magicSlider.maxValue = startingMP;
-            magicSlider.value = MP;
-        }
-
-        expSlider.value = exp;
+        currentHP = maxHP;
+        currentMP = maxMP;
     }
 
     void Update()
     {
-        float curHp = health / startingHealth;
-        healthSlider.value = health;
-        healthText.text = ((int)(curHp * 100)).ToString() + "%";
 
-        float curMp = MP / startingMP;
-        magicSlider.value = MP;
-        magicText.text = ((int)(curMp * 100)).ToString() + "%";
     }
 
-    public override void RestoreHealth(float newHealth)
+    public override void RestoreHP(float newHP)
     {
-        base.RestoreHealth(newHealth);        
+        base.RestoreHP(newHP);
+    }
+
+    public void RestoreMP(float newMP)
+    {
+        if (!dead)
+        {
+            currentMP += newMP;
+        }
     }
 
     public override bool OnDamage(float damage)
@@ -107,10 +109,7 @@ public class PlayerHP : LivingEntity
         if (base.OnDamage(damage))
         {
             die = true;
-            health = 0;
         }
-
-        playerAnimator.SetTrigger("GetHit");
 
         return die;
     }

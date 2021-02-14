@@ -36,8 +36,8 @@ public class Enemy : LivingEntity
 
     public void Setup(float newHealth, float newDamage, float newSpeed)
     {
-        startingHealth = newHealth;
-        health = startingHealth;
+        maxHP = newHealth;
+        currentHP = maxHP;
         damage = newDamage;
         pathFinder.speed = newSpeed;
     }
@@ -180,11 +180,8 @@ public class Enemy : LivingEntity
         if (base.OnDamage(damage))
             return true;
       
-        float curHp = health / startingHealth;
-        hpSlider.value = health;
-        hpText.text = ((int)(curHp * 100)).ToString() + "%";
-
-        enemyAnimator.SetTrigger("GetHit");
+        hpSlider.value = currentHP;
+        hpText.text = ((int)(currentHP / maxHP * 100)).ToString() + "%";
 
         return false;
     }
@@ -217,7 +214,7 @@ public class Enemy : LivingEntity
 
         var _hpBar = hpBar.GetComponent<MonsterHPBar>();
         _hpBar.targetTransform = this.gameObject.transform;
-        _hpBar.offSet = new Vector2(0, 120);
+        _hpBar.offSet = new Vector2(0, 60);
     }
 
     private void HideHPBar()

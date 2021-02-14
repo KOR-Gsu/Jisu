@@ -59,6 +59,5 @@ public class DamageText : MonoBehaviour
     private void DestroyObject()
     {
         Destroy(gameObject);
-        Debug.Log("데미지 텍스트 파괴");
     }
 }

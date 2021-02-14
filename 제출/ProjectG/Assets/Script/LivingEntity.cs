@@ -6,8 +6,24 @@ using UnityEngine.UI;
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    public float startingHealth;
-    public float health { get; protected set; }
+    public float maxHP = 100;
+    private float _currentHP;
+    public float currentHP 
+    {
+        get{ return _currentHP; }
+        set
+        {
+            if (value > maxHP)
+                _currentHP = maxHP;
+            else if (value < 0)
+                _currentHP = 0;
+            else
+                _currentHP = value;
+
+            UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.GAUGE_HP, _currentHP / maxHP);
+        } 
+    }
+
     public bool dead { get; protected set; }
     public bool isMarking { get; protected set; }
     public event Action onDeath;
@@ -22,7 +38,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         dead = false;
         isMarking = false;
-        health = startingHealth;
+        currentHP = maxHP;
 
         entityRenderer = GetComponentInChildren<Renderer>();
         skinColor = entityRenderer.material.color;
@@ -30,9 +46,9 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     public virtual bool OnDamage(float damage)
     {
-        health -= damage;
+        currentHP -= damage;
 
-        if (health <= 0 && !dead)
+        if (currentHP <= 0 && !dead)
         {
             Die();
 
@@ -41,10 +57,10 @@ public class LivingEntity : MonoBehaviour, IDamageable
         return false;
     }
 
-    public virtual void RestoreHealth(float newHealth)
+    public virtual void RestoreHP(float newHP)
     {
         if (!dead)
-            health += newHealth;
+            currentHP += newHP;
     }
 
     public virtual void Die()
