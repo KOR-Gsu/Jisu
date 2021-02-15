@@ -12,13 +12,12 @@ public class Enemy : LivingEntity
     private NavMeshAgent pathFinder;
     private Animator enemyAnimator;
     private Canvas hpCanvas;
-    private Canvas damageCanvas;
     private GameObject hpBar;
     private Slider hpSlider;
     private Text hpText;
 
     public float damage = 3f;
-    public float timeBetAttack;
+    public float intvlAttackTime;
     public float attackRange;
     private float lastAttackTime;
 
@@ -81,12 +80,15 @@ public class Enemy : LivingEntity
     {
         if (!dead) 
         {
-            if (Time.time >= lastAttackTime + timeBetAttack)
+            if (Time.time >= lastAttackTime + intvlAttackTime)
             {
                 if (targetEntity != null && !targetEntity.dead)
                 {
                     enemyAnimator.SetInteger("Attack", 1);
                     targetEntity.OnDamage(damage);
+
+                    if (targetEntity.dead)
+                        GameManager.instance.EndGame();
 
                     lastAttackTime = Time.time;
                 }
@@ -169,21 +171,14 @@ public class Enemy : LivingEntity
         }
     }
 
-    public override bool OnDamage(float damage)
+    public override void OnDamage(float damage)
     {
-        damageCanvas = GameObject.Find("UI").GetComponent<Canvas>();
-        GameObject hudText = Instantiate<GameObject>(hudDamageTextPrefab, damageCanvas.transform);
-        hudText.GetComponent<DamageText>().targetTransform = hudPos;
-        hudText.GetComponent<DamageText>().damage = damage;
-        hudText.GetComponent<DamageText>().textColor = Color.white;
+        ShowDamaged(damage, Color.white);
 
-        if (base.OnDamage(damage))
-            return true;
+        base.OnDamage(damage);
       
         hpSlider.value = currentHP;
         hpText.text = ((int)(currentHP / maxHP * 100)).ToString() + "%";
-
-        return false;
     }
 
     public override void Die()

@@ -18,15 +18,20 @@ public class ControlUIGauge : MonoBehaviour
 
     void Update()
     {
+        if (currentFill != myContent.fillAmount)
+            myContent.fillAmount = Mathf.Lerp(myContent.fillAmount, currentFill, Time.deltaTime * lerpSpeed);
     }
 
     public void Initialize(float rate)
     {
+        if(myContent == null)
+            myContent = GetComponent<Image>();
+        if(myPercentage == null)
+            myPercentage = GetComponentInChildren<Text>();
+
         currentFill = rate;
+        Debug.Log("Change HP!! currentFill : " + rate.ToString("F1") + "%");
 
-        if (currentFill != myContent.fillAmount)
-            myContent.fillAmount = Mathf.Lerp(myContent.fillAmount, currentFill, Time.deltaTime * lerpSpeed);
-
-        myPercentage.text = ((int)(currentFill * 100)).ToString() + "%";
+        myPercentage.text = (currentFill * 100).ToString("F1") + "%";
     }
 }

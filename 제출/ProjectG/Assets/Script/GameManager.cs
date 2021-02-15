@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<PlayerHP>().onDeath += EndGame;
     }
     
-    void EndGame()
+    public void EndGame()
     {
         isGameOver = true;
     }

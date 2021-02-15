@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
 
     public float damage = 5f;
     public float attackRange;
-    public float timeBetAttack;
+    public float intvlAttackTime;
     private float lastAttackTime;
 
     public LayerMask targetLayer;
@@ -76,14 +76,16 @@ public class PlayerMove : MonoBehaviour
 
     void Attack()
     {
-        if (Time.time >= lastAttackTime + timeBetAttack)
+        if (Time.time >= lastAttackTime + intvlAttackTime)
         {
             if (isAttackAble)
             {
                 transform.LookAt(targetEntity.transform);
 
-                if (targetEntity.OnDamage(damage))
-                    playerHP.GetExp(10);
+                targetEntity.OnDamage(damage);
+
+                if(targetEntity.dead)
+                    playerHP.GetExp(50);
             }
 
             playerAnimator.SetInteger("Attack", 1);

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    public float maxHP = 100;
+    public float maxHP = 100f;
     private float _currentHP;
     public float currentHP 
     {
@@ -16,11 +16,9 @@ public class LivingEntity : MonoBehaviour, IDamageable
             if (value > maxHP)
                 _currentHP = maxHP;
             else if (value < 0)
-                _currentHP = 0;
+                Die();
             else
                 _currentHP = value;
-
-            UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.GAUGE_HP, _currentHP / maxHP);
         } 
     }
 
@@ -33,6 +31,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     private Color skinColor;
     private Renderer entityRenderer;
+    private Canvas damagedCanvas;
 
     protected virtual void OnEnable()
     {
@@ -44,17 +43,9 @@ public class LivingEntity : MonoBehaviour, IDamageable
         skinColor = entityRenderer.material.color;
     }
 
-    public virtual bool OnDamage(float damage)
+    public virtual void OnDamage(float damage)
     {
         currentHP -= damage;
-
-        if (currentHP <= 0 && !dead)
-        {
-            Die();
-
-            return true;
-        }
-        return false;
     }
 
     public virtual void RestoreHP(float newHP)
@@ -65,6 +56,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
     public virtual void Die()
     {
+        _currentHP = 0;
+
         if (onDeath != null)
             onDeath();
 
@@ -82,5 +75,14 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         isMarking = false;
         entityRenderer.material.color = skinColor;
+    }
+
+    public void ShowDamaged(float damage, Color color)
+    {
+        damagedCanvas = UIManager.instance.myCanvas;
+        GameObject hudText = Instantiate<GameObject>(hudDamageTextPrefab, damagedCanvas.transform);
+        hudText.GetComponent<DamageText>().targetTransform = hudPos;
+        hudText.GetComponent<DamageText>().damage = damage;
+        hudText.GetComponent<DamageText>().textColor = color;
     }
 }

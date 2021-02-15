@@ -7,7 +7,7 @@ public class PlayerHP : LivingEntity
 {
     public int level { get; protected set; }
 
-    public float maxMP = 100;
+    public float maxMP = 100f;
     private float _currentMP;
     public float currentMP 
     {
@@ -25,15 +25,19 @@ public class PlayerHP : LivingEntity
         } 
     }
 
-    public int maxEXP = 80;
-    private int _currentEXP;
-    public int currentEXP
+    public float maxEXP = 80f;
+    private float _currentEXP;
+    public float currentEXP
     {
         get { return _currentEXP; }
         set
         {
-            if (value > maxEXP)
+            if (value >= maxEXP)
+            {
+                _currentEXP = value;
+                _currentEXP -= maxEXP;
                 UpLevel();
+            }
             else if (value < 0)
                 _currentEXP = 0;
             else
@@ -43,23 +47,36 @@ public class PlayerHP : LivingEntity
         } 
     }
 
-    private Canvas damageCanvas;
+    private float lastItemTime1;
+    private float lastItemTime2;
+
+    private float intvlItemTime1;
+    private float intvlItemTime2;
+
     private Animator playerAnimator;
     private PlayerMove playerMove;
+    private PlayerInput playerInput;
 
     private void Awake()
     {
         playerAnimator = GetComponent<Animator>();
         playerMove = GetComponent<PlayerMove>();
+        playerInput = GetComponent<PlayerInput>();
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
+        UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.GAUGE_HP, currentHP / maxHP);
 
         level = 1;
+        UIManager.instance.UpdateLevelText(level);
+
         currentMP = maxMP;
-        currentEXP = 30;
+        currentEXP = 70;
+
+        intvlItemTime1 = 0.8f;
+        intvlItemTime2 = 0.8f;
 
         playerMove.enabled = true;
     }
@@ -72,21 +89,36 @@ public class PlayerHP : LivingEntity
     private void UpLevel()
     {
         level++;
-        maxHP += 10;
-        maxMP += 10;
+        UIManager.instance.UpdateLevelText(level);
+
+        maxHP += 10f;
+        maxMP += 10f;
 
         currentHP = maxHP;
         currentMP = maxMP;
+
+        UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.GAUGE_HP, currentHP / maxHP);
     }
 
     void Update()
     {
-
+        if (playerInput.item1 && Time.time >= lastItemTime1 + intvlItemTime1)
+        {
+            RestoreHP(15f);
+            lastItemTime1 = Time.time;
+        }
+        if (playerInput.item2 && Time.time >= lastItemTime2 + intvlItemTime2)
+        {
+            RestoreMP(15f);
+            lastItemTime2 = Time.time;
+        }
     }
 
     public override void RestoreHP(float newHP)
     {
         base.RestoreHP(newHP);
+
+        UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.GAUGE_HP, currentHP / maxHP);
     }
 
     public void RestoreMP(float newMP)
@@ -97,21 +129,13 @@ public class PlayerHP : LivingEntity
         }
     }
 
-    public override bool OnDamage(float damage)
+    public override void OnDamage(float damage)
     {
-        damageCanvas = GameObject.Find("UI").GetComponent<Canvas>();
-        GameObject hudText = Instantiate<GameObject>(hudDamageTextPrefab, damageCanvas.transform);
-        hudText.GetComponent<DamageText>().targetTransform = hudPos;
-        hudText.GetComponent<DamageText>().damage = damage;
-        hudText.GetComponent<DamageText>().textColor = Color.red;
+        ShowDamaged(damage, Color.red);
 
-        bool die = false;
-        if (base.OnDamage(damage))
-        {
-            die = true;
-        }
+        base.OnDamage(damage);
 
-        return die;
+        UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.GAUGE_HP, currentHP / maxHP);
     }
 
     public override void Die()

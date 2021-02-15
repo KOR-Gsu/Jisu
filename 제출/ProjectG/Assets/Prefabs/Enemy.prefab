@@ -847,7 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 635cf5c9b12447b46b00fc4c6f023768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
+  maxHP: 100
   healthBarPrefab: {fileID: 9221231670364172469, guid: 91af3df5d929acc4eb5a43acda4efd91,
     type: 3}
   hudDamageTextPrefab: {fileID: 8451172452845175163, guid: 507090d2a4ebc4b4f852a52a020a84da,
@@ -856,8 +856,8 @@ MonoBehaviour:
   TargetLayer:
     serializedVersion: 2
     m_Bits: 256
-  damage: 3
-  timeBetAttack: 2
+  damage: 12
+  intvlAttackTime: 1.8
   attackRange: 2
   isAttackAble: 0
 --- !u!1 &7665455854318435794

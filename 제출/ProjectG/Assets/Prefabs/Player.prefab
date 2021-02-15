@@ -1085,8 +1085,8 @@ GameObject:
   - component: {fileID: 1067142156630615835}
   - component: {fileID: 1067142156630615834}
   - component: {fileID: 1067142156630615833}
-  - component: {fileID: 1067142156630615832}
   - component: {fileID: 1067142156630615831}
+  - component: {fileID: 1067142156630615832}
   - component: {fileID: 1067142156630615830}
   m_Layer: 8
   m_Name: Player
@@ -1161,26 +1161,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &1067142156630615832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1067142156630615829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe7517030af82ca468caa8f5ed3dc698, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  rotateSpeed: 180
-  damage: 20
-  attackRange: 2
-  timeBetAttack: 1
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!114 &1067142156630615831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,6 +1176,28 @@ MonoBehaviour:
   moveAxis: Vertical
   rotateAxis: Horizontal
   attackButton: Attack
+  item1Button: Item1
+  item2Button: Item2
+--- !u!114 &1067142156630615832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067142156630615829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe7517030af82ca468caa8f5ed3dc698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  rotateSpeed: 180
+  damage: 30
+  attackRange: 2
+  intvlAttackTime: 1.2
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &1067142156630615830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1208,17 +1210,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1bebc67b3f73c4b808ded54562b44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
+  maxHP: 100
   healthBarPrefab: {fileID: 0}
   hudDamageTextPrefab: {fileID: 8451172452845175163, guid: 507090d2a4ebc4b4f852a52a020a84da,
     type: 3}
   hudPos: {fileID: 8970438097830965104}
-  startingMP: 100
-  maxExp: 100
-  levelText: {fileID: 0}
-  healthSlider: {fileID: 0}
-  magicSlider: {fileID: 0}
-  expSlider: {fileID: 0}
+  maxMP: 100
+  maxEXP: 80
 --- !u!1 &1067142156808204577
 GameObject:
   m_ObjectHideFlags: 0
