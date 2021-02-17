@@ -14,7 +14,7 @@ public class MonsterHPBar : MonoBehaviour
 
     void Start()
     {
-        canvas = GameObject.Find("UI").GetComponent<Canvas>();
+        canvas = UIManager.instance.myCanvas;
         worldCamera = canvas.worldCamera;
         rectParent = canvas.GetComponent<RectTransform>();
         rectHPBar = GetComponent<RectTransform>();

@@ -25,7 +25,7 @@ public class DamageText : MonoBehaviour
 
     void Start()
     {
-        canvas = GameObject.Find("UI").GetComponent<Canvas>();
+        canvas = UIManager.instance.myCanvas;
         worldCamera = canvas.worldCamera;
         rectParent = canvas.GetComponent<RectTransform>();
         rectDamageText = GetComponent<RectTransform>();
@@ -34,7 +34,7 @@ public class DamageText : MonoBehaviour
         alphaSpeed = 2.0f;
         destroyTime = 2.0f;
 
-        damageText = GetComponentInChildren<Text>();
+        damageText = GetComponent<Text>();
         alpha = textColor;
         damageText.text = ((int)damage).ToString();
 

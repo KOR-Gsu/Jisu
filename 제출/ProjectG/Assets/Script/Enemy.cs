@@ -202,7 +202,7 @@ public class Enemy : LivingEntity
             return;
         }
 
-        hpCanvas = GameObject.Find("UI").GetComponent<Canvas>();
+        hpCanvas = UIManager.instance.myCanvas;
         hpBar = Instantiate<GameObject>(healthBarPrefab, hpCanvas.transform);
         hpSlider = hpBar.GetComponentInChildren<Slider>();
         hpText = hpBar.GetComponentInChildren<Text>();

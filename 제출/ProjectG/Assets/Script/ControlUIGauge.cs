@@ -30,7 +30,6 @@ public class ControlUIGauge : MonoBehaviour
             myPercentage = GetComponentInChildren<Text>();
 
         currentFill = rate;
-        Debug.Log("Change HP!! currentFill : " + rate.ToString("F1") + "%");
 
         myPercentage.text = (currentFill * 100).ToString("F1") + "%";
     }

@@ -27,12 +27,18 @@ public class UIManager : MonoBehaviour
     }
 
     public Canvas myCanvas { get; protected set; }
+
     public Text levelText;
-    public ControlUIGauge[] Gauges;
+    public ControlUIGauge[] gaugesList;
+
+    public Window infoWindow;
+    public Window inventoryWindow;
+    public Window exitWindow;
+
     public Image imageItemCooldown1;
     public Image imageItemCooldown2;
     public Image imageSkillCooldown1;
-    public Image imageSkillCooldown2;
+    public Image imageSkillCooldown2; 
 
     private void Start()
     {
@@ -46,6 +52,21 @@ public class UIManager : MonoBehaviour
 
     public void UpdateGaugeRate(int index, float rate)
     {
-        Gauges[index].Initialize(rate);
+        gaugesList[index].Initialize(rate);
+    }
+
+    public void OpenCharacterInfo()
+    {
+        infoWindow.ShowWindow();
+    }
+
+    public void OpenCharacterInventory()
+    {
+        inventoryWindow.ShowWindow();
+    }
+
+    public void ExitGame()
+    {
+        exitWindow.ShowWindow();
     }
 }
