@@ -6,7 +6,19 @@ using UnityEngine.UI;
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    public float maxHP = 100f;
+    private Color skinColor;
+    private Renderer entityRenderer;
+    private Canvas damagedCanvas;
+
+    public bool dead { get; protected set; }
+    public bool isMarking { get; protected set; }
+    public event Action onDeath;
+    public GameObject healthBarPrefab;
+    public GameObject hudDamageTextPrefab;
+    public Transform hudPos;
+
+    [HideInInspector] public float maxHP = 100f;
+
     private float _currentHP;
     public float currentHP 
     {
@@ -21,18 +33,7 @@ public class LivingEntity : MonoBehaviour, IDamageable
                 _currentHP = value;
         } 
     }
-
-    public bool dead { get; protected set; }
-    public bool isMarking { get; protected set; }
-    public event Action onDeath;
-    public GameObject healthBarPrefab;
-    public GameObject hudDamageTextPrefab;
-    public Transform hudPos;
-
-    private Color skinColor;
-    private Renderer entityRenderer;
-    private Canvas damagedCanvas;
-
+    
     protected virtual void OnEnable()
     {
         dead = false;
@@ -41,6 +42,16 @@ public class LivingEntity : MonoBehaviour, IDamageable
 
         entityRenderer = GetComponentInChildren<Renderer>();
         skinColor = entityRenderer.material.color;
+    }
+
+    public virtual void Initializing(PlayerData data)
+    {
+        float tmpCurrentHP = 0;
+
+        data.dataDictionary.TryGetValue("maxHP", out maxHP);
+        data.dataDictionary.TryGetValue("currentHP", out tmpCurrentHP);
+
+        currentHP = tmpCurrentHP;
     }
 
     public virtual void OnDamage(float damage)

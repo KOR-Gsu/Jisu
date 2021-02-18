@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class PlayerHP : LivingEntity
 {
-    public int level { get; protected set; }
-
-    public float maxMP = 100f;
+    [HideInInspector] public float level;
+    [HideInInspector] public float defense;
+    [HideInInspector] public float maxMP;
+    [HideInInspector] public float maxEXP;
+    
     private float _currentMP;
     public float currentMP 
     {
@@ -25,7 +27,6 @@ public class PlayerHP : LivingEntity
         } 
     }
 
-    public float maxEXP = 80f;
     private float _currentEXP;
     public float currentEXP
     {
@@ -69,16 +70,29 @@ public class PlayerHP : LivingEntity
         base.OnEnable();
         UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.GAUGE_HP, currentHP / maxHP);
 
-        level = 1;
-        UIManager.instance.UpdateLevelText(level);
-
-        currentMP = maxMP;
-        currentEXP = 70;
-
         intvlItemTime1 = 0.8f;
         intvlItemTime2 = 0.8f;
 
         playerMove.enabled = true;
+    }
+
+    public override void Initializing(PlayerData data)
+    {
+        base.Initializing(data);
+        UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.GAUGE_HP, currentHP / maxHP);
+
+        data.dataDictionary.TryGetValue("Level", out level);
+        UIManager.instance.UpdateLevelText(level);
+
+        data.dataDictionary.TryGetValue("defense", out defense);
+        data.dataDictionary.TryGetValue("maxMP", out maxMP);
+        data.dataDictionary.TryGetValue("maxEXP", out maxEXP);
+
+        float tmpCurrentMP, tmpCurrentEXP;
+        data.dataDictionary.TryGetValue("currentMP", out tmpCurrentMP);
+        data.dataDictionary.TryGetValue("currentEXP", out tmpCurrentEXP);
+        currentMP = tmpCurrentMP;
+        currentEXP = tmpCurrentEXP;
     }
 
     public void GetExp(int newExp)
@@ -131,9 +145,13 @@ public class PlayerHP : LivingEntity
 
     public override void OnDamage(float damage)
     {
-        ShowDamaged(damage, Color.red);
+        float finalDamage = damage - defense;
+        if (finalDamage <= 0)
+            finalDamage = 0;
 
-        base.OnDamage(damage);
+        ShowDamaged(finalDamage, Color.red);
+
+        base.OnDamage(finalDamage);
 
         UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.GAUGE_HP, currentHP / maxHP);
     }

@@ -4,24 +4,27 @@ using UnityEngine;
 
 public class EixtWindow : Window
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public override void ShowWindow()
     {
         base.ShowWindow();
+
+        Time.timeScale = 0;
     }
+
     public override void CloseWindow()
     {
+        Time.timeScale = 1;
+
         base.CloseWindow();
+    }
+
+    public void ExitGame()
+    {
+        GameManager.instance.SavePlayerInfoToJson();
+
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    #endif
+        Application.Quit();
     }
 }

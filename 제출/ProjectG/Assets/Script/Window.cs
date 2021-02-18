@@ -5,14 +5,17 @@ using UnityEngine;
 public class Window : MonoBehaviour
 {
     private Canvas canvas;
-    private GameObject myContent;
 
+    public GameObject myContent { get; private set; }
     public GameObject myPrefab;
 
     virtual public void ShowWindow()
     {
-        canvas = UIManager.instance.myCanvas;
-        myContent = Instantiate<GameObject>(myPrefab, canvas.transform);
+        if (myContent == null)
+        {
+            canvas = UIManager.instance.myCanvas;
+            myContent = Instantiate<GameObject>(myPrefab, canvas.transform);
+        }
     }
 
     virtual public void CloseWindow()

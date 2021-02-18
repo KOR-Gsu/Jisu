@@ -56,24 +56,24 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\InventoryWindow.cs" />
     <Compile Include="Assets\Script\IDamageable.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\LoadScene.cs" />
+    <Compile Include="Assets\Script\MenuButton.cs" />
     <Compile Include="Assets\Script\LivingEntity.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
     <Compile Include="Assets\Script\PlayerInput.cs" />
     <Compile Include="Assets\Script\DamageText.cs" />
     <Compile Include="Assets\Script\MonsterHPBar.cs" />
     <Compile Include="Assets\Script\PlayerHP.cs" />
+    <Compile Include="Assets\Script\EixtWindow.cs" />
     <Compile Include="Assets\Script\EnemySpawner.cs" />
     <Compile Include="Assets\Script\ControlUIGauge.cs" />
     <Compile Include="Assets\Script\Enemy.cs" />
-    <Compile Include="Assets\Script\PlayerMove.cs" />
-    <Compile Include="Assets\Script\MenuButton.cs" />
-    <Compile Include="Assets\Script\Window.cs" />
     <Compile Include="Assets\Script\InfoWindow.cs" />
-    <Compile Include="Assets\Script\InventoryWindow.cs" />
-    <Compile Include="Assets\Script\EixtWindow.cs" />
+    <Compile Include="Assets\Script\PlayerMove.cs" />
+    <Compile Include="Assets\Script\Window.cs" />
     <None Include="Assets\Import\Cartoon Temple Building Kit\ReadMe.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -296,6 +296,9 @@
     </Reference>
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>D:/GitHub/Jisu/제출/ProjectG/Assets/Assets/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.4f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

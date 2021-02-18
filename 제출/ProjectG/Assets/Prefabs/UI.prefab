@@ -588,8 +588,8 @@ GameObject:
   - component: {fileID: 2777367214549458857}
   - component: {fileID: 5008057936899605984}
   - component: {fileID: 6789643907887522579}
-  - component: {fileID: 4343869742377873992}
-  - component: {fileID: 8392558517563450438}
+  - component: {fileID: 5447271662961390193}
+  - component: {fileID: 2218479782508346433}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -655,7 +655,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4343869742377873992
+--- !u!114 &5447271662961390193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -664,7 +664,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1480233090836395372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -696,10 +696,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 6789643907887522579}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 0}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8392558517563450438}
+      - m_Target: {fileID: 2218479782508346433}
         m_TargetAssemblyTypeName: MenuButton, Assembly-CSharp
         m_MethodName: ShowMenu
         m_Mode: 1
@@ -711,7 +714,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8392558517563450438
+  m_IsOn: 0
+--- !u!114 &2218479782508346433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1016,7 +1020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34e96496c749674fa28cee326497d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCanvas: {fileID: 1644663305844838338}
   levelText: {fileID: 3560383555596617439}
   gaugesList:
   - {fileID: 7589162273888964745}
@@ -1026,7 +1029,7 @@ MonoBehaviour:
     type: 3}
   inventoryWindow: {fileID: 1304751956560235052, guid: addea473003063a4bb3f4c1bbc4c89a2,
     type: 3}
-  exitWindow: {fileID: 0}
+  exitWindow: {fileID: 7632825398424474839}
   imageItemCooldown1: {fileID: 208432217372000183}
   imageItemCooldown2: {fileID: 853053227452016623}
   imageSkillCooldown1: {fileID: 6135825038031540093}
@@ -2518,6 +2521,7 @@ GameObject:
   - component: {fileID: 5197171005262224238}
   - component: {fileID: 472939831192644043}
   - component: {fileID: 3988946600747109430}
+  - component: {fileID: 7632825398424474839}
   m_Layer: 0
   m_Name: Exit
   m_TagString: Untagged
@@ -2628,7 +2632,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9110014359390044565}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ExitGame
+        m_MethodName: OpenExitWindow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2638,6 +2642,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7632825398424474839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6665751187298432489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf05984a4b2857041a3c25dfaa9151c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPrefab: {fileID: 3210723738814997912, guid: f00a89867490c4e4998a5ec719b99d39,
+    type: 3}
 --- !u!1 &7659404121838969764
 GameObject:
   m_ObjectHideFlags: 0

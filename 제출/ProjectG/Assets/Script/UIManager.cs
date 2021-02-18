@@ -45,9 +45,9 @@ public class UIManager : MonoBehaviour
         myCanvas = GetComponent<Canvas>();
     }
 
-    public void UpdateLevelText(int level)
+    public void UpdateLevelText(float level)
     {
-        levelText.text = level.ToString();
+        levelText.text = ((int)level).ToString();
     }
 
     public void UpdateGaugeRate(int index, float rate)
@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
         inventoryWindow.ShowWindow();
     }
 
-    public void ExitGame()
+    public void OpenExitWindow()
     {
         exitWindow.ShowWindow();
     }

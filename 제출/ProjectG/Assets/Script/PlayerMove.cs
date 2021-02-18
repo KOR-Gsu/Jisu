@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float moveSpeed = 15f;
-    public float rotateSpeed = 180f;
+    [HideInInspector] public float moveSpeed;
+    [HideInInspector] public float rotateSpeed;
+    [HideInInspector] public float attackDamage;
+    [HideInInspector] public float attackRange;
+    [HideInInspector] public float intvlAttackTime;
 
-    public float damage = 5f;
-    public float attackRange;
-    public float intvlAttackTime;
     private float lastAttackTime;
-
-    public LayerMask targetLayer;
-
     private LivingEntity targetEntity;
     private PlayerInput playerInput;
     private PlayerHP playerHP;
     private Rigidbody playerRigidbody;
     private Animator playerAnimator;
+
+    public LayerMask targetLayer;
 
     private bool isAttackAble
     {
@@ -39,6 +38,16 @@ public class PlayerMove : MonoBehaviour
         playerHP = GetComponent<PlayerHP>();
 
         StartCoroutine(UpdateAttackTarget());
+    }
+
+    public void initializing(PlayerData data)
+    {
+        data.dataDictionary.TryGetValue("moveSpeed", out moveSpeed);
+        data.dataDictionary.TryGetValue("rotateSpeed", out rotateSpeed);
+
+        data.dataDictionary.TryGetValue("attackDamage", out attackDamage);
+        data.dataDictionary.TryGetValue("attackRange", out attackRange);
+        data.dataDictionary.TryGetValue("intvlAttackTime", out intvlAttackTime);
     }
 
     void Update()
@@ -82,7 +91,7 @@ public class PlayerMove : MonoBehaviour
             {
                 transform.LookAt(targetEntity.transform);
 
-                targetEntity.OnDamage(damage);
+                targetEntity.OnDamage(attackDamage);
 
                 if(targetEntity.dead)
                     playerHP.GetExp(50);
