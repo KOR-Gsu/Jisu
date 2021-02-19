@@ -5,22 +5,6 @@ using System.Text;
 using UnityEngine;
 using Newtonsoft.Json;
 
-[System.Serializable]
-public class PlayerData
-{
-    public Dictionary<string, string> logInfoDictionary = new Dictionary<string, string>();
-    public Dictionary<string, float> dataDictionary = new Dictionary<string, float>();
-
-    public void PrintData()
-    {
-        foreach(var v in logInfoDictionary)
-            Debug.Log(string.Format("{0} : {1}", v.Key, v.Value));
-
-        foreach (var v in dataDictionary)
-            Debug.Log(string.Format("{0} : {1}", v.Key, v.Value));
-    }
-}
-
 
 public class GameManager : MonoBehaviour
 {
@@ -37,8 +21,7 @@ public class GameManager : MonoBehaviour
     }
     public bool isGameOver { get; private set; }
 
-    private string id = "default";
-    private string pw = "123123";
+    private LogData logData;
 
     private void Awake()
     {
@@ -50,7 +33,7 @@ public class GameManager : MonoBehaviour
     {
         FindObjectOfType<PlayerHP>().onDeath += EndGame;
 
-        LoadPlayerInfoFromJson();
+        LoadPlayerData();
     }
     
     public void EndGame()
@@ -58,54 +41,48 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
     }
 
-    public void SavePlayerInfoToJson()
+    public void SavePlayerData()
     {
-        PlayerData data = new PlayerData();
+
+
+
+        PlayerData playerData = new PlayerData();
         PlayerHP playerHP = GameObject.Find("Player").GetComponent<PlayerHP>();
         PlayerMove playerMove = GameObject.Find("Player").GetComponent<PlayerMove>();
 
-        data.logInfoDictionary.Add("id", id);
-        data.logInfoDictionary.Add("pw", pw);
+        playerData.log = logData;
 
-        data.dataDictionary.Add("Level", playerHP.level);
-        data.dataDictionary.Add("defense", playerHP.defense);
-        data.dataDictionary.Add("currentHP", playerHP.currentHP);
-        data.dataDictionary.Add("currentMP", playerHP.currentMP);
-        data.dataDictionary.Add("currentEXP", playerHP.currentEXP);
-        data.dataDictionary.Add("maxHP", playerHP.maxHP);
-        data.dataDictionary.Add("maxMP", playerHP.maxMP);
-        data.dataDictionary.Add("maxEXP", playerHP.maxEXP);
-        data.dataDictionary.Add("moveSpeed", playerMove.moveSpeed);
-        data.dataDictionary.Add("rotateSpeed", playerMove.rotateSpeed);
-        data.dataDictionary.Add("attackDamage", playerMove.attackDamage);
-        data.dataDictionary.Add("attackRange", playerMove.attackRange);
-        data.dataDictionary.Add("intvlAttackTime", playerMove.intvlAttackTime);
+        playerData.dataDictionary.Add("Level", playerHP.level);
+        playerData.dataDictionary.Add("defense", playerHP.defense);
+        playerData.dataDictionary.Add("currentHP", playerHP.currentHP);
+        playerData.dataDictionary.Add("currentMP", playerHP.currentMP);
+        playerData.dataDictionary.Add("currentEXP", playerHP.currentEXP);
+        playerData.dataDictionary.Add("maxHP", playerHP.maxHP);
+        playerData.dataDictionary.Add("maxMP", playerHP.maxMP);
+        playerData.dataDictionary.Add("maxEXP", playerHP.maxEXP);
+        playerData.dataDictionary.Add("moveSpeed", playerMove.moveSpeed);
+        playerData.dataDictionary.Add("rotateSpeed", playerMove.rotateSpeed);
+        playerData.dataDictionary.Add("attackDamage", playerMove.attackDamage);
+        playerData.dataDictionary.Add("attackRange", playerMove.attackRange);
+        playerData.dataDictionary.Add("intvlAttackTime", playerMove.intvlAttackTime);
 
-        string saveString = JsonConvert.SerializeObject(data);
-        byte[] saveData = Encoding.UTF8.GetBytes(saveString);
+        PlayerDataJson playerDataJson = new PlayerDataJson();
+        playerDataJson.Add(playerData);
+        DataManager.instance.DataToJson(DataManager.instance.playerSavedDataFileName, playerDataJson);
 
-        FileStream fileStream = new FileStream(string.Format("{0}/{1}", Application.dataPath, "Player_Save.json"), FileMode.Create);
-        fileStream.Write(saveData, 0, saveData.Length);
-        fileStream.Close();
+        DataManager.instance.DataToJson(DataManager.instance.playerCurrentDataFileName, playerData);
     }
 
-    public void LoadPlayerInfoFromJson()
+    public void LoadPlayerData()
     {
-        FileStream fileStream = new FileStream(string.Format("{0}/{1}", Application.dataPath, "Player_Save.json"), FileMode.Open);
-        byte[] loadData = new byte[fileStream.Length];
-        fileStream.Read(loadData, 0, loadData.Length);
-        fileStream.Close();
-
-        string loadString = Encoding.UTF8.GetString(loadData);
-        PlayerData data = JsonConvert.DeserializeObject<PlayerData>(loadString);
+        PlayerData playerData = DataManager.instance.JsonToData<PlayerData>(DataManager.instance.playerCurrentDataFileName);
 
         PlayerHP playerHP = GameObject.Find("Player").GetComponent<PlayerHP>();
         PlayerMove playerMove = GameObject.Find("Player").GetComponent<PlayerMove>();
 
-        data.logInfoDictionary.TryGetValue("id", out id);
-        data.logInfoDictionary.TryGetValue("pw", out pw);
+        logData = playerData.log;
 
-        playerHP.Initializing(data);
-        playerMove.initializing(data);
+        playerHP.Initializing(playerData);
+        playerMove.initializing(playerData);
     }
 }
