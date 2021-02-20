@@ -7,7 +7,6 @@ public class DamageText : MonoBehaviour
 {
     public Transform targetTransform;
 
-    private Canvas canvas;
     private Camera worldCamera;
     private RectTransform rectParent;
     private RectTransform rectDamageText;
@@ -25,14 +24,13 @@ public class DamageText : MonoBehaviour
 
     void Start()
     {
-        canvas = UIManager.instance.myCanvas;
-        worldCamera = canvas.worldCamera;
-        rectParent = canvas.GetComponent<RectTransform>();
+        worldCamera = UIManager.instance.myCanvas.worldCamera;
+        rectParent = UIManager.instance.myCanvas.GetComponent<RectTransform>();
         rectDamageText = GetComponent<RectTransform>();
         offSet = new Vector2(0f, 0f);
         moveSpeed = 80.0f;
-        alphaSpeed = 2.0f;
-        destroyTime = 2.0f;
+        alphaSpeed = 3.0f;
+        destroyTime = 1.0f;
 
         damageText = GetComponent<Text>();
         alpha = textColor;

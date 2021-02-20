@@ -11,11 +11,10 @@ public class Enemy : LivingEntity
     private LivingEntity targetEntity;
     private NavMeshAgent pathFinder;
     private Animator enemyAnimator;
-    private Canvas hpCanvas;
-    private GameObject hpBar;
-    private Slider hpSlider;
-    private Text hpText;
+    private GameObject hpGauge;
+    private MonsterHPGauge hpGaugeScript;
 
+    public GameObject hpGaugePrefab;
     public float damage = 3f;
     public float intvlAttackTime;
     public float attackRange;
@@ -51,29 +50,19 @@ public class Enemy : LivingEntity
     
     void Start()
     {
+        damagedTextColor = Color.white;
+
         StartCoroutine(UpdatePath());
         StartCoroutine(UpdateAttack());
     }
     
     void Update()
     {
-        if (isMarking && hpBar == null)
+        if (isMarking && hpGauge == null)
             ShowHPBar();
-        if(!isMarking && hpBar != null)
-            HideHPBar();
 
-        if (isAttackAble)
-        {
-            enemyAnimator.SetFloat("Move", 0);
+        if (isAttackAble && hasTarget)
             Attack();
-        }
-        else
-        {
-            if (hasTarget)
-                enemyAnimator.SetFloat("Move", 1);
-            else
-                enemyAnimator.SetFloat("Move", 0);
-        }
     }
 
     private void Attack()
@@ -82,16 +71,13 @@ public class Enemy : LivingEntity
         {
             if (Time.time >= lastAttackTime + intvlAttackTime)
             {
-                if (targetEntity != null && !targetEntity.dead)
-                {
-                    enemyAnimator.SetInteger("Attack", 1);
-                    targetEntity.OnDamage(damage);
+                enemyAnimator.SetInteger("Attack", 1);
+                targetEntity.OnDamage(damage);
 
-                    if (targetEntity.dead)
-                        GameManager.instance.EndGame();
+                if (targetEntity.dead)
+                    GameManager.instance.EndGame();
 
-                    lastAttackTime = Time.time;
-                }
+                lastAttackTime = Time.time;
             }
             else
                 enemyAnimator.SetInteger("Attack", 2);
@@ -121,11 +107,6 @@ public class Enemy : LivingEntity
                 isAttackAble = true;
                 enemyAnimator.SetInteger("Attack", 2);
                 enemyAnimator.SetFloat("Move", 0);
-                if (pathFinder.enabled)
-                {
-                    pathFinder.ResetPath();
-                    pathFinder.enabled = false;
-                }
             }
             else
             {
@@ -139,46 +120,39 @@ public class Enemy : LivingEntity
 
     private IEnumerator UpdatePath()
     {
-        if (!isAttackAble)
+        while (!dead)
         {
-            while (!dead)
+            if (hasTarget && !isAttackAble)
             {
-                if (hasTarget)
-                {
-                    pathFinder.enabled = true;
-                    pathFinder.SetDestination(targetEntity.transform.position);
-                    enemyAnimator.SetFloat("Move", 1);
-                }
-                else
-                {
-                    pathFinder.enabled = false;
-                    Collider[] colliders = Physics.OverlapSphere(transform.position, 30f, TargetLayer);
+                enemyAnimator.SetFloat("Move", 1);
+                pathFinder.enabled = true;
+                pathFinder.SetDestination(targetEntity.transform.position);
+            }
+            else
+            {
+                pathFinder.enabled = false;
+                Collider[] colliders = Physics.OverlapSphere(transform.position, 30f, TargetLayer);
 
-                    for (int i = 0; i < colliders.Length; i++)
+                for (int i = 0; i < colliders.Length; i++)
+                {
+                    LivingEntity livingEntity = colliders[i].GetComponent<LivingEntity>();
+
+                    if (livingEntity != null && !livingEntity.dead)
                     {
-                        LivingEntity livingEntity = colliders[i].GetComponent<LivingEntity>();
-
-                        if (livingEntity != null && !livingEntity.dead)
-                        {
-                            targetEntity = livingEntity;
-                            break;
-                        }
-
+                        targetEntity = livingEntity;
+                        break;
                     }
                 }
-                yield return new WaitForSeconds(0.25f);
             }
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
     public override void OnDamage(float damage)
     {
-        ShowDamaged(damage, Color.white);
-
         base.OnDamage(damage);
-      
-        hpSlider.value = currentHP;
-        hpText.text = ((int)(currentHP / maxHP * 100)).ToString() + "%";
+
+        hpGauge.GetComponent<MonsterHPGauge>().Initialize(currentHP / maxHP);
     }
 
     public override void Die()
@@ -191,29 +165,28 @@ public class Enemy : LivingEntity
         
         pathFinder.enabled = false;
 
+        if(hpGauge != null)
+            Destroy(hpGauge);
+
         enemyAnimator.SetTrigger("Die");
     }
 
     private void ShowHPBar()
     {
-        if (hpBar != null)
+        if (hpGauge != null)
         {
-            hpBar.SetActive(true);
+            hpGauge.gameObject.SetActive(true);
             return;
         }
 
-        hpCanvas = UIManager.instance.myCanvas;
-        hpBar = Instantiate<GameObject>(healthBarPrefab, hpCanvas.transform);
-        hpSlider = hpBar.GetComponentInChildren<Slider>();
-        hpText = hpBar.GetComponentInChildren<Text>();
-
-        var _hpBar = hpBar.GetComponent<MonsterHPBar>();
-        _hpBar.targetTransform = this.gameObject.transform;
-        _hpBar.offSet = new Vector2(0, 60);
+        hpGauge = Instantiate<GameObject>(hpGaugePrefab, UIManager.instance.myCanvas.transform);
+        hpGaugeScript = hpGauge.GetComponentInChildren<MonsterHPGauge>();
+        hpGaugeScript.targetTransform = hudPos;
+        hpGaugeScript.Initialize(currentHP / maxHP);
     }
 
     private void HideHPBar()
     {
-        hpBar.SetActive(false);
+        hpGauge.gameObject.SetActive(false);
     }
 }

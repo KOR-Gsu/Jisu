@@ -1,10 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using UnityEngine;
-using Newtonsoft.Json;
-
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +30,8 @@ public class GameManager : MonoBehaviour
     {
         FindObjectOfType<PlayerHP>().onDeath += EndGame;
 
+        logData = DataManager.instance.currentLog;
+
         LoadPlayerData();
     }
     
@@ -43,46 +42,69 @@ public class GameManager : MonoBehaviour
 
     public void SavePlayerData()
     {
-
-
-
-        PlayerData playerData = new PlayerData();
+        PlayerData savingPlayerData = new PlayerData();
         PlayerHP playerHP = GameObject.Find("Player").GetComponent<PlayerHP>();
         PlayerMove playerMove = GameObject.Find("Player").GetComponent<PlayerMove>();
 
-        playerData.log = logData;
+        savingPlayerData.log = logData;
 
-        playerData.dataDictionary.Add("Level", playerHP.level);
-        playerData.dataDictionary.Add("defense", playerHP.defense);
-        playerData.dataDictionary.Add("currentHP", playerHP.currentHP);
-        playerData.dataDictionary.Add("currentMP", playerHP.currentMP);
-        playerData.dataDictionary.Add("currentEXP", playerHP.currentEXP);
-        playerData.dataDictionary.Add("maxHP", playerHP.maxHP);
-        playerData.dataDictionary.Add("maxMP", playerHP.maxMP);
-        playerData.dataDictionary.Add("maxEXP", playerHP.maxEXP);
-        playerData.dataDictionary.Add("moveSpeed", playerMove.moveSpeed);
-        playerData.dataDictionary.Add("rotateSpeed", playerMove.rotateSpeed);
-        playerData.dataDictionary.Add("attackDamage", playerMove.attackDamage);
-        playerData.dataDictionary.Add("attackRange", playerMove.attackRange);
-        playerData.dataDictionary.Add("intvlAttackTime", playerMove.intvlAttackTime);
+        savingPlayerData.dataDictionary.Add("Level", playerHP.level);
+        savingPlayerData.dataDictionary.Add("defense", playerHP.defense);
+        savingPlayerData.dataDictionary.Add("currentHP", playerHP.currentHP);
+        savingPlayerData.dataDictionary.Add("currentMP", playerHP.currentMP);
+        savingPlayerData.dataDictionary.Add("currentEXP", playerHP.currentEXP);
+        savingPlayerData.dataDictionary.Add("maxHP", playerHP.maxHP);
+        savingPlayerData.dataDictionary.Add("maxMP", playerHP.maxMP);
+        savingPlayerData.dataDictionary.Add("maxEXP", playerHP.maxEXP);
+        savingPlayerData.dataDictionary.Add("moveSpeed", playerMove.moveSpeed);
+        savingPlayerData.dataDictionary.Add("rotateSpeed", playerMove.rotateSpeed);
+        savingPlayerData.dataDictionary.Add("attackDamage", playerMove.attackDamage);
+        savingPlayerData.dataDictionary.Add("attackRange", playerMove.attackRange);
+        savingPlayerData.dataDictionary.Add("intvlAttackTime", playerMove.intvlAttackTime);
 
-        PlayerDataJson playerDataJson = new PlayerDataJson();
-        playerDataJson.Add(playerData);
-        DataManager.instance.DataToJson(DataManager.instance.playerSavedDataFileName, playerDataJson);
+        PlayerDataJson playerDataJson = DataManager.instance.JsonToData<PlayerDataJson>(DataManager.instance.playerSavedDataFileName);
 
-        DataManager.instance.DataToJson(DataManager.instance.playerCurrentDataFileName, playerData);
+        if (playerDataJson.playerDataDictionary.ContainsKey(logData.id))
+        {
+            foreach (var key in playerDataJson.playerDataDictionary.Keys.ToList())
+            {
+                if (key == logData.id)
+                {
+                    playerDataJson.playerDataDictionary[key] = savingPlayerData;
+                    break;
+                }
+            }
+        }
+        else
+            playerDataJson.Add(savingPlayerData);
+
+
+        DataManager.instance.DataToJson<PlayerDataJson>(DataManager.instance.playerSavedDataFileName, playerDataJson);
     }
 
     public void LoadPlayerData()
     {
-        PlayerData playerData = DataManager.instance.JsonToData<PlayerData>(DataManager.instance.playerCurrentDataFileName);
+        PlayerDataJson playerDataJson = DataManager.instance.JsonToData<PlayerDataJson>(DataManager.instance.playerSavedDataFileName);
+
+        if (!playerDataJson.playerDataDictionary.ContainsKey(logData.id))
+            CreateNewPlayerData(playerDataJson);
+
+        playerDataJson.playerDataDictionary.TryGetValue(logData.id, out PlayerData playerData);
 
         PlayerHP playerHP = GameObject.Find("Player").GetComponent<PlayerHP>();
         PlayerMove playerMove = GameObject.Find("Player").GetComponent<PlayerMove>();
 
-        logData = playerData.log;
-
         playerHP.Initializing(playerData);
         playerMove.initializing(playerData);
+    }
+
+    private void CreateNewPlayerData(PlayerDataJson playerDataJson)
+    {
+        PlayerData newPlayerData = DataManager.instance.JsonToData<PlayerData>(DataManager.instance.playerDefaultDataFileName);
+
+        newPlayerData.log = logData;
+        playerDataJson.Add(newPlayerData);
+
+        DataManager.instance.DataToJson<PlayerDataJson>(DataManager.instance.playerSavedDataFileName, playerDataJson);
     }
 }

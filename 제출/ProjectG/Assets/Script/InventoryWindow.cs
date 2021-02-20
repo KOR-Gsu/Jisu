@@ -16,9 +16,9 @@ public class InventoryWindow : Window
         
     }
 
-    public override void ShowWindow()
+    public override void ShowWindow(Canvas canvas)
     {
-        base.ShowWindow();
+        base.ShowWindow(canvas);
     }
     public override void CloseWindow()
     {

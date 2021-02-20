@@ -7,11 +7,11 @@ public class EnemySpawner : MonoBehaviour
     public Enemy enemyPrefab;
     public Transform[] spawnPoints;
 
-    public float damageMax = 5;
-    public float damageMin = 2;
+    public float damageMax = 9;
+    public float damageMin = 4;
 
     public float hpMax = 150;
-    public float hpMin = 80;
+    public float hpMin = 90;
 
     public float speedMax = 5;
     public float speedMin = 3;
@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
 
     private List<Enemy> enemies = new List<Enemy>();
     private int wave = 0;
-    private int curSpawn = 3;
+    private int curSpawn = 4;
 
     void Update()
     {

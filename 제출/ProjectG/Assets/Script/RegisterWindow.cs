@@ -7,10 +7,16 @@ public class RegisterWindow : Window
 {
     public InputField idInputField;
     public InputField pwInputField;
+    
+    private Color alertAlpha;
+    private Color orignalAlpha;
+    private float alphaSpeed = 2.0f;
+    private int charMin = 2;
+    private int charMax = 8;
 
-    public override void ShowWindow()
+    public override void ShowWindow(Canvas canvas)
     {
-        base.ShowWindow();
+        base.ShowWindow(canvas);
     }
 
     public override void CloseWindow()
@@ -18,22 +24,83 @@ public class RegisterWindow : Window
         base.CloseWindow();
     }
 
-    public void RegisterPlayer()
+    private void Start()
     {
-        LogData logData = new LogData(idInputField.GetComponent<Text>().text, pwInputField.text);
-
-        LogDataJson logDataFile = DataManager.instance.JsonToData<LogDataJson>(DataManager.instance.logFileName);
-        if(logDataFile.IsData(logData.id))
-        {
-            idInputField.image.color = Color.red;
-        }
-
-        logDataFile.Add(logData);
-        DataManager.instance.DataToJson<LogDataJson>(DataManager.instance.logFileName, logDataFile);
+        orignalAlpha = idInputField.image.color;
     }
 
-    public void ResetInputfieldColor()
+    private void Update()
     {
-        idInputField.image.color = Color.white;
+        if(idInputField.image.color != orignalAlpha)
+        {
+            alertAlpha.r = Mathf.Lerp(alertAlpha.r, orignalAlpha.r, Time.deltaTime * alphaSpeed);
+            alertAlpha.g = Mathf.Lerp(alertAlpha.g, orignalAlpha.g, Time.deltaTime * alphaSpeed);
+            alertAlpha.b = Mathf.Lerp(alertAlpha.b, orignalAlpha.b, Time.deltaTime * alphaSpeed);
+
+            idInputField.image.color = alertAlpha;
+        }
+        if (pwInputField.image.color != orignalAlpha)
+        {
+            alertAlpha.r = Mathf.Lerp(alertAlpha.r, orignalAlpha.r, Time.deltaTime * alphaSpeed);
+            alertAlpha.g = Mathf.Lerp(alertAlpha.g, orignalAlpha.g, Time.deltaTime * alphaSpeed);
+            alertAlpha.b = Mathf.Lerp(alertAlpha.b, orignalAlpha.b, Time.deltaTime * alphaSpeed);
+
+            pwInputField.image.color = alertAlpha;
+        }
+    }
+
+    public void RegisterPlayer()
+    {
+        if (CheckInputField())
+            return;
+
+        LogData currentLogData = new LogData(idInputField.GetComponentInChildren<Text>().text, pwInputField.text);
+        LogDataJson logDataJson = DataManager.instance.JsonToData<LogDataJson>(DataManager.instance.logFileName);
+
+        if (IsSameLogData(logDataJson, currentLogData))
+            return;
+
+        logDataJson.Add(currentLogData);
+        DataManager.instance.DataToJson<LogDataJson>(DataManager.instance.logFileName, logDataJson);
+
+        CloseWindow();
+    }
+
+    private bool CheckInputField()
+    {
+        bool idCheck = false;
+        bool pwCheck = false;
+
+        if (idInputField.GetComponentInChildren<Text>().text.Length < charMin || idInputField.GetComponentInChildren<Text>().text.Length > charMax)
+        {
+            AlertInputField(idInputField);
+            idCheck = true;
+        }
+        if (pwInputField.text.Length < charMin || pwInputField.text.Length > charMax)
+        {
+            AlertInputField(pwInputField);
+            pwCheck = true;
+        }
+
+        return idCheck || pwCheck;
+    }
+
+    private bool IsSameLogData(LogDataJson logDataJson, LogData logData)
+    {
+        if (logDataJson.IsData(logData.id))
+        {
+            AlertInputField(idInputField);
+            AlertInputField(pwInputField);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private void AlertInputField(InputField inputField)
+    {
+        alertAlpha = Color.red;
+        inputField.image.color = alertAlpha;
     }
 }

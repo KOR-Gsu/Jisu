@@ -66,7 +66,7 @@
     <Compile Include="Assets\Script\UIManager.cs" />
     <Compile Include="Assets\Script\PlayerInput.cs" />
     <Compile Include="Assets\Script\DamageText.cs" />
-    <Compile Include="Assets\Script\MonsterHPBar.cs" />
+    <Compile Include="Assets\Script\MonsterHPGauge.cs" />
     <Compile Include="Assets\Script\PlayerHP.cs" />
     <Compile Include="Assets\Script\EixtWindow.cs" />
     <Compile Include="Assets\Script\EnemySpawner.cs" />

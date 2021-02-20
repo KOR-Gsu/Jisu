@@ -53,7 +53,10 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         if (playerInput.attack)
-            Attack();
+        {
+            if (isAttackAble)
+                Attack();
+        }
         else
             playerAnimator.SetInteger("Attack", 0);
     }
@@ -87,17 +90,13 @@ public class PlayerMove : MonoBehaviour
     {
         if (Time.time >= lastAttackTime + intvlAttackTime)
         {
-            if (isAttackAble)
-            {
-                transform.LookAt(targetEntity.transform);
-
-                targetEntity.OnDamage(attackDamage);
-
-                if(targetEntity.dead)
-                    playerHP.GetExp(50);
-            }
-
+            transform.LookAt(targetEntity.transform);
             playerAnimator.SetInteger("Attack", 1);
+            targetEntity.OnDamage(attackDamage);
+
+            if (targetEntity.dead)
+                playerHP.GetExp(50);
+
             lastAttackTime = Time.time;
         }
         else
@@ -108,24 +107,21 @@ public class PlayerMove : MonoBehaviour
     {
         while (true)
         {
+            if (targetEntity != null)
+            {
+                targetEntity.UnMarking();
+                targetEntity = null;
+            }
+
             Collider[] colliders = Physics.OverlapSphere(transform.position, attackRange, targetLayer);
 
             for (int i = 0; i < colliders.Length; i++)
             {
                 LivingEntity livingEntity = colliders[i].GetComponent<LivingEntity>();
 
-                if (livingEntity.isMarking)
-                    break;
-
-                if (livingEntity != null && !livingEntity.dead)
-                {
-                    if (targetEntity != null)
-                        targetEntity.UnMarking();
-
-                    targetEntity = livingEntity;
-                    targetEntity.Marking(Color.red);
-                    break;
-                }
+                targetEntity = livingEntity;
+                targetEntity.Marking(Color.red);
+                break;
             }
             yield return new WaitForSeconds(0.25f);
         }

@@ -5,16 +5,11 @@ using UnityEngine.UI;
 
 public class ControlUIGauge : MonoBehaviour
 {
-    private Image myContent;
-    private Text myPercentage;
+    public Image myContent;
+    public Text myPercentage;
+
     private float lerpSpeed = 20f;
     private float currentFill;
-    
-    void Start()
-    {
-        myContent = GetComponent<Image>();
-        myPercentage = GetComponentInChildren<Text>();
-    }
 
     void Update()
     {
@@ -24,11 +19,6 @@ public class ControlUIGauge : MonoBehaviour
 
     public void Initialize(float rate)
     {
-        if(myContent == null)
-            myContent = GetComponent<Image>();
-        if(myPercentage == null)
-            myPercentage = GetComponentInChildren<Text>();
-
         currentFill = rate;
 
         myPercentage.text = (currentFill * 100).ToString("F1") + "%";

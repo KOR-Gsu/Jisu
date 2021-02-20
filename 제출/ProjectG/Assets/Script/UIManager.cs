@@ -14,6 +14,16 @@ public class UIManager : MonoBehaviour
         GAUGE_END
     }
 
+    public enum QUICKSLOT : int
+    {
+        QUICKSLOT_START,
+        QUICKSLOT_ITEM_1 = 0,
+        QUICKSLOT_ITEM_2,
+        QUICKSLOT_SKILL_1,
+        QUICKSLOT_SKILL_2,
+        QUICKSLOT_END
+    }
+
     private static UIManager m_instance;
     public static UIManager instance
     {
@@ -35,14 +45,16 @@ public class UIManager : MonoBehaviour
     public Window inventoryWindow;
     public Window exitWindow;
 
-    public Image imageItemCooldown1;
-    public Image imageItemCooldown2;
-    public Image imageSkillCooldown1;
-    public Image imageSkillCooldown2; 
+    public Image[] cooldownImageList;
 
     private void Start()
     {
         myCanvas = GetComponent<Canvas>();
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void UpdateLevelText(float level)
@@ -57,16 +69,34 @@ public class UIManager : MonoBehaviour
 
     public void OpenCharacterInfo()
     {
-        infoWindow.ShowWindow();
+        infoWindow.ShowWindow(UIManager.instance.myCanvas);
     }
 
     public void OpenCharacterInventory()
     {
-        inventoryWindow.ShowWindow();
+        inventoryWindow.ShowWindow(UIManager.instance.myCanvas);
     }
 
     public void OpenExitWindow()
     {
-        exitWindow.ShowWindow();
+        exitWindow.ShowWindow(UIManager.instance.myCanvas);
+    }
+
+    public void StartCooldownCoroutine(int index, float cooldown)
+    {
+        cooldownImageList[index].gameObject.SetActive(true);
+        StartCoroutine(UpdateCooldown(index, cooldown));
+    }
+
+    private IEnumerator UpdateCooldown(int index, float cooldown)
+    {
+        float nowDelayTime = 0;
+        while (nowDelayTime < cooldown)
+        {
+            nowDelayTime += Time.deltaTime;
+            cooldownImageList[index].fillAmount = (1.0f - nowDelayTime / cooldown);
+
+            yield return new WaitForFixedUpdate();
+        }
     }
 }

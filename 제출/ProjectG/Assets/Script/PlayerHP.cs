@@ -63,6 +63,8 @@ public class PlayerHP : LivingEntity
         playerAnimator = GetComponent<Animator>();
         playerMove = GetComponent<PlayerMove>();
         playerInput = GetComponent<PlayerInput>();
+
+        damagedTextColor = Color.red;
     }
 
     protected override void OnEnable()
@@ -88,9 +90,8 @@ public class PlayerHP : LivingEntity
         data.dataDictionary.TryGetValue("maxMP", out maxMP);
         data.dataDictionary.TryGetValue("maxEXP", out maxEXP);
 
-        float tmpCurrentMP, tmpCurrentEXP;
-        data.dataDictionary.TryGetValue("currentMP", out tmpCurrentMP);
-        data.dataDictionary.TryGetValue("currentEXP", out tmpCurrentEXP);
+        data.dataDictionary.TryGetValue("currentMP", out float tmpCurrentMP);
+        data.dataDictionary.TryGetValue("currentEXP", out float tmpCurrentEXP);
         currentMP = tmpCurrentMP;
         currentEXP = tmpCurrentEXP;
     }
@@ -119,11 +120,13 @@ public class PlayerHP : LivingEntity
         if (playerInput.item1 && Time.time >= lastItemTime1 + intvlItemTime1)
         {
             RestoreHP(15f);
+            UIManager.instance.StartCooldownCoroutine((int)UIManager.QUICKSLOT.QUICKSLOT_ITEM_1, intvlItemTime1);
             lastItemTime1 = Time.time;
         }
         if (playerInput.item2 && Time.time >= lastItemTime2 + intvlItemTime2)
         {
             RestoreMP(15f);
+            UIManager.instance.StartCooldownCoroutine((int)UIManager.QUICKSLOT.QUICKSLOT_ITEM_2, intvlItemTime1);
             lastItemTime2 = Time.time;
         }
     }
@@ -148,8 +151,6 @@ public class PlayerHP : LivingEntity
         float finalDamage = damage - defense;
         if (finalDamage <= 0)
             finalDamage = 0;
-
-        ShowDamaged(finalDamage, Color.red);
 
         base.OnDamage(finalDamage);
 

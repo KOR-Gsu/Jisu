@@ -35,23 +35,21 @@ public class PlayerData
 [System.Serializable]
 public class LogDataJson
 {
-    public Dictionary<string, LogData> logDataList = new Dictionary<string, LogData>();
+    public Dictionary<string, LogData> logDataDictionary = new Dictionary<string, LogData>();
 
     public void Add(LogData data)
     {
-        logDataList.Add(data.id, data);
+        logDataDictionary.Add(data.id, data);
     }
 
     public bool IsData(string id)
     {
-        return logDataList.ContainsKey(id);
+        return logDataDictionary.ContainsKey(id);
     }
 
     public LogData FindLogData(string id)
     {
-        LogData logData;
-
-        logDataList.TryGetValue(id, out logData);
+        logDataDictionary.TryGetValue(id, out LogData logData);
 
         return logData;
     }
@@ -73,9 +71,7 @@ public class PlayerDataJson
 
     public PlayerData FindPlayerData(string id)
     {
-        PlayerData playerData;
-
-        playerDataDictionary.TryGetValue(id, out playerData);
+        playerDataDictionary.TryGetValue(id, out PlayerData playerData);
 
         return playerData;
     }
@@ -95,13 +91,14 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    public LogData currentLog { get; set; }
+
     private string filePath = "/SaveData";
     private string fileExtension = ".json";
 
     public string logFileName = "Log_Data";
-    public string defaultPlayerDataFileName = "Player_Default";
+    public string playerDefaultDataFileName = "Player_Default_Data";
     public string playerSavedDataFileName = "Player_Saved_Data";
-    public string playerCurrentDataFileName = "Player_Save";
     public string monsterDataFileName = "Monster_Data";
     public string itemDataFileName = "Item_Data";
 

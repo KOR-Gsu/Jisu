@@ -18,28 +18,28 @@
         "rotateSpeed": 180.0,
         "attackDamage": 20.0,
         "attackRange": 2.0,
-        "intvlAttackTime": 1.2
+        "intvlAttackTime": 1.5
       }
     },
-    "abc123": {
+    "admin": {
       "log": {
-        "id": "abc123",
-        "pw": "123123"
+        "id": "admin",
+        "pw": "1127"
       },
       "dataDictionary": {
-        "Level": 100.0,
+        "Level": 108.0,
         "defense": 0.0,
-        "currentHP": 1100.0,
-        "currentMP": 1100.0,
-        "currentEXP": 0.0,
-        "maxHP": 1100.0,
-        "maxMP": 1100.0,
+        "currentHP": 1170.74536,
+        "currentMP": 1180.0,
+        "currentEXP": 60.0,
+        "maxHP": 1180.0,
+        "maxMP": 1180.0,
         "maxEXP": 80.0,
         "moveSpeed": 10.0,
         "rotateSpeed": 180.0,
-        "attackDamage": 100.0,
+        "attackDamage": 200.0,
         "attackRange": 2.0,
-        "intvlAttackTime": 1.2
+        "intvlAttackTime": 1.5
       }
     },
     "wltn1127": {
@@ -52,7 +52,7 @@
         "defense": 0.0,
         "currentHP": 200.0,
         "currentMP": 200.0,
-        "currentEXP": 0.0,
+        "currentEXP": 40.0,
         "maxHP": 200.0,
         "maxMP": 200.0,
         "maxEXP": 80.0,
@@ -60,7 +60,28 @@
         "rotateSpeed": 180.0,
         "attackDamage": 20.0,
         "attackRange": 2.0,
-        "intvlAttackTime": 1.2
+        "intvlAttackTime": 1.5
+      }
+    },
+    "test": {
+      "log": {
+        "id": "test",
+        "pw": "123"
+      },
+      "dataDictionary": {
+        "Level": 1.0,
+        "defense": 0.0,
+        "currentHP": 100.0,
+        "currentMP": 100.0,
+        "currentEXP": 0.0,
+        "maxHP": 100.0,
+        "maxMP": 100.0,
+        "maxEXP": 80.0,
+        "moveSpeed": 10.0,
+        "rotateSpeed": 180.0,
+        "attackDamage": 20.0,
+        "attackRange": 2.0,
+        "intvlAttackTime": 1.5
       }
     }
   }

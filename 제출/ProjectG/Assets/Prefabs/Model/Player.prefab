@@ -1192,7 +1192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rotateSpeed: 180
-  damage: 30
+  attackDamage: 0
   attackRange: 2
   intvlAttackTime: 1.2
   targetLayer:
@@ -1210,11 +1210,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1bebc67b3f73c4b808ded54562b44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
-  healthBarPrefab: {fileID: 0}
-  hudDamageTextPrefab: {fileID: 8451172452845175163, guid: 507090d2a4ebc4b4f852a52a020a84da,
+  damagedTextPrefab: {fileID: 8451172452845175163, guid: 507090d2a4ebc4b4f852a52a020a84da,
     type: 3}
   hudPos: {fileID: 8970438097830965104}
+  maxHP: 100
+  level: 0
+  defense: 0
   maxMP: 100
   maxEXP: 80
 --- !u!1 &1067142156808204577
@@ -2430,8 +2431,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4066696028371994813}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.331, y: 1.595, z: 0.759}
-  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1067142155779875452}
   m_RootOrder: 2
