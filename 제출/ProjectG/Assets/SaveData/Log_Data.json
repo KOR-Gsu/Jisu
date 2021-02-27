@@ -1,15 +1,7 @@
 {
   "logDataDictionary": {
-    "default": {
-      "id": "default",
-      "pw": "123123"
-    },
     "abc123": {
       "id": "abc123",
-      "pw": "123123"
-    },
-    "wltn1127": {
-      "id": "wltn1127",
       "pw": "123123"
     },
     "test": {

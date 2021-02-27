@@ -4,18 +4,19 @@
     "pw": "123123"
   },
   "dataDictionary": {
-    "attackDamage": 20.0,
-    "attackRange": 2.0,
+    "Level": 1.0,
     "currentEXP": 0.0,
     "currentHP": 100.0,
     "currentMP": 100.0,
-    "defense": 0.0,
-    "intvlAttackTime": 1.2,
-    "Level": 1.0,
     "maxEXP": 80.0,
     "maxHP": 100.0,
     "maxMP": 100.0,
+    "attackDamage": 20.0,
+    "defense": 0.0,
+    "attackRange": 2.5,
     "moveSpeed": 10.0,
-    "rotateSpeed": 180.0
+    "rotateSpeed": 180.0,
+    "intvlAttackTime": 1.5,
+    "gold": 0
   }
 }

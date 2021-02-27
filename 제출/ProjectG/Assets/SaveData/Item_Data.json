@@ -1,0 +1,177 @@
+{
+  "consumeItemDataDictionary": {
+    "0": {
+      "id": "0",
+      "name": "HP Æ÷¼Ç",
+      "type": "0",
+      "grade": "0",
+      "info": "HP¸¦ 20 È¸º¹",
+      "price": "200",
+      "value": "20"
+    },
+    "1": {
+      "id": "1",
+      "name": "MP Æ÷¼Ç",
+      "type": "0",
+      "grade": "0",
+      "info": "MP¸¦ 20 È¸º¹",
+      "price": "250",
+      "value": "20"
+    }
+  },
+  "weaponItemDataDictionary": {
+    "0": {
+      "id": "0",
+      "name": "°Ë",
+      "grade": "0",
+      "info": "¼ô¼Òµå",
+      "price": "1000",
+      "attackDamageValue": "10",
+      "attackRangeValue": "0",
+      "intvlAttackValue": "0"
+    },
+    "1": {
+      "id": "1",
+      "name": "°Ë",
+      "grade": "0",
+      "info": "¼ô¼Òµå",
+      "price": "2000",
+      "attackDamageValue": "25",
+      "attackRangeValue": "0",
+      "intvlAttackValue": "0"
+    },
+    "2": {
+      "id": "2",
+      "name": "°Ë",
+      "type": "0",
+      "grade": "2",
+      "info": "¼ô¼Òµå",
+      "price": "4000",
+      "attackDamageValue": "50",
+      "attackRangeValue": "0",
+      "intvlAttackValue": "0"
+    },,
+    "3": {
+      "id": "3",
+      "name": "Ã¢",
+      "type": "1",
+      "grade": "0",
+      "info": "Ã¶Á¦ Ã¢",
+      "price": "1500",
+      "attackDamageValue": "5",
+      "attackRangeValue": "0.5",
+      "intvlAttackValue": "0"
+    },
+    "4": {
+      "id": "4",
+      "name": "Ã¢",
+      "type": "1",
+      "grade": "1",
+      "info": "Ã¶Á¦ Ã¢",
+      "price": "3000",
+      "attackDamageValue": "15",
+      "attackRangeValue": "0.5",
+      "intvlAttackValue": "0"
+    },
+    "5": {
+      "id": "5",
+      "name": "Ã¢",
+      "type": "1",
+      "grade": "2",
+      "info": "Ã¶Á¦ Ã¢",
+      "price": "6000",
+      "attackDamageValue": "30",
+      "attackRangeValue": "0.5",
+      "intvlAttackValue": "0"
+    },
+    "6": {
+      "id": "6",
+      "name": "µµ³¢",
+      "type": "2",
+      "grade": "0",
+      "info": "Ã¶Á¦ µµ³¢",
+      "price": "2000",
+      "attackDamageValue": "20",
+      "attackRangeValue": "0",
+      "intvlAttackValue": "0.5"
+    },
+    "7": {
+      "id": "7",
+      "name": "µµ³¢",
+      "type": "2",
+      "grade": "1",
+      "info": "Ã¶Á¦ µµ³¢",
+      "price": "4000",
+      "attackDamageValue": "40",
+      "attackRangeValue": "0",
+      "intvlAttackValue": "0.5"
+    },
+    "8": {
+      "id": "8",
+      "name": "µµ³¢",
+      "type": "2",
+      "grade": "2",
+      "info": "Ã¶Á¦ µµ³¢",
+      "price": "7000",
+      "attackDamageValue": "65",
+      "attackRangeValue": "0",
+      "intvlAttackValue": "0.5"
+    }
+  },
+  "armorItemDataDictionary": {
+    "0": {
+      "id": "0",
+      "name": "Ãµ °©¿Ê",
+      "type": "0",
+      "grade": "0",
+      "info": "ÃµÀ» µ¡´ë¾î ¸¸µç ¿Ê",
+      "price": "2000",
+      "defenseValue": "5"
+    },
+    "1": {
+      "id": "1",
+      "name": "Ãµ °©¿Ê",
+      "type": "0",
+      "grade": "1",
+      "info": "ÃµÀ» µ¡´ë¾î ¸¸µç ¿Ê",
+      "price": "4000",
+      "defenseValue": "10"
+    },
+    "2": {
+      "id": "2",
+      "name": "Ãµ °©¿Ê",
+      "type": "0",
+      "grade": "2",
+      "info": "ÃµÀ» µ¡´ë¾î ¸¸µç ¿Ê",
+      "price": "6000",
+      "defenseValue": "15"
+    },
+    "3": {
+      "id": "3",
+      "name": "Ã¶ °©¿Ê",
+      "type": "1",
+      "grade": "0",
+      "info": "Ã¶Á¦ °©¿Ê",
+      "price": "4000",
+      "defenseValue": "10"
+    },
+    "4": {
+      "id": "4",
+      "name": "Ã¶ °©¿Ê",
+      "type": "1",
+      "grade": "1",
+      "info": "Ã¶Á¦ °©¿Ê",
+      "price": "7000",
+      "defenseValue": "15"
+    },
+    "5": {
+      "id": "5",
+      "name": "Ã¶ °©¿Ê",
+      "type": "1",
+      "grade": "2",
+      "info": "Ã¶Á¦ °©¿Ê",
+      "price": "10000",
+      "defenseValue": "20"
+    }
+  }
+}

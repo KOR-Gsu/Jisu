@@ -1,26 +1,5 @@
 {
   "playerDataDictionary": {
-    "default": {
-      "log": {
-        "id": "default",
-        "pw": "123123"
-      },
-      "dataDictionary": {
-        "Level": 1.0,
-        "defense": 0.0,
-        "currentHP": 100.0,
-        "currentMP": 100.0,
-        "currentEXP": 0.0,
-        "maxHP": 100.0,
-        "maxMP": 100.0,
-        "maxEXP": 80.0,
-        "moveSpeed": 10.0,
-        "rotateSpeed": 180.0,
-        "attackDamage": 20.0,
-        "attackRange": 2.0,
-        "intvlAttackTime": 1.5
-      }
-    },
     "admin": {
       "log": {
         "id": "admin",
@@ -28,39 +7,19 @@
       },
       "dataDictionary": {
         "Level": 108.0,
-        "defense": 0.0,
         "currentHP": 1170.74536,
         "currentMP": 1180.0,
         "currentEXP": 60.0,
         "maxHP": 1180.0,
         "maxMP": 1180.0,
         "maxEXP": 80.0,
-        "moveSpeed": 10.0,
-        "rotateSpeed": 180.0,
         "attackDamage": 200.0,
-        "attackRange": 2.0,
-        "intvlAttackTime": 1.5
-      }
-    },
-    "wltn1127": {
-      "log": {
-        "id": "wltn1127",
-        "pw": "123123"
-      },
-      "dataDictionary": {
-        "Level": 10.0,
         "defense": 0.0,
-        "currentHP": 200.0,
-        "currentMP": 200.0,
-        "currentEXP": 40.0,
-        "maxHP": 200.0,
-        "maxMP": 200.0,
-        "maxEXP": 80.0,
+        "attackRange": 2.5,
         "moveSpeed": 10.0,
         "rotateSpeed": 180.0,
-        "attackDamage": 20.0,
-        "attackRange": 2.0,
-        "intvlAttackTime": 1.5
+        "intvlAttackTime": 1.5,
+        "gold": 1E+09
       }
     },
     "test": {
@@ -70,18 +29,19 @@
       },
       "dataDictionary": {
         "Level": 1.0,
-        "defense": 0.0,
         "currentHP": 100.0,
         "currentMP": 100.0,
         "currentEXP": 0.0,
         "maxHP": 100.0,
         "maxMP": 100.0,
         "maxEXP": 80.0,
+        "attackDamage": 20.0,
+        "defense": 0.0,
+        "attackRange": 2.5,
         "moveSpeed": 10.0,
         "rotateSpeed": 180.0,
-        "attackDamage": 20.0,
-        "attackRange": 2.0,
-        "intvlAttackTime": 1.5
+        "intvlAttackTime": 1.5,
+        "gold": 10000.0
       }
     }
   }

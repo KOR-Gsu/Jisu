@@ -851,9 +851,9 @@ MonoBehaviour:
     type: 3}
   hudPos: {fileID: 4002433465474467776}
   maxHP: 100
-  TargetLayer:
+  targetLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   hpGaugePrefab: {fileID: 2063615951621483335, guid: ca3ded088ff405e4aac92627e7f0e61b,
     type: 3}
   damage: 12
