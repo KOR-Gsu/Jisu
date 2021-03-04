@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    public LayerMask targetLayer;
     public Window shopWindowScript;
 
     public void OpenShop()

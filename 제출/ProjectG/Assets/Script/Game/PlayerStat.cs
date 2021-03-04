@@ -16,8 +16,15 @@ public class PlayerStat : LivingEntity
     [HideInInspector] public float intvlAttackTime;
     [HideInInspector] public float gold;
 
+    [HideInInspector] public WeaponItemData equipWeapon;
+    [HideInInspector] public ArmorItemData equipArmor;
+    [HideInInspector] public Item[] invenItem = new Item[24];
+
+    private Animator playerAnimator;
+    private PlayerInput playerInput;
+
     private float _currentMP;
-    public float currentMP 
+    public float currentMP
     {
         get { return _currentMP; }
         set
@@ -29,7 +36,7 @@ public class PlayerStat : LivingEntity
             else
                 _currentMP = value;
 
-            UIManager.instance.UpdateGaugeRate(UIManager.GAUGE.MP, _currentMP / maxMP);
+            UIManager.instance.UpdateGaugeRate(Define.Gauge.MP, _currentMP / maxMP);
         } 
     }
 
@@ -42,53 +49,49 @@ public class PlayerStat : LivingEntity
             if (value >= maxEXP)
             {
                 _currentEXP = value;
-                _currentEXP -= maxEXP;
-                UpLevel();
+                while (_currentEXP > maxEXP)
+                {
+                    _currentEXP -= maxEXP;
+                    UpLevel();
+                }
             }
             else if (value < 0)
                 _currentEXP = 0;
             else
                 _currentEXP = value;
 
-            UIManager.instance.UpdateGaugeRate(UIManager.GAUGE.EXP, _currentEXP / maxEXP);
+            UIManager.instance.UpdateGaugeRate(Define.Gauge.EXP, _currentEXP / maxEXP);
         } 
     }
-
-    private Animator playerAnimator;
-    private PlayerMove playerMove;
-    private PlayerInput playerInput;
 
     private void Awake()
     {
         playerAnimator = GetComponent<Animator>();
-        playerMove = GetComponent<PlayerMove>();
         playerInput = GetComponent<PlayerInput>();
 
         damagedTextColor = Color.red;
+
+        InputManager.instance.keyAction -= OnItemKeyPress;
+        InputManager.instance.keyAction += OnItemKeyPress;
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.HP, currentHP / maxHP);
-
-        playerMove.enabled = true;
     }
 
-    public override void Initializing(PlayerData data)
+    public void Initializing(PlayerData data)
     {
-        base.Initializing(data);
-        UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.HP, currentHP / maxHP);
-
         data.dataDictionary.TryGetValue("Level", out level);
-        UIManager.instance.UpdateLevelText(level);
-
+        data.dataDictionary.TryGetValue("maxHP", out maxHP);
         data.dataDictionary.TryGetValue("maxMP", out maxMP);
         data.dataDictionary.TryGetValue("maxEXP", out maxEXP);
-        data.dataDictionary.TryGetValue("currentMP", out float tmpCurrentMP);
-        data.dataDictionary.TryGetValue("currentEXP", out float tmpCurrentEXP);
-        currentMP = tmpCurrentMP;
-        currentEXP = tmpCurrentEXP;
+        data.dataDictionary.TryGetValue("currentHP", out float _currentHP);
+        data.dataDictionary.TryGetValue("currentMP", out float _currentMP);
+        data.dataDictionary.TryGetValue("currentEXP", out float _currentEXP);
+        currentHP = _currentHP;
+        currentMP = _currentMP;
+        currentEXP = _currentEXP;
 
         data.dataDictionary.TryGetValue("attackDamage", out attackDamage);
         data.dataDictionary.TryGetValue("defense", out defense);
@@ -97,17 +100,22 @@ public class PlayerStat : LivingEntity
         data.dataDictionary.TryGetValue("rotateSpeed", out rotateSpeed);
         data.dataDictionary.TryGetValue("intvlAttackTime", out intvlAttackTime);
         data.dataDictionary.TryGetValue("gold", out gold);
+
+        UIManager.instance.UpdateLevelText(level);
+        UIManager.instance.UpdateGaugeRate(Define.Gauge.HP, currentHP / maxHP);
+        UIManager.instance.UpdateGaugeRate(Define.Gauge.MP, currentMP / maxMP);
+        UIManager.instance.UpdateGaugeRate(Define.Gauge.EXP, currentEXP / maxEXP);
     }
 
-    public void GetExp(int newExp)
+    public void GetExp(int newExp, int newGold)
     {
         currentEXP += newExp;
+        gold += newGold;
     }
 
     private void UpLevel()
     {
         level++;
-        UIManager.instance.UpdateLevelText(level);
 
         maxHP += 10f;
         maxMP += 10f;
@@ -115,28 +123,60 @@ public class PlayerStat : LivingEntity
         currentHP = maxHP;
         currentMP = maxMP;
 
-        UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.HP, currentHP / maxHP);
+        UIManager.instance.UpdateLevelText(level);
+        UIManager.instance.UpdateGaugeRate((int)Define.Gauge.HP, currentHP / maxHP);
     }
 
     void Update()
     {
+        
+    }
+
+    private void OnItemKeyPress()
+    {
         if (playerInput.item1)
         {
-            if(UIManager.instance.UseQuickSlot(UIManager.QUICKSLOT.Item_1))
+            if (UIManager.instance.UseQuickSlot(Define.QuckSlot.Item_1))
                 RestoreHP(20f);
         }
         if (playerInput.item2)
         {
-            if(UIManager.instance.UseQuickSlot(UIManager.QUICKSLOT.Item_2))
+            if (UIManager.instance.UseQuickSlot(Define.QuckSlot.Item_2))
                 RestoreMP(20f);
+        }
+        if (playerInput.test1)
+        {
+            gold += 100;
+
+            for (int i = 0; i < invenItem.Length; i++)
+            {
+                if (invenItem[i] == null)
+                {
+                    invenItem[i] = ItemManager.instance.FindItem(Define.ItemSort.Armor, Random.Range(0, 5));
+                    invenItem[i].SetImage();
+                    break;
+                }
+            }
+        }
+        if (playerInput.test2)
+        {
+            gold -= 100;
+
+            for (int i = invenItem.Length - 1; i >= 0; i--)
+            {
+                if (invenItem[i] != null)
+                {
+                    invenItem[i] = null;
+                    break;
+                }
+            }
         }
     }
 
     public override void RestoreHP(float newHP)
     {
         base.RestoreHP(newHP);
-
-        UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.HP, currentHP / maxHP);
+        UIManager.instance.UpdateGaugeRate((int)Define.Gauge.HP, currentHP / maxHP);
     }
 
     public void RestoreMP(float newMP)
@@ -155,7 +195,7 @@ public class PlayerStat : LivingEntity
 
         base.OnDamage(finalDamage);
 
-        UIManager.instance.UpdateGaugeRate((int)UIManager.GAUGE.HP, currentHP / maxHP);
+        UIManager.instance.UpdateGaugeRate((int)Define.Gauge.HP, currentHP / maxHP);
     }
 
     public override void Die()
@@ -163,7 +203,5 @@ public class PlayerStat : LivingEntity
         base.Die();
 
         playerAnimator.SetTrigger("Die");
-
-        playerMove.enabled = false;
     }
 }

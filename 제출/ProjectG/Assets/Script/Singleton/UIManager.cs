@@ -5,28 +5,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public enum GAUGE : int
-    {
-        HP,
-        MP,
-        EXP
-    }
-
-    public enum MENU : int
-    {
-        Info,
-        Inventory,
-        Eixt
-    }
-
-    public enum QUICKSLOT : int
-    {
-        Item_1,
-        Item_2,
-        Skill_1,
-        Skill_2
-    }
-
     private static UIManager _instance;
     public static UIManager instance
     {
@@ -41,12 +19,9 @@ public class UIManager : MonoBehaviour
 
     public Canvas myCanvas { get; protected set; }
 
-    [SerializeField]
-    private Text levelText;
-    [SerializeField]
-    private ControlUIGauge[] gaugesList;
-    [SerializeField]
-    private QuickSlot[] quickSlotList;
+    [SerializeField] private Text levelText;
+    [SerializeField] private GaugeControl[] gaugesList;
+    [SerializeField] private QuickSlot[] quickSlotList;
 
     private void Start()
     {
@@ -58,12 +33,12 @@ public class UIManager : MonoBehaviour
         levelText.text = ((int)level).ToString();
     }
 
-    public void UpdateGaugeRate(GAUGE index, float rate)
+    public void UpdateGaugeRate(Define.Gauge index, float rate)
     {
         gaugesList[(int)index].Initialize(rate);
     }
 
-    public bool UseQuickSlot(QUICKSLOT index)
+    public bool UseQuickSlot(Define.QuckSlot index)
     {
         if (!quickSlotList[(int)index].isCooldown)
         {

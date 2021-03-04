@@ -1,69 +1,135 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public Enemy enemyPrefab;
-    public Transform[] spawnPoints;
+    [SerializeField] private Define.EnemyType enemyType;
+    [SerializeField] private int maxCount = 4;
+    [SerializeField] private int keepSpawnCount = 2;
+    [SerializeField] private int curSpawnCount = 0;
+    [SerializeField] private float spawnRadius = 7.0f;
+    [SerializeField] private float spawnTime = 4.0f;
+    private int _keepSpawnCount = 0;
 
-    public float damageMax = 9;
-    public float damageMin = 4;
+    private List<GameObject> enemyPrefabList = new List<GameObject>();
+    private List<Enemy> enemyList = new List<Enemy>();
 
-    public float hpMax = 150;
-    public float hpMin = 90;
+    private int spawnIndex = 0;
+    private string type;
 
-    public float speedMax = 5;
-    public float speedMin = 3;
+    public void UpdateCurSpawnCount(int count) { curSpawnCount += count; }
 
-    public Color strongEnemyColor = Color.green;
+    private void Start()
+    {
+        SetEnemies();
 
-    private List<Enemy> enemies = new List<Enemy>();
-    private int wave = 0;
-    private int curSpawn = 4;
+        for(int i = 0; i < keepSpawnCount; i++)
+        {
+            Vector3 randSpawnPoint;
+            NavMeshAgent pathFinder = enemyList[i].GetComponent<NavMeshAgent>();
+            while (true)
+            {
+                Vector3 randDir = Random.insideUnitSphere * Random.Range(0, spawnRadius);
+                randDir.y = enemyList[i].transform.position.y;
+                randSpawnPoint = transform.position + randDir;
+
+                NavMeshPath path = new NavMeshPath();
+                if (pathFinder.CalculatePath(randSpawnPoint, path))
+                    break;
+            }
+
+            enemyPrefabList[i].transform.position = randSpawnPoint;
+            enemyPrefabList[i].SetActive(true);
+        }
+    }
 
     void Update()
     {
         if (GameManager.instance != null && GameManager.instance.isGameOver)
             return;
 
-        if(enemies.Count <= 0)
-            SpawnEnemy();
-    }
-
-    private void SpawnEnemy()
-    {
-        wave++;
-
-        //int spawnCount = Mathf.RoundToInt(wave * 1.5f);
-        //int spawnCount = 4;
-
-        int spawnCount = 1;
-        for (int i =0; i< spawnCount;i++)
+        int index = 0, check = 0;
+        bool exist = false;
+        while (check < maxCount)
         {
-            float intensity = Random.Range(0, 1.0f);
-            CreateEnemy(intensity);
+            if (index >= maxCount)
+                index = 0;
+
+            if(enemyList[index].dead)
+            {
+                curSpawnCount -= 1;
+                exist = true;
+            }
+            else
+            {
+                if (exist && !enemyPrefabList[index].activeSelf)
+                {
+                    spawnIndex = index;
+                    break;
+                }
+            }
+            index++;
+            check++;
         }
-        //curSpawn = 0;
+
+        while (_keepSpawnCount + curSpawnCount < keepSpawnCount)
+        {
+            StartCoroutine(Spawn());
+        }
     }
 
-    private void CreateEnemy(float intensity)
+    private void SetEnemies()
     {
-        float startingHp = Mathf.Lerp(hpMin, hpMax, intensity);
-        float damage = Mathf.Lerp(damageMin, damageMax, intensity);
-        float speed = Mathf.Lerp(speedMin, speedMax, intensity);
+        MonsterDataJson monsterDataJson = DataManager.instance.JsonToData<MonsterDataJson>(DataManager.instance.monsterDataFileName);
+        string path = "Prefab/";
 
-        Color skinColor = Color.Lerp(Color.white, strongEnemyColor, intensity);
+        switch (enemyType)
+        {
+            case Define.EnemyType.warrior:
+                type = "warrior";
+                break;
+            case Define.EnemyType.archer:
+                type = "archer";
+                break;
+        }
 
-        Transform spawnPoint = spawnPoints[curSpawn];
+        monsterDataJson.monsterDataDictionary.TryGetValue(type, out MonsterData data);
 
-        Enemy enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        for (int i = 0; i < maxCount; i++)
+        {
+            GameObject newEnemyPrefab = ResourceManager.instance.Instantiate(path + type, transform);
+            Enemy newEnemy = newEnemyPrefab.GetComponent<Enemy>();
 
-        enemy.Setup(startingHp, damage, speed);
-        enemy.onDeath += () => enemies.Remove(enemy);
-        enemy.onDeath += () => Destroy(enemy.gameObject, 5f);
+            newEnemyPrefab.SetActive(false);
+            newEnemy.Initializing(data);
+            enemyPrefabList.Add(newEnemyPrefab);
+            enemyList.Add(newEnemy);
+        }
+    }
 
-        enemies.Add(enemy);
-        //curSpawn++;
+    private IEnumerator Spawn()
+    {
+        _keepSpawnCount++;
+        yield return new WaitForSeconds(Random.Range(0, spawnTime));
+
+        Vector3 randSpawnPoint;
+        NavMeshAgent pathFinder = enemyList[spawnIndex].GetComponent<NavMeshAgent>();
+        while(true)
+        {
+            Vector3 randDir = Random.insideUnitSphere * Random.Range(0, spawnRadius);
+            randDir.y = enemyList[curSpawnCount].transform.position.y;
+            randSpawnPoint = transform.position + randDir;
+
+            NavMeshPath path = new NavMeshPath();
+            if (pathFinder.CalculatePath(randSpawnPoint, path))
+                break;
+        }
+
+        enemyPrefabList[spawnIndex].transform.position = randSpawnPoint;
+        enemyPrefabList[spawnIndex].SetActive(true);
+        curSpawnCount++;
+        _keepSpawnCount--;
     }
 }

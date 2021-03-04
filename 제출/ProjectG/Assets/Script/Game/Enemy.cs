@@ -6,22 +6,59 @@ using UnityEngine.UI;
 
 public class Enemy : LivingEntity
 {
-    public LayerMask targetLayer;
-
     private LivingEntity targetEntity;
     private NavMeshAgent pathFinder;
     private Animator enemyAnimator;
     private GameObject hpGauge;
     private MonsterHPGauge hpGaugeScript;
 
-    public GameObject hpGaugePrefab;
-    public float damage = 3f;
-    public float intvlAttackTime;
-    public float attackRange;
-    private float lastAttackTime;
+    [SerializeField] private LayerMask targetLayer;
+    [SerializeField] private string hpGaugePrefabPath;
 
-    public bool isAttackAble;
-    private bool hasTarget
+    private float attackDamage;
+    private float defense;
+    private float attackRange;
+    private float intvlAttackTime;
+    private float lastAttackTime;
+    public float exp { get; private set; }
+    public float gold { get; private set; }
+
+    private Define.EnemyState _enemyState;
+    public Define.EnemyState enemyState
+    {
+        get { return _enemyState; }
+        set
+        {
+            _enemyState = value;
+            switch (_enemyState)
+            {
+                case Define.EnemyState.Die:
+                    enemyAnimator.CrossFade("Die", 0.1f);
+                    break;
+                case Define.EnemyState.Idle:
+                    enemyAnimator.CrossFade("Idle", 0.1f);
+                    break;
+                case Define.EnemyState.Moving:
+                    enemyAnimator.CrossFade("Move", 0.1f);
+                    break;
+                case Define.EnemyState.Attack:
+                    int attack = Random.Range(1, 2);
+                    enemyAnimator.CrossFade("Attack" + attack.ToString(), 0.1f, -1, 0f);
+                    break;
+            }
+        }
+    }
+    private bool isInRange
+    {
+        get
+        {
+            if (Vector3.Distance(transform.position, targetEntity.transform.position) <= attackRange)
+                return true;
+
+            return false;
+        }
+    }
+    private bool isAttackAble
     {
         get
         {
@@ -32,63 +69,113 @@ public class Enemy : LivingEntity
         }
     }
 
-    public void Setup(float newHealth, float newDamage, float newSpeed)
+    public void Initializing(MonsterData data)
     {
-        maxHP = newHealth;
+        maxHP = data.maxHP;
         currentHP = maxHP;
-        damage = newDamage;
-        pathFinder.speed = newSpeed;
+        attackDamage = data.attackDamage;
+        defense = data.defense;
+        attackRange = data.attackRange;
+        pathFinder.speed = data.moveSpeed;
+        pathFinder.angularSpeed = data.rotateSpeed;
+        intvlAttackTime = data.intvlAttackTime;
+        exp = data.exp;
+        gold = data.gold;
     }
 
     void Awake()
     {
         pathFinder = GetComponent<NavMeshAgent>();
         enemyAnimator = GetComponent<Animator>();
-
-        isAttackAble = false;
     }
     
     void Start()
     {
+        lastAttackTime = 0;
         damagedTextColor = Color.white;
 
-        StartCoroutine(UpdatePath());
-        StartCoroutine(UpdateAttack());
+        StartCoroutine(UpdateMovingPath());
+        StartCoroutine(UpdateAttackTarget());
     }
-    
+
+    protected override void OnEnable()
+    {
+        base.OnEnable(); 
+        
+        Collider[] enemyColliders = GetComponents<Collider>();
+        for (int i = 0; i < enemyColliders.Length; i++)
+            enemyColliders[i].enabled = true;
+    }
+
     void Update()
     {
-        if (isMarking && hpGauge == null)
-            ShowHPBar();
+        if (!dead)
+        {
+            if (isMarking && hpGauge == null)
+                ShowHPBar();
 
-        if (isAttackAble && hasTarget)
-            Attack();
+            switch (enemyState)
+            {
+                case Define.EnemyState.Idle:
+                    UpdateIdle();
+                    break;
+                case Define.EnemyState.Moving:
+                    UpdateMoving();
+                    break;
+                case Define.EnemyState.Attack:
+                    if (isInRange && isAttackAble)
+                        UpdateAttack();
+                    break;
+            }
+        }
     }
 
-    private void Attack()
+    private void UpdateIdle()
+    {
+        if (dead)
+            enemyState = Define.EnemyState.Die;
+    }
+
+    private void UpdateMoving()
+    {
+        Vector3 dir = targetEntity.transform.position - transform.position;
+        if (dir.magnitude < 0.0001f)
+        {
+            enemyState = Define.EnemyState.Idle;
+        }
+        else
+        {
+            pathFinder.SetDestination(targetEntity.transform.position);
+        }
+    }
+
+    private void UpdateAttack()
     {
         if (!dead) 
         {
             if (Time.time >= lastAttackTime + intvlAttackTime)
             {
-                enemyAnimator.SetInteger("Attack", 1);
-                targetEntity.OnDamage(damage);
-
-                if (targetEntity.dead)
-                    GameManager.instance.EndGame();
-
+                enemyState = Define.EnemyState.Attack;
                 lastAttackTime = Time.time;
             }
             else
-                enemyAnimator.SetInteger("Attack", 2);
+                enemyState = Define.EnemyState.Idle;
         }
     }
 
-    private IEnumerator UpdateAttack()
+    public void OnAttackEvent()
+    {
+        transform.LookAt(targetEntity.transform);
+        targetEntity.OnDamage(attackDamage);
+
+        if (targetEntity.dead)
+            GameManager.instance.EndGame();
+    }
+
+    private IEnumerator UpdateAttackTarget()
     {
         while (!dead)
         {
-            bool check = false;
             Collider[] colliders = Physics.OverlapSphere(transform.position, attackRange, targetLayer);
 
             for (int i = 0; i < colliders.Length; i++)
@@ -97,51 +184,29 @@ public class Enemy : LivingEntity
 
                 if (livingEntity != null && !livingEntity.dead)
                 {
-                    check = true;
-                    break;
+                    targetEntity = livingEntity;
                 }                
             }
-
-            if(check)
-            {
-                isAttackAble = true;
-                enemyAnimator.SetInteger("Attack", 2);
-                enemyAnimator.SetFloat("Move", 0);
-            }
-            else
-            {
-                isAttackAble = false;
-                enemyAnimator.SetInteger("Attack", 0);
-            }
-
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
-    private IEnumerator UpdatePath()
+    private IEnumerator UpdateMovingPath()
     {
         while (!dead)
         {
-            if (hasTarget && !isAttackAble)
-            {
-                enemyAnimator.SetFloat("Move", 1);
-                pathFinder.enabled = true;
-                pathFinder.SetDestination(targetEntity.transform.position);
-            }
-            else
-            {
-                pathFinder.enabled = false;
-                Collider[] colliders = Physics.OverlapSphere(transform.position, 30f, targetLayer);
+            pathFinder.enabled = false;
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 20f, targetLayer);
 
-                for (int i = 0; i < colliders.Length; i++)
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                LivingEntity livingEntity = colliders[i].GetComponent<LivingEntity>();
+
+                if (livingEntity != null && !livingEntity.dead)
                 {
-                    LivingEntity livingEntity = colliders[i].GetComponent<LivingEntity>();
-
-                    if (livingEntity != null && !livingEntity.dead)
-                    {
-                        targetEntity = livingEntity;
-                        break;
-                    }
+                    targetEntity = livingEntity;
+                    pathFinder.enabled = true;
+                    break;
                 }
             }
             yield return new WaitForSeconds(0.25f);
@@ -150,7 +215,11 @@ public class Enemy : LivingEntity
 
     public override void OnDamage(float damage)
     {
-        base.OnDamage(damage);
+        float finalDamage = damage - defense;
+        if (finalDamage <= 0)
+            finalDamage = 0;
+
+        base.OnDamage(finalDamage);
 
         hpGauge.GetComponent<MonsterHPGauge>().Initialize(currentHP / maxHP);
     }
@@ -168,7 +237,12 @@ public class Enemy : LivingEntity
         if(hpGauge != null)
             Destroy(hpGauge);
 
-        enemyAnimator.SetTrigger("Die");
+        Invoke("SetActiveFalse", 4f);
+    }
+
+    private void SetActiveFalse()
+    {
+        gameObject.SetActive(false);
     }
 
     private void ShowHPBar()
@@ -179,14 +253,9 @@ public class Enemy : LivingEntity
             return;
         }
 
-        hpGauge = Instantiate<GameObject>(hpGaugePrefab, UIManager.instance.myCanvas.transform);
+        hpGauge = ResourceManager.instance.Instantiate(hpGaugePrefabPath, UIManager.instance.myCanvas.transform);
         hpGaugeScript = hpGauge.GetComponentInChildren<MonsterHPGauge>();
         hpGaugeScript.targetTransform = hudPos;
         hpGaugeScript.Initialize(currentHP / maxHP);
-    }
-
-    private void HideHPBar()
-    {
-        hpGauge.gameObject.SetActive(false);
     }
 }

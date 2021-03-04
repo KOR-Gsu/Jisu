@@ -10,18 +10,36 @@ public class InventoryWindow : Window
 
     public Text gold;
 
-    [SerializeField]
-    private GameObject slotGridLayoutGroup;
+    [SerializeField] private GameObject slotGridLayoutGroup;
 
     void Start()
     {
         playerStat = GameObject.Find("Player").GetComponent<PlayerStat>();
         slots = slotGridLayoutGroup.GetComponentsInChildren<Slot>();
+
+        for (int i = 0; i < playerStat.invenItem.Length; i++)
+        {
+            if (playerStat.invenItem[i] != null)
+                AcquireItem(playerStat.invenItem[i]);
+            else
+                break;
+        }
     }
 
     void Update()
     {
         gold.text = string.Format("{0:N0}", playerStat.gold);
+
+        for (int i = 0; i < slots.Length; i++)
+            slots[i].RemoveItem();
+
+        for (int i = 0; i < playerStat.invenItem.Length; i++)
+        {
+            if (playerStat.invenItem[i] != null)
+                slots[i].AddItem(playerStat.invenItem[i]);
+            else
+                break;
+        }
     }
 
     public override void ShowWindow(Canvas canvas)
@@ -36,7 +54,7 @@ public class InventoryWindow : Window
 
     public void AcquireItem(Item newItem, int count = 1)
     {
-        if (newItem.itemSort == Item.ITEMSORT.Consume)
+        if (newItem.itemSort == Define.ItemSort.Consume)
         {
             for (int i = 0; i < slots.Length; i++)
             {

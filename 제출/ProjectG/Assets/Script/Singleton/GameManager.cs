@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using System.Linq;
 
 public class GameManager : MonoBehaviour
@@ -28,13 +29,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        FindObjectOfType<PlayerStat>().onDeath += EndGame;
-
         logData = DataManager.instance.currentLog;
-
+#if UNITY_EDITOR
+        logData = new LogData("test", "123");
+#endif
         LoadPlayerData();
     }
-    
+
     public void EndGame()
     {
         isGameOver = true;

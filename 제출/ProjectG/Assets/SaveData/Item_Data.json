@@ -2,7 +2,7 @@
   "consumeItemDataDictionary": {
     "0": {
       "id": "0",
-      "name": "HP Æ÷¼Ç",
+      "name": "HP Potion",
       "type": "0",
       "grade": "0",
       "info": "HP¸¦ 20 È¸º¹",
@@ -11,7 +11,7 @@
     },
     "1": {
       "id": "1",
-      "name": "MP Æ÷¼Ç",
+      "name": "MP Potion",
       "type": "0",
       "grade": "0",
       "info": "MP¸¦ 20 È¸º¹",
@@ -22,7 +22,7 @@
   "weaponItemDataDictionary": {
     "0": {
       "id": "0",
-      "name": "°Ë",
+      "name": "Sword",
       "grade": "0",
       "info": "¼ô¼Òµå",
       "price": "1000",
@@ -32,7 +32,7 @@
     },
     "1": {
       "id": "1",
-      "name": "°Ë",
+      "name": "Sword",
       "grade": "0",
       "info": "¼ô¼Òµå",
       "price": "2000",
@@ -42,7 +42,7 @@
     },
     "2": {
       "id": "2",
-      "name": "°Ë",
+      "name": "Sword",
       "type": "0",
       "grade": "2",
       "info": "¼ô¼Òµå",
@@ -50,10 +50,10 @@
       "attackDamageValue": "50",
       "attackRangeValue": "0",
       "intvlAttackValue": "0"
-    },,
+    },
     "3": {
       "id": "3",
-      "name": "Ã¢",
+      "name": "Spear",
       "type": "1",
       "grade": "0",
       "info": "Ã¶Á¦ Ã¢",
@@ -64,7 +64,7 @@
     },
     "4": {
       "id": "4",
-      "name": "Ã¢",
+      "name": "Spear",
       "type": "1",
       "grade": "1",
       "info": "Ã¶Á¦ Ã¢",
@@ -75,7 +75,7 @@
     },
     "5": {
       "id": "5",
-      "name": "Ã¢",
+      "name": "Spear",
       "type": "1",
       "grade": "2",
       "info": "Ã¶Á¦ Ã¢",
@@ -86,7 +86,7 @@
     },
     "6": {
       "id": "6",
-      "name": "µµ³¢",
+      "name": "Axe",
       "type": "2",
       "grade": "0",
       "info": "Ã¶Á¦ µµ³¢",
@@ -97,7 +97,7 @@
     },
     "7": {
       "id": "7",
-      "name": "µµ³¢",
+      "name": "Axe",
       "type": "2",
       "grade": "1",
       "info": "Ã¶Á¦ µµ³¢",
@@ -108,7 +108,7 @@
     },
     "8": {
       "id": "8",
-      "name": "µµ³¢",
+      "name": "Axe",
       "type": "2",
       "grade": "2",
       "info": "Ã¶Á¦ µµ³¢",
@@ -121,7 +121,7 @@
   "armorItemDataDictionary": {
     "0": {
       "id": "0",
-      "name": "Ãµ °©¿Ê",
+      "name": "Light Armor",
       "type": "0",
       "grade": "0",
       "info": "ÃµÀ» µ¡´ë¾î ¸¸µç ¿Ê",
@@ -130,7 +130,7 @@
     },
     "1": {
       "id": "1",
-      "name": "Ãµ °©¿Ê",
+      "name": "Light Armor",
       "type": "0",
       "grade": "1",
       "info": "ÃµÀ» µ¡´ë¾î ¸¸µç ¿Ê",
@@ -139,7 +139,7 @@
     },
     "2": {
       "id": "2",
-      "name": "Ãµ °©¿Ê",
+      "name": "Light Armor",
       "type": "0",
       "grade": "2",
       "info": "ÃµÀ» µ¡´ë¾î ¸¸µç ¿Ê",
@@ -148,7 +148,7 @@
     },
     "3": {
       "id": "3",
-      "name": "Ã¶ °©¿Ê",
+      "name": "Heavy Armor",
       "type": "1",
       "grade": "0",
       "info": "Ã¶Á¦ °©¿Ê",
@@ -157,7 +157,7 @@
     },
     "4": {
       "id": "4",
-      "name": "Ã¶ °©¿Ê",
+      "name": "Heavy Armor",
       "type": "1",
       "grade": "1",
       "info": "Ã¶Á¦ °©¿Ê",
@@ -166,7 +166,7 @@
     },
     "5": {
       "id": "5",
-      "name": "Ã¶ °©¿Ê",
+      "name": "Heavy Armor",
       "type": "1",
       "grade": "2",
       "info": "Ã¶Á¦ °©¿Ê",

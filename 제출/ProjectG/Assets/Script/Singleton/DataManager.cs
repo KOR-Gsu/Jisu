@@ -5,88 +5,6 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 
-[System.Serializable]
-public class LogData
-{
-    public string id;
-    public string pw;
-
-    public LogData(string _id, string _pw)
-    {
-        id = _id;
-        pw = _pw;
-    }
-}
-[System.Serializable]
-public class PlayerData
-{
-    public LogData log;
-    public Dictionary<string, float> dataDictionary = new Dictionary<string, float>();
-
-    public void PrintData()
-    {
-        Debug.Log(string.Format("id : {0}", log.id));
-        Debug.Log(string.Format("pw : {0}", log.pw));
-
-        foreach (var v in dataDictionary)
-            Debug.Log(string.Format("{0} : {1}", v.Key, v.Value));
-    }
-}
-
-[System.Serializable]
-public class LogDataJson
-{
-    public Dictionary<string, LogData> logDataDictionary = new Dictionary<string, LogData>();
-
-    public void Add(LogData data)
-    {
-        logDataDictionary.Add(data.id, data);
-    }
-
-    public bool IsData(string id)
-    {
-        return logDataDictionary.ContainsKey(id);
-    }
-
-    public LogData FindLogData(string id)
-    {
-        logDataDictionary.TryGetValue(id, out LogData logData);
-
-        return logData;
-    }
-}
-[System.Serializable]
-public class PlayerDataJson
-{
-    public Dictionary<string, PlayerData> playerDataDictionary = new Dictionary<string, PlayerData>();
-
-    public void Add(PlayerData data)
-    {
-        playerDataDictionary.Add(data.log.id, data);
-    }
-
-    public bool IsData(string id)
-    {
-        return playerDataDictionary.ContainsKey(id);
-    }
-
-    public PlayerData FindPlayerData(string id)
-    {
-        playerDataDictionary.TryGetValue(id, out PlayerData playerData);
-
-        return playerData;
-    }
-}
-
-[System.Serializable]
-public class ItemDataJson
-{
-    public Dictionary<int, ConsumeItemData> consumeItemDataDictionary = new Dictionary<int, ConsumeItemData>();
-    public Dictionary<int, WeaponItemData> weaponItemDataDictionary = new Dictionary<int, WeaponItemData>();
-    public Dictionary<int, ArmorItemData> armorItemDataDictionary = new Dictionary<int, ArmorItemData>();
-}
-
-
 public class DataManager : MonoBehaviour
 {
     private static DataManager _instance;
@@ -103,8 +21,9 @@ public class DataManager : MonoBehaviour
 
     public LogData currentLog { get; set; }
 
-    private string filePath = "/SaveData";
-    private string fileExtension = ".json";
+    public string spritePath = "Sprite";
+    public string filePath = "/SaveData";
+    public string fileExtension = ".json";
 
     public string logFileName = "Log_Data";
     public string playerDefaultDataFileName = "Player_Default_Data";

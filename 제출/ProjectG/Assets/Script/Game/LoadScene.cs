@@ -9,13 +9,13 @@ public class LoadScene : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            DontDestroyOnLoad(DataManager.instance);
+            DontDestroyOnLoad(FindObjectOfType<DataManager>());
 
-            if (SceneManager.GetActiveScene().name == "VillageScene")
+            if (SceneManager.GetActiveScene().name == "TownScene")
                 SceneManager.LoadScene("DungeonScene");
 
             if (SceneManager.GetActiveScene().name == "DungeonScene")
-                SceneManager.LoadScene("VillageScene");
+                SceneManager.LoadScene("TownScene");
         }
     }
 }

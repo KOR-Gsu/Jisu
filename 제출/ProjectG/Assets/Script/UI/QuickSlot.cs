@@ -7,10 +7,8 @@ public class QuickSlot : MonoBehaviour
 {
     public bool isCooldown = false;
 
-    [SerializeField]
-    private Image cooldownImage;
-    [SerializeField]
-    private float cooldown;
+    [SerializeField] private Image cooldownImage;
+    [SerializeField] private float cooldown;
 
     public void StartCooldown()
     {

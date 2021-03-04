@@ -58,7 +58,7 @@ public class TileUIScript : MonoBehaviour
         DataManager.instance.currentLog = currentLogData;
 
         DontDestroyOnLoad(DataManager.instance);
-        SceneManager.LoadSceneAsync("VillageScene");
+        SceneManager.LoadSceneAsync("TownScene");
     }
 
     private bool CheckInputField()
@@ -91,7 +91,6 @@ public class TileUIScript : MonoBehaviour
             {
                 AlertInputField(idInputField);
                 AlertInputField(pwInputField);
-                Debug.Log("Encorrect PW");
 
                 return true;
             }

@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Unity/VSTU</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>4.8.2.0</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>4.9.1.0</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>2020.2.6f1</UnityVersion>
@@ -56,33 +56,44 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Import\QuickOutline\Scripts\Outline.cs" />
+    <Compile Include="Assets\Script\Singleton\Data.cs" />
+    <Compile Include="Assets\Script\Singleton\ResourceManager.cs" />
     <Compile Include="Assets\Script\UI\Slot.cs" />
+    <Compile Include="Assets\Script\Singleton\ItemManager.cs" />
     <Compile Include="Assets\Script\UI\InventoryWindow.cs" />
     <Compile Include="Assets\Script\Game\IDamageable.cs" />
     <Compile Include="Assets\Script\Singleton\GameManager.cs" />
     <Compile Include="Assets\Script\Game\LoadScene.cs" />
     <Compile Include="Assets\Script\Singleton\DataManager.cs" />
-    <Compile Include="Assets\Script\Game\Item.cs" />
+    <Compile Include="Assets\Script\Singleton\Item.cs" />
     <Compile Include="Assets\Script\UI\ShowMenuButton.cs" />
+    <Compile Include="Assets\Script\Singleton\InputManager.cs" />
     <Compile Include="Assets\Script\Game\LivingEntity.cs" />
     <Compile Include="Assets\Script\Singleton\UIManager.cs" />
     <Compile Include="Assets\Script\Game\PlayerInput.cs" />
     <Compile Include="Assets\Script\UI\DamageText.cs" />
     <Compile Include="Assets\Script\UI\MonsterHPGauge.cs" />
+    <Compile Include="Assets\Script\Singleton\Define.cs" />
     <Compile Include="Assets\Script\Game\PlayerStat.cs" />
     <Compile Include="Assets\Script\UI\EixtWindow.cs" />
     <Compile Include="Assets\Script\UI\QuickSlot.cs" />
     <Compile Include="Assets\Script\Game\EnemySpawner.cs" />
-    <Compile Include="Assets\Script\UI\ControlUIGauge.cs" />
+    <Compile Include="Assets\Script\UI\GaugeControl.cs" />
     <Compile Include="Assets\Script\Game\Enemy.cs" />
     <Compile Include="Assets\Script\UI\ShopWindow.cs" />
+    <Compile Include="Assets\Script\UI\CusorControl.cs" />
     <Compile Include="Assets\Script\UI\InfoWindow.cs" />
     <Compile Include="Assets\Script\Game\PlayerMove.cs" />
     <Compile Include="Assets\Script\Game\Shop.cs" />
     <Compile Include="Assets\Script\UI\RegisterWindow.cs" />
     <Compile Include="Assets\Script\UI\Window.cs" />
     <Compile Include="Assets\Script\UI\TileUIScript.cs" />
-    <Compile Include="Assets\Script\Singleton\ItemManager.cs" />
+    <Compile Include="Assets\Script\UI\CameraControl.cs" />
+    <None Include="Assets\Import\MedievalTownExteriors\Readme.txt" />
+    <None Include="Assets\Import\QuickOutline\Resources\Shaders\OutlineMask.shader" />
+    <None Include="Assets\Import\QuickOutline\Readme.txt" />
+    <None Include="Assets\Import\QuickOutline\Resources\Shaders\OutlineFill.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2020.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

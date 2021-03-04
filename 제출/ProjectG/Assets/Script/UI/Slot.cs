@@ -9,24 +9,46 @@ public class Slot : MonoBehaviour
     public Image itemImage;
     public int itemCount;
 
-    [SerializeField]
-    private Image itemGradeImage;
-    [SerializeField]
-    private Text countText;
+    [SerializeField] private Image itemGradeImage;
+    [SerializeField] private Text countText;
 
-    private void SetColor(float alpha)
+    private void SetItemSprite(Sprite newSprite)
     {
-        Color color = itemImage.color;
-        color.a = alpha;
-        itemImage.color = color;
+        itemImage.sprite = newSprite;
+
+        if (newSprite != null)
+            itemImage.gameObject.SetActive(true);
+        else
+            itemImage.gameObject.SetActive(false);
     }
 
-    public void AddItem(Item newItem)
+    private void SetGradeColor(bool active)
     {
-        item = newItem;
-        item.itemImage = newItem.itemImage;
+        if (active)
+        {
+            itemGradeImage.gameObject.SetActive(true);
+            switch (item.grade)
+            {
+                case 0:
+                    itemGradeImage.color = Color.white;
+                    break;
+                case 1:
+                    itemGradeImage.color = Color.blue;
+                    break;
+                case 2:
+                    itemGradeImage.color = Color.yellow;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+            itemGradeImage.gameObject.SetActive(false);
+    }
 
-        if(item.itemSort == Item.ITEMSORT.Consume)
+    private void SetCountText(bool active)
+    {
+        if(active)
         {
             countText.gameObject.SetActive(true);
             countText.text = itemCount.ToString();
@@ -36,18 +58,32 @@ public class Slot : MonoBehaviour
             countText.gameObject.SetActive(false);
             countText.text = "0";
         }
+    }
 
-        SetColor(1.0f);
+    public void AddItem(Item newItem, int count = 1)
+    {
+        item = newItem;
+        itemCount = count;
+        SetItemSprite(item.itemImage);
+
+        if (item.itemSort == Define.ItemSort.Consume)
+        {
+            SetGradeColor(false);
+            SetCountText(true);
+        }
+        else
+        {
+            SetGradeColor(true);
+            SetCountText(false);
+        }
     }
 
     public void RemoveItem()
     {
         item = null;
-        itemImage.sprite = null;
-        SetColor(0f);
-
-        countText.gameObject.SetActive(false);
-        countText.text = "0";
+        SetItemSprite(null);
+        SetGradeColor(false);
+        SetCountText(false);
     }
 
     public void UpdateItemCount(int count)
