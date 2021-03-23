@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class TileUIScript : MonoBehaviour
 {
-    public InputField idInputField;
-    public InputField pwInputField;
-    public Window registerWindow;
-    public Window exitWindow;
+    [SerializeField] private InputField idInputField;
+    [SerializeField] private InputField pwInputField;
+
+    private List<Window> titleWindowList = new List<Window>();
 
     private Canvas myCanvas;
     private Color alertAlpha;
@@ -23,26 +23,25 @@ public class TileUIScript : MonoBehaviour
         myCanvas = GetComponent<Canvas>();
 
         orignalAlpha = idInputField.image.color;
+
+        GameObject register = Managers.Resource.Instantiate(string.Format("{0}/{1}", nameof(Define.ResourcePath.UI), nameof(Define.WindowTpye.RegisterWindow)), myCanvas.transform);
+        GameObject exit = Managers.Resource.Instantiate(string.Format("{0}/{1}", nameof(Define.ResourcePath.UI), nameof(Define.WindowTpye.ExitWindow)), myCanvas.transform);
+
+        titleWindowList.Add(register.GetComponent<RegisterWindow>());
+        titleWindowList.Add(exit.GetComponent<ExitWindow>());
     }
 
     void Update()
     {
+        alertAlpha.r = Mathf.Lerp(alertAlpha.r, orignalAlpha.r, Time.deltaTime * alphaSpeed);
+        alertAlpha.g = Mathf.Lerp(alertAlpha.g, orignalAlpha.g, Time.deltaTime * alphaSpeed);
+        alertAlpha.b = Mathf.Lerp(alertAlpha.b, orignalAlpha.b, Time.deltaTime * alphaSpeed);
+
         if (idInputField.image.color != orignalAlpha)
-        {
-            alertAlpha.r = Mathf.Lerp(alertAlpha.r, orignalAlpha.r, Time.deltaTime * alphaSpeed);
-            alertAlpha.g = Mathf.Lerp(alertAlpha.g, orignalAlpha.g, Time.deltaTime * alphaSpeed);
-            alertAlpha.b = Mathf.Lerp(alertAlpha.b, orignalAlpha.b, Time.deltaTime * alphaSpeed);
-
             idInputField.image.color = alertAlpha;
-        }
-        if (pwInputField.image.color != orignalAlpha)
-        {
-            alertAlpha.r = Mathf.Lerp(alertAlpha.r, orignalAlpha.r, Time.deltaTime * alphaSpeed);
-            alertAlpha.g = Mathf.Lerp(alertAlpha.g, orignalAlpha.g, Time.deltaTime * alphaSpeed);
-            alertAlpha.b = Mathf.Lerp(alertAlpha.b, orignalAlpha.b, Time.deltaTime * alphaSpeed);
 
+        if (pwInputField.image.color != orignalAlpha)
             pwInputField.image.color = alertAlpha;
-        }
     }
 
     public void LogIn()
@@ -55,9 +54,9 @@ public class TileUIScript : MonoBehaviour
         if (CheckLogData(currentLogData))
             return;
 
-        DataManager.instance.currentLog = currentLogData;
+        Managers.Data.currentLog = currentLogData;
+        Managers.Game.Init();
 
-        DontDestroyOnLoad(DataManager.instance);
         SceneManager.LoadSceneAsync("TownScene");
     }
 
@@ -82,18 +81,21 @@ public class TileUIScript : MonoBehaviour
 
     private bool CheckLogData(LogData logData)
     {
-        LogDataJson logDataJson = DataManager.instance.JsonToData<LogDataJson>(DataManager.instance.logFileName);
+        LogDataJson logDataJson = Managers.Data.JsonToData<LogDataJson>(nameof(Define.FileName.Log_Data));
         if (logDataJson.IsData(logData.id))
         {
             logDataJson.logDataDictionary.TryGetValue(logData.id, out LogData logtmp);
 
             if (logData.pw != logtmp.pw)
             {
-                AlertInputField(idInputField);
                 AlertInputField(pwInputField);
-
                 return true;
             }
+        }
+        else
+        {
+            AlertInputField(idInputField);
+            return true;
         }
 
         return false;
@@ -105,13 +107,8 @@ public class TileUIScript : MonoBehaviour
         inputField.image.color = alertAlpha;
     }
 
-    public void OpenRegisterWindow()
+    public void OpenWindow(int index)
     {
-        registerWindow.ShowWindow(myCanvas);
-    }
-
-    public void OpenExitWindow()
-    {
-        exitWindow.ShowWindow(myCanvas);
+        titleWindowList[index].ShowWindow();
     }
 }

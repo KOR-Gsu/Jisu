@@ -6,18 +6,16 @@ using UnityEngine.UI;
 
 public class LivingEntity : MonoBehaviour, IDamageable
 {
-    private Color skinColor;
-    private Renderer entityRenderer;
-
-    [SerializeField] private string damagedTextPrefabPath;
+    [SerializeField] private string damagedTextPrefabName;
+    [SerializeField] protected Transform hudPos;
+    [SerializeField] private Outline outline;
 
     public bool dead { get; protected set; }
-    public bool isMarking { get; protected set; }
+    public bool isTarget { get; private set; }
     public Color damagedTextColor { get; set; }
-    public Transform hudPos;
+    public float maxHP { get; protected set; }
 
-    [HideInInspector] public float maxHP;
-    private float _currentHP;
+    private float _currentHP = 1;
     public float currentHP 
     {
         get{ return _currentHP; }
@@ -26,7 +24,11 @@ public class LivingEntity : MonoBehaviour, IDamageable
             if (value > maxHP)
                 _currentHP = maxHP;
             else if (value < 0)
+            {
+                _currentHP = 0;
                 dead = true;
+                Die();
+            }
             else
                 _currentHP = value;
         } 
@@ -35,11 +37,8 @@ public class LivingEntity : MonoBehaviour, IDamageable
     protected virtual void OnEnable()
     {
         dead = false;
-        isMarking = false;
+        isTarget = false;
         currentHP = maxHP;
-
-        entityRenderer = GetComponentInChildren<Renderer>();
-        skinColor = entityRenderer.material.color;
     }
 
     public virtual void OnDamage(float damage)
@@ -59,25 +58,25 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         _currentHP = 0;
 
-        UnMarking();
+        UnTargetting();
         dead = true;
     }
 
-    public virtual void Marking(Color color)
+    public virtual void Targetting()
     {
-        isMarking = true;
-        entityRenderer.material.color = color;
+        isTarget = true;
+        outline.OutlineMode = Outline.Mode.OutlineVisible;
     }
 
-    public virtual void UnMarking()
+    public virtual void UnTargetting()
     {
-        isMarking = false;
-        entityRenderer.material.color = skinColor;
+        isTarget = false;
+        outline.OutlineMode = Outline.Mode.SilhouetteOnly;
     }
 
     public void ShowDamaged(float damage, Color color)
     {
-        GameObject hudText = ResourceManager.instance.Instantiate(damagedTextPrefabPath, UIManager.instance.myCanvas.transform);
+        GameObject hudText = Managers.Resource.Instantiate(string.Format("{0}/{1}", Define.ResourcePath.UI, damagedTextPrefabName), UIManager.instance.myCanvas.transform);
         hudText.GetComponent<DamageText>().targetTransform = hudPos;
         hudText.GetComponent<DamageText>().damage = damage;
         hudText.GetComponent<DamageText>().textColor = color;

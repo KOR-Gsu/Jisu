@@ -16,13 +16,14 @@ public class Item
 
     public void SetImage()
     {
-        itemImage = ResourceManager.instance.Load<Sprite>(DataManager.instance.spritePath + "/" + name);
+        itemImage = Managers.Resource.Load<Sprite>(string.Format("{0}/{1}", nameof(Define.ResourcePath.Sprite), name));
     }
 }
 
 public class ConsumeItemData : Item
 {
     public int value;
+    public float cooldown;
 
     ConsumeItemData()
     {

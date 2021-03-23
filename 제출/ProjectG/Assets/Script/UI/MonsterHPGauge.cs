@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class MonsterHPGauge : MonoBehaviour
 {
-    public Image myContent;
-    public Text myPercentage;
+    [SerializeField] private Image myContent;
+    [SerializeField] private Text myPercentage;
 
     [HideInInspector] public Transform targetTransform;
 
     private Camera worldCamera;
     private RectTransform rectParent;
     private RectTransform rectHPBar;
-    private Vector2 offSet;
+    private Vector3 offSet;
     private float lerpSpeed = 10f;
     private float currentFill;
 
@@ -22,7 +22,7 @@ public class MonsterHPGauge : MonoBehaviour
         worldCamera = UIManager.instance.myCanvas.worldCamera;
         rectParent = UIManager.instance.myCanvas.GetComponent<RectTransform>();
         rectHPBar = GetComponent<RectTransform>();
-        offSet = new Vector2(0f, 30f);
+        offSet = new Vector3(0f, 2f, 0f);
     }
     
     void Update()
@@ -30,16 +30,18 @@ public class MonsterHPGauge : MonoBehaviour
         if (currentFill != myContent.fillAmount)
             myContent.fillAmount = Mathf.Lerp(myContent.fillAmount, currentFill, Time.deltaTime * lerpSpeed);
 
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(targetTransform.position);
-        Vector2 localPos = Vector2.zero;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectParent, screenPos, worldCamera, out localPos);
-
-        rectHPBar.localPosition = localPos + offSet;
+        rectHPBar.transform.position = Camera.main.WorldToScreenPoint(targetTransform.position + offSet);
     }
 
     public void Initialize(float rate)
     {
         currentFill = rate;
+
+        myPercentage.text = string.Format("{0:P1}", currentFill);
+    }
+    public void ResetGauge()
+    {
+        myContent.fillAmount = 1.0f;
 
         myPercentage.text = string.Format("{0:P1}", currentFill);
     }

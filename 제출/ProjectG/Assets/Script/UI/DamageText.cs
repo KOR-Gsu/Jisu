@@ -10,7 +10,7 @@ public class DamageText : MonoBehaviour
     private Camera worldCamera;
     private RectTransform rectParent;
     private RectTransform rectDamageText;
-    private Vector2 offSet;
+    private Vector3 offSet;
 
     private float moveSpeed;
     private float alphaSpeed;
@@ -27,9 +27,9 @@ public class DamageText : MonoBehaviour
         worldCamera = UIManager.instance.myCanvas.worldCamera;
         rectParent = UIManager.instance.myCanvas.GetComponent<RectTransform>();
         rectDamageText = GetComponent<RectTransform>();
-        offSet = new Vector2(0f, 0f);
-        moveSpeed = 80.0f;
-        alphaSpeed = 3.0f;
+        offSet = new Vector3(0f, 0f, 0f);
+        moveSpeed = 3.0f;
+        alphaSpeed = 1.2f;
         destroyTime = 1.0f;
 
         damageText = GetComponent<Text>();
@@ -47,11 +47,7 @@ public class DamageText : MonoBehaviour
         alpha.a = Mathf.Lerp(alpha.a, 0, Time.deltaTime * alphaSpeed);
         damageText.color = alpha;
 
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(targetTransform.position);
-        Vector2 localPos = Vector2.zero;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectParent, screenPos, worldCamera, out localPos);
-
-        rectDamageText.localPosition = localPos + offSet;
+        rectDamageText.transform.position = Camera.main.WorldToScreenPoint(targetTransform.position + offSet);
     }
 
     private void DestroyObject()

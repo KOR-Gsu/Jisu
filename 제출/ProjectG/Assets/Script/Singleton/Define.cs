@@ -4,6 +4,41 @@ using UnityEngine;
 
 public class Define
 {
+    public enum FileName
+    {
+        Log_Data,
+        Player_Default_Data,
+        Player_Saved_Data,
+        Monster_Data,
+        Item_Data
+    }
+    public enum ResourcePath
+    {
+        Prefab,
+        Sprite,
+        UI
+    }
+    public enum WindowTpye
+    {
+        RegisterWindow,
+        ExitWindow,
+        InfoWindow,
+        InventoryWindow,
+        ShopWindow,
+    }
+    public enum InGameWindowType
+    {
+        ExitWindow,
+        InfoWindow,
+        InventoryWindow,
+        ShopWindow
+    }
+    public enum SlotTpye
+    {
+        Info,
+        Inventory,
+        Shop,
+    }
     public enum Mouse
     {
         Mouse_0,
@@ -18,8 +53,29 @@ public class Define
     }
     public enum MouseEvent
     {
-        Press,
+        Press, 
+        Down,
+        Up,
         Click
+    }
+    public enum PlayerInput
+    {
+        Item1,
+        Item2,
+        Skill1,
+        Skill2,
+        Test1,
+        Test2
+    }
+    public enum Layer
+    {
+        UI = 5,
+        Window = 6,
+        Ground = 7,
+        Terrain = 8,
+        Shop = 9,
+        Enemy = 10,
+        Player = 11
     }
     public enum PlayerState
     {
@@ -27,13 +83,19 @@ public class Define
         Idle,
         Moving,
         Attack,
-        Skill
+        AttackIdle,
+        Skill1,
+        Skill2
     }
-
+    public enum Skill
+    { 
+        MeteorStrike = 0,
+        Explosion = 1
+    }
     public enum EnemyType
     {
-        warrior,
-        archer
+        Warrior,
+        Archer
     }
 
     public enum EnemyState
@@ -41,7 +103,8 @@ public class Define
         Die,
         Idle,
         Moving,
-        Attack
+        Attack,
+        AttackIdle
     }
 
     public enum Gauge
@@ -69,6 +132,11 @@ public class Define
         Consume,
         Weapon,
         Armor
+    }
+    public enum DropItem
+    {
+        Sword = 1,
+        Shield
     }
     public enum Stat
     {

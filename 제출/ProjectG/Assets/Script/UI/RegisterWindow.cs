@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class RegisterWindow : Window
 {
-    public InputField idInputField;
-    public InputField pwInputField;
+    [SerializeField] private InputField idInputField;
+    [SerializeField] private InputField pwInputField;
     
     private Color alertAlpha;
     private Color orignalAlpha;
@@ -14,9 +14,9 @@ public class RegisterWindow : Window
     private int charMin = 2;
     private int charMax = 8;
 
-    public override void ShowWindow(Canvas canvas)
+    public override void ShowWindow()
     {
-        base.ShowWindow(canvas);
+        base.ShowWindow();
     }
 
     public override void CloseWindow()
@@ -55,13 +55,13 @@ public class RegisterWindow : Window
             return;
 
         LogData currentLogData = new LogData(idInputField.GetComponentInChildren<Text>().text, pwInputField.text);
-        LogDataJson logDataJson = DataManager.instance.JsonToData<LogDataJson>(DataManager.instance.logFileName);
+        LogDataJson logDataJson = Managers.Data.JsonToData<LogDataJson>(nameof(Define.FileName.Log_Data));
 
         if (IsSameLogData(logDataJson, currentLogData))
             return;
 
         logDataJson.Add(currentLogData);
-        DataManager.instance.DataToJson<LogDataJson>(DataManager.instance.logFileName, logDataJson);
+        Managers.Data.DataToJson<LogDataJson>(nameof(Define.FileName.Log_Data), logDataJson);
 
         CloseWindow();
     }

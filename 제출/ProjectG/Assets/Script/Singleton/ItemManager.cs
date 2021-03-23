@@ -2,27 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemManager : MonoBehaviour
+public class ItemManager
 {
-    private static ItemManager _instance;
-    public static ItemManager instance
+    public List<ConsumeItemData> consumeItemDataList { get; private set; } = new List<ConsumeItemData>();
+    public List<WeaponItemData> weaponItemDataList { get; private set; } = new List<WeaponItemData>();
+    public List<ArmorItemData> armorItemDataList { get; private set; } = new List<ArmorItemData>();
+
+    public void Init()
     {
-        get
-        {
-            if (_instance == null)
-                _instance = FindObjectOfType<ItemManager>();
-
-            return _instance;
-        }
-    }
-
-    public List<ConsumeItemData> consumeItemDataList = new List<ConsumeItemData>();
-    public List<WeaponItemData> weaponItemDataList = new List<WeaponItemData>();
-    public List<ArmorItemData> armorItemDataList = new List<ArmorItemData>();
-
-    private void Start()
-    {
-        ItemDataJson itemDataJson = DataManager.instance.JsonToData<ItemDataJson>(DataManager.instance.itemDataFileName);
+        ItemDataJson itemDataJson = Managers.Data.JsonToData<ItemDataJson>(nameof(Define.FileName.Item_Data));
 
         for(int i = 0; i < itemDataJson.consumeItemDataDictionary.Keys.Count; i++)
             consumeItemDataList.Add(itemDataJson.consumeItemDataDictionary[i]);

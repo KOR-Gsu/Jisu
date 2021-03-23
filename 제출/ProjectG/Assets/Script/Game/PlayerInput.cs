@@ -4,30 +4,24 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    private string targetingBtn = "Targeting";
-    private string attackBtn = "Attack";
-    private string item1Btn = "Item1";
-    private string item2Btn = "Item2";
-    private string skill1Btn = "Skill1";
-    private string skill2Btn = "Skill2";
-    private string test1Btn = "Test1";
-    private string test2Btn = "Test2";
+    private string item1Btn = nameof(Define.PlayerInput.Item1);
+    private string item2Btn = nameof(Define.PlayerInput.Item2);
+    private string skill1Btn = nameof(Define.PlayerInput.Skill1);
+    private string skill2Btn = nameof(Define.PlayerInput.Skill2);
+    private string test1Btn = nameof(Define.PlayerInput.Test1);
+    private string test2Btn = nameof(Define.PlayerInput.Test2);
 
-    public bool targeting { private set; get; }
-    public bool attack { private set; get; }
-    public bool item1 { private set; get; }
-    public bool item2 { private set; get; }
-    public bool skill1 { private set; get; }
-    public bool skill2 { private set; get; }
-    public bool test1 { private set; get; }
-    public bool test2 { private set; get; }
+    public bool item1 { get; private set; }
+    public bool item2 { get; private set; }
+    public bool skill1 { get; private set; }
+    public bool skill2 { get; private set; }
+    public bool test1 { get; private set; }
+    public bool test2 { get; private set; }
 
     void Update()
     { 
-        if(GameManager.instance != null && GameManager.instance.isGameOver)
+        if(Managers.instance != null && Managers.Game.isGameOver)
         {
-            targeting = false;
-            attack = false;
             item1 = false;
             item2 = false;
             skill1 = false;
@@ -38,8 +32,6 @@ public class PlayerInput : MonoBehaviour
             return;
         }
 
-        targeting = Input.GetButtonDown(targetingBtn);
-        attack = Input.GetButtonDown(attackBtn);
         item1 = Input.GetButtonDown(item1Btn);
         item2 = Input.GetButtonDown(item2Btn);
         skill1 = Input.GetButtonDown(skill1Btn);

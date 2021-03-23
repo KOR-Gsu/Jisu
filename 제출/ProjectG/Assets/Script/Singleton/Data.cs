@@ -15,11 +15,19 @@ public class LogData
     }
 }
 
+public class SlotData
+{
+    public int sort;
+    public int id;
+    public int count;
+}
+
 [System.Serializable]
 public class PlayerData
 {
     public LogData log;
     public Dictionary<string, float> dataDictionary = new Dictionary<string, float>();
+    public Dictionary<string, SlotData> invenDataDictionary = new Dictionary<string, SlotData>();
 }
 
 [System.Serializable]
@@ -74,6 +82,7 @@ public class MonsterData
     public float maxHP;
     public float attackDamage;
     public float defense;
+    public float scanRange;
     public float attackRange;
     public float moveSpeed;
     public float rotateSpeed;

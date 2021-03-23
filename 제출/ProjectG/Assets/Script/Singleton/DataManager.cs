@@ -5,31 +5,12 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 
-public class DataManager : MonoBehaviour
+public class DataManager
 {
-    private static DataManager _instance;
-    public static DataManager instance
-    {
-        get
-        {
-            if (_instance == null)
-                _instance = FindObjectOfType<DataManager>();
-
-            return _instance;
-        }
-    }
-
     public LogData currentLog { get; set; }
 
-    public string spritePath = "Sprite";
-    public string filePath = "/SaveData";
-    public string fileExtension = ".json";
-
-    public string logFileName = "Log_Data";
-    public string playerDefaultDataFileName = "Player_Default_Data";
-    public string playerSavedDataFileName = "Player_Saved_Data";
-    public string monsterDataFileName = "Monster_Data";
-    public string itemDataFileName = "Item_Data";
+    private string filePath = "/SaveData";
+    private string fileExtension = ".json";
 
     public void DataToJson<T>(string filename, T data)
     {

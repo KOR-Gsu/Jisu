@@ -11,9 +11,9 @@ public class CusorControl : MonoBehaviour
 
     void Start()
     {
-		layerMask = LayerMask.GetMask("Enemy") | LayerMask.GetMask("Ground");
-		defaultImage = ResourceManager.instance.Load<Texture2D>("Texture/Cursor/Default");
-        attackImage = ResourceManager.instance.Load<Texture2D>("Texture/Cursor/Attack");
+		layerMask = (int)Define.Layer.Enemy | (int)Define.Layer.Ground;
+		defaultImage = Managers.Resource.Load<Texture2D>("Texture/Cursor/Default");
+        attackImage = Managers.Resource.Load<Texture2D>("Texture/Cursor/Attack");
 	}
 
     void Update()
@@ -22,11 +22,11 @@ public class CusorControl : MonoBehaviour
 
 		if (Physics.Raycast(ray, out RaycastHit hit, 100.0f, layerMask))
 		{
-			if (hit.collider.gameObject.layer == LayerMask.GetMask("Enemy"))
+			if (hit.collider.gameObject.layer == (int)Define.Layer.Enemy)
 			{
 				if (cursorTpye != Define.CursorType.Attack)
 				{
-					Cursor.SetCursor(attackImage, new Vector2(attackImage.width / 5, 0), CursorMode.Auto);
+					Cursor.SetCursor(attackImage, new Vector2(attackImage.width / 3, 0), CursorMode.Auto);
 					cursorTpye = Define.CursorType.Attack;
 				}
 			}
@@ -34,7 +34,7 @@ public class CusorControl : MonoBehaviour
 			{
 				if (cursorTpye != Define.CursorType.Default)
 				{
-					Cursor.SetCursor(defaultImage, new Vector2(defaultImage.width / 2, 0), CursorMode.Auto);
+					Cursor.SetCursor(defaultImage, new Vector2(defaultImage.width / 5, 0), CursorMode.Auto);
 					cursorTpye = Define.CursorType.Default;
 				}
 			}

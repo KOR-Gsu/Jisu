@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    public Window shopWindowScript;
+    [SerializeField] private Define.ItemSort itemSort;
 
     public void OpenShop()
     {
-        shopWindowScript.ShowWindow(UIManager.instance.myCanvas);
+        UIManager.instance.OpenWindow((int)Define.InGameWindowType.ShopWindow);
+        UIManager.instance.gameWindowList[(int)Define.InGameWindowType.ShopWindow].GetComponent<ShopWindow>().SetItem(itemSort);
+
+        UIManager.instance.OpenWindow((int)Define.InGameWindowType.InventoryWindow);
     }
 }

@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class Window : MonoBehaviour
 {
-    private Canvas myCanvas;
+    [SerializeField] private Define.WindowTpye windowTpye;
 
-    public GameObject myContent { get; private set; }
-    public GameObject myPrefab;
+    public bool isOpen { get; private set; }
 
-    virtual public void ShowWindow(Canvas canvas)
+    private void Awake()
     {
-        if (myContent == null)
-        {
-            myCanvas = canvas;
-            myContent = Instantiate<GameObject>(myPrefab, myCanvas.transform);
-        }
+        isOpen = false;
+
+        gameObject.SetActive(false);
+    }
+
+    virtual public void ShowWindow()
+    {
+        isOpen = true;
+
+        gameObject.SetActive(true);
     }
 
     virtual public void CloseWindow()
     {
-        Destroy(gameObject);
+        isOpen = false;
+
+        gameObject.SetActive(false);
     }
 }

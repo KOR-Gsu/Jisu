@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class ShowMenuButton : MonoBehaviour
 {
-    private VerticalLayoutGroup myContent;
+    [SerializeField] private VerticalLayoutGroup myContent;
     private bool isMenu;
 
     private void Start()
     {
-        myContent = GetComponentInChildren<VerticalLayoutGroup>();
         myContent.gameObject.SetActive(false);
 
         isMenu = false;

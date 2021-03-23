@@ -23,4 +23,11 @@ public class GaugeControl : MonoBehaviour
 
         myPercentage.text = string.Format("{0:P1}", currentFill);
     }
+
+    public void ResetGauge()
+    {
+        myContent.fillAmount = 1.0f;
+
+        myPercentage.text = string.Format("{0:P1}", currentFill);
+    }
 }

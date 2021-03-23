@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour {
             // 자신을 파괴
             Destroy(gameObject);
         }
+
+        isGameover = false;
     }
 
     private void Start() {

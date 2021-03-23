@@ -6,14 +6,20 @@ using UnityEngine.AI;
 public class PlayerMove : MonoBehaviour
 {
     private Vector3 destPos = Vector3.zero;
-    private float lastAttackTime = 0;
+    private float lastAttackTime;
+    private bool stopAttack;
+    private bool keepAttack;
 
+    private Transform myTransform;
     private Enemy targetEntity;
+    private Transform targetTransform;
     private PlayerInput playerInput;
     private PlayerStat playerStat;
+    private PlayerSkill playerSkill;
     private Animator playerAnimator;
 
     [SerializeField] private GameObject destPosImage;
+    [SerializeField] private LayerMask checkLayer;
 
     private Define.PlayerState _playerState;
     public Define.PlayerState playerState
@@ -25,32 +31,33 @@ public class PlayerMove : MonoBehaviour
             switch (_playerState)
             {
                 case Define.PlayerState.Die:
-                    playerAnimator.CrossFade("Die", 0.1f);
+                    playerAnimator.SetBool("Die", true);
                     break;
                 case Define.PlayerState.Idle:
-                    playerAnimator.CrossFade("Idle", 0.1f);
+                    playerAnimator.SetInteger("Move", 0);
+                    playerAnimator.SetInteger("Attack", 0);
                     break;
                 case Define.PlayerState.Moving:
-                    playerAnimator.CrossFade("Move", 0.1f);
+                    playerAnimator.SetInteger("Move", 1);
+                    playerAnimator.SetInteger("Attack", 0);
                     break;
                 case Define.PlayerState.Attack:
-                    int attack = Random.Range(1, 2);
-                    playerAnimator.CrossFade("Attack" + attack.ToString(), 0.1f, -1, 0f);
+                    playerAnimator.SetInteger("Move", 0);
+                    playerAnimator.SetInteger("Attack", 1);
                     break;
-                case Define.PlayerState.Skill:
+                case Define.PlayerState.AttackIdle:
+                    playerAnimator.SetInteger("Move", 0);
+                    playerAnimator.SetInteger("Attack", 2);
+                    break;
+                case Define.PlayerState.Skill1:
+                    playerAnimator.SetInteger("Move", 0);
+                    playerAnimator.SetInteger("Attack", 3);
+                    break;
+                case Define.PlayerState.Skill2:
+                    playerAnimator.SetInteger("Move", 0);
+                    playerAnimator.SetInteger("Attack", 4);
                     break;
             }
-        }
-    }
-
-    private bool isInRange
-    {
-        get
-        {
-            if (Vector3.Distance(transform.position, targetEntity.transform.position) <= playerStat.attackRange)
-                return true;
-
-            return false;
         }
     }
 
@@ -59,22 +66,38 @@ public class PlayerMove : MonoBehaviour
         get
         {
             if (targetEntity != null && !targetEntity.dead)
-                return true;
+                if (Vector3.Distance(myTransform.position, targetTransform.position) <= playerStat.finalAttackRange)
+                    return true;
 
             return false;
         }
     }
-    
+
     private void Start()
     {
+        myTransform = GetComponent<Transform>();
         playerInput = GetComponent<PlayerInput>();
         playerStat = GetComponent<PlayerStat>();
+        playerSkill = GetComponent<PlayerSkill>();
         playerAnimator = GetComponent<Animator>();
+        playerState = Define.PlayerState.Idle; 
+        lastAttackTime = 0;
+        stopAttack = true;
+        keepAttack = false;
 
-        InputManager.instance.keyAction -= OnSkillKeyPress;
-        InputManager.instance.keyAction += OnSkillKeyPress;
-        InputManager.instance.mouseAction -= OnMouse0Clicked;
-        InputManager.instance.mouseAction += OnMouse0Clicked;
+        Managers.Input.keyAction -= OnSkillKeyPress;
+        Managers.Input.keyAction += OnSkillKeyPress;
+        Managers.Input.mouseAction -= OnMouse0Clicked;
+        Managers.Input.mouseAction += OnMouse0Clicked;
+    }
+
+    private void OnDisable()
+    {
+        if (Managers.instance != null)
+        {
+            Managers.Input.keyAction -= OnSkillKeyPress;
+            Managers.Input.mouseAction -= OnMouse0Clicked;
+        }
     }
 
     private void Update()
@@ -89,9 +112,12 @@ public class PlayerMove : MonoBehaviour
                 case Define.PlayerState.Moving:
                     UpdateMoving();
                     break;
-                case Define.PlayerState.Attack:
-                    if (isInRange && isAttackAble)
-                        UpdateAttack();
+                case Define.PlayerState.AttackIdle:
+                    UpdateAttack();
+                    break;
+                case Define.PlayerState.Skill1:
+                case Define.PlayerState.Skill2:
+                    UpdateSkill();
                     break;
             }
         }
@@ -99,55 +125,129 @@ public class PlayerMove : MonoBehaviour
 
     private void UpdateIdle()
     {
-        destPosImage.SetActive(false);
+        if (targetEntity != null)
+        {
+            Vector3 dir = targetTransform.position - myTransform.position;
+            myTransform.rotation = Quaternion.Lerp(myTransform.rotation, Quaternion.LookRotation(dir), playerStat.rotateSpeed * Time.deltaTime);
 
-        if (playerStat.dead)
-            playerState = Define.PlayerState.Die;
+            destPosImage.SetActive(true);
+            destPosImage.transform.position = targetTransform.position + Vector3.up * 0.1f;
+        }
+        else
+            destPosImage.SetActive(false);
     }
 
     private void UpdateMoving()
     {
         destPosImage.SetActive(true);
 
+        if (isAttackAble)
+        {
+            destPos = transform.position;
+            playerState = Define.PlayerState.AttackIdle;
+            return;
+        }
+
+        if (playerAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash == Animator.StringToHash("Base Layer.Attack"))
+            return;
+
         Vector3 dir = destPos - transform.position;
         if (dir.magnitude < 0.0001f)
-        {
             playerState = Define.PlayerState.Idle;
-        }
         else
         {
-            if (Physics.Raycast(transform.position, dir, 1.5f, LayerMask.GetMask("Terrain")))
+            if (Physics.Raycast(myTransform.position, dir, 1.5f, (int)Define.Layer.Terrain))
             {
                 playerState = Define.PlayerState.Idle;
                 return;
             }
 
             float moveDist = Mathf.Clamp(playerStat.moveSpeed * Time.deltaTime, 0, dir.magnitude);
-            transform.position = transform.position + dir.normalized * moveDist;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), playerStat.rotateSpeed * Time.deltaTime);
-            transform.LookAt(destPos);
+            myTransform.position += dir.normalized * moveDist;
+            myTransform.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(dir), playerStat.rotateSpeed * Time.deltaTime);
+            myTransform.LookAt(destPos);
         }
     }
 
     private void UpdateAttack()
     {
-        if (Time.time >= lastAttackTime + playerStat.intvlAttackTime)
+        if (targetEntity != null)
         {
+            destPosImage.SetActive(true);
+            destPosImage.transform.position = targetTransform.position + Vector3.up * 0.1f;
+            myTransform.LookAt(targetTransform);
+        }
+        else
+            keepAttack = false;
+
+
+        if (Time.time >= lastAttackTime + playerStat.finalIntvlAttackTime)
+        {
+            stopAttack = false;
             playerState = Define.PlayerState.Attack;
             lastAttackTime = Time.time;
         }
+    }
+
+    private void UpdateSkill()
+    {
+        switch (playerState)
+        {
+            case Define.PlayerState.Skill1:
+                {
+                    if (targetEntity != null)
+                    {
+                        if (UIManager.instance.UseQuickSlot(Define.QuckSlot.Skill_1))
+                        {
+                            playerStat.currentMP -= playerSkill.skillList[0].mpCost;
+                            playerSkill.UseSkill1(playerStat.attackDamage, targetEntity, targetTransform);
+                        }
+                    }
+                }
+                break;
+            case Define.PlayerState.Skill2:
+                {
+                    if (UIManager.instance.UseQuickSlot(Define.QuckSlot.Skill_2))
+                    {
+                        playerStat.currentMP -= playerSkill.skillList[0].mpCost;
+                        playerSkill.UseSkill2(playerStat.attackDamage, myTransform);
+                    }
+                }
+                break;
+        }
+
+        if (keepAttack)
+            playerState = Define.PlayerState.AttackIdle;
         else
             playerState = Define.PlayerState.Idle;
     }
 
     public void OnAttackEvent()
     {
-        transform.LookAt(targetEntity.transform);
-        targetEntity.OnDamage(playerStat.attackDamage);
-
-        if (targetEntity.dead)
+        if (targetEntity != null)
         {
-            playerStat.GetExp((int)targetEntity.exp, (int)targetEntity.gold);
+            targetEntity.OnDamage(playerStat.finalAttackDamage);
+
+            if (targetEntity.dead)
+            {
+                stopAttack = true;
+                keepAttack = false;
+
+                targetEntity = null;
+            }
+        }
+
+        if (stopAttack)
+        {
+            stopAttack = false;
+            playerState = Define.PlayerState.Idle;
+        }
+        else
+        {
+            if (isAttackAble)
+                playerState = Define.PlayerState.AttackIdle;
+            else
+                playerState = Define.PlayerState.Moving;
         }
     }
 
@@ -157,47 +257,111 @@ public class PlayerMove : MonoBehaviour
         {
             if (playerInput.skill1)
             {
-                playerState = Define.PlayerState.Skill;
+                if (playerState == Define.PlayerState.AttackIdle)
+                    keepAttack = true;
+
+                playerState = Define.PlayerState.Skill1;
             }
             if (playerInput.skill2)
             {
-                playerState = Define.PlayerState.Skill;
+                if (playerState == Define.PlayerState.AttackIdle)
+                    keepAttack = true;
+
+                playerState = Define.PlayerState.Skill2;
             }
         }
     }
 
     private void OnMouse0Clicked(Define.Mouse mouse, Define.MouseEvent evt)
     {
-        if (!playerStat.dead)
+        if (mouse != Define.Mouse.Mouse_0)
+            return;
+
+        if (!Managers.Game.isGameOver)
         {
-            if (mouse != Define.Mouse.Mouse_0 || evt != Define.MouseEvent.Click)
+            if (UIManager.instance.isWindowOpen)
                 return;
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray  ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            bool raycastHit = Physics.Raycast(ray, out RaycastHit hit, 100.0f, checkLayer);
 
-            if (Physics.Raycast(ray, out RaycastHit hitEnemy, 100f, LayerMask.GetMask("Enemy")))
+            switch (evt)
             {
-                if (hitEnemy.collider.gameObject.GetComponent<Enemy>() != null)
-                {
-                    targetEntity = hitEnemy.collider.gameObject.GetComponent<Enemy>();
-                    targetEntity.Marking(Color.red);
-                }
-            }
-            else if (Physics.Raycast(ray, out RaycastHit hitShop, 100f, LayerMask.GetMask("Shop")))
-            {
-                if (hitShop.collider.gameObject.GetComponent<Shop>() != null)
-                {
-                    hitShop.collider.gameObject.GetComponent<Shop>().OpenShop();
-                }
-            }
-            else if (Physics.Raycast(ray, out RaycastHit hit, 100f, LayerMask.GetMask("Terrain")))
-                return;
-            else if (Physics.Raycast(ray, out RaycastHit hitGround, 100f, LayerMask.GetMask("Ground")))
-            {
-                destPos = hitGround.point;
-                destPosImage.transform.position = new Vector3(destPos.x, destPos.y + 0.5f, destPos.z);
+                case Define.MouseEvent.Down:
+                    {
+                        if (raycastHit)
+                        {
+                            if (hit.collider.gameObject.layer == (int)Define.Layer.Shop)
+                            {
+                                hit.collider.gameObject.GetComponent<Shop>().OpenShop();
+                                playerState = Define.PlayerState.Idle;
+                            }
+                            else
+                            {
+                                destPos = hit.point;
+                                stopAttack = false;
+                                destPosImage.transform.position = destPos + Vector3.up * 0.1f;
 
-                playerState = Define.PlayerState.Moving;
+                                playerState = Define.PlayerState.Moving;
+
+                                if (hit.collider.gameObject.layer == (int)Define.Layer.Enemy)
+                                {
+                                    if (targetEntity != null)
+                                        targetEntity.UnTargetting();
+
+                                    targetEntity = hit.collider.gameObject.GetComponent<Enemy>();
+                                    targetTransform = targetEntity.GetComponent<Transform>();
+                                    targetEntity.Targetting();
+                                }
+                                else
+                                {
+                                    if (targetEntity != null)
+                                        targetEntity.UnTargetting();
+
+                                    targetEntity = null;
+                                    targetTransform = null;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case Define.MouseEvent.Press:
+                    {
+                        if (targetEntity != null)
+                        {
+                            destPos = targetTransform.position;
+                            destPosImage.transform.position = destPos + Vector3.up * 0.1f;
+                        }
+                        else if (raycastHit)
+                        {
+                            if (hit.collider.gameObject.layer == (int)Define.Layer.Shop)
+                            {
+                                destPos = Vector3.zero;
+                                hit.collider.gameObject.GetComponent<Shop>().OpenShop();
+                                playerState = Define.PlayerState.Idle;
+                            }
+                            else
+                            {
+                                if (hit.collider.gameObject.layer == (int)Define.Layer.Enemy)
+                                {
+                                    if (targetEntity != null)
+                                        targetEntity.UnTargetting();
+
+                                    targetEntity = hit.collider.gameObject.GetComponent<Enemy>();
+                                    targetTransform = targetEntity.GetComponent<Transform>();
+                                    targetEntity.Targetting();
+                                }
+                                else
+                                {
+                                    destPos = hit.point;
+                                    destPosImage.transform.position = destPos + Vector3.up * 0.1f;
+
+                                    playerState = Define.PlayerState.Moving;
+                                }
+                            }
+                        }
+                    }
+                    break;
             }
         }
     }

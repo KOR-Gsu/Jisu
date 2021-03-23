@@ -5,41 +5,66 @@ using UnityEngine.UI;
 
 public class ShopWindow : Window
 {
-    public GridLayoutGroup gridLayoutGroup;
-    public int shopType;
+    private Slot[] slots;
 
-    private void Start()
+    [SerializeField] private GridLayoutGroup slotGridLayoutGroup;
+
+    private void Awake()
     {
+        slots = slotGridLayoutGroup.GetComponentsInChildren<Slot>();
+        for (int i = 0; i < slots.Length; i++)
+            slots[i].slotTpye = Define.SlotTpye.Shop;
+
+        gameObject.SetActive(false);
     }
 
-    private void Update()
+    public void SetItem(Define.ItemSort sort)
     {
-        
+        switch (sort)
+        {
+            case Define.ItemSort.Consume:
+                {
+                    for (int i = 0; i < Managers.Item.consumeItemDataList.Count; i++)
+                    {
+                        Item newItem = Managers.Item.consumeItemDataList[i];
+
+                        slots[i].AddItem(newItem);
+                    }
+                }
+                break;
+            case Define.ItemSort.Weapon:
+                {
+                    for (int i = 0; i < Managers.Item.weaponItemDataList.Count; i++)
+                    {
+                        Item newItem = Managers.Item.weaponItemDataList[i];
+
+                        slots[i].AddItem(newItem);
+                    }
+                }
+                break;
+            case Define.ItemSort.Armor:
+                {
+                    for (int i = 0; i < Managers.Item.armorItemDataList.Count; i++)
+                    {
+                        Item newItem = Managers.Item.armorItemDataList[i];
+
+                        slots[i].AddItem(newItem);
+                    }
+                }
+                break;
+        }
     }
 
-    public void Buy()
+    public override void ShowWindow()
     {
-
-    }
-
-    public void Sell()
-    {
-
-    }
-
-    public override void ShowWindow(Canvas canvas)
-    {
-        base.ShowWindow(canvas);
-
-        //SetItem();
+        base.ShowWindow();
     }
 
     public override void CloseWindow()
     {
-        base.CloseWindow();
-    }
+        for(int i = 0; i< slots.Length;i++)
+            slots[i].RemoveItem();
 
-    private void SetItem()
-    {
+        base.CloseWindow();
     }
 }
